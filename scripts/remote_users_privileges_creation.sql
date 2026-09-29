@@ -1,6 +1,6 @@
 /* CREACION DE USUARIOS REMOTOS */
 
-CREATE USER IF NOT EXISTS 'jonhy.neri'@'%' IDENTIFIED BY '240853'; -- superadmin
+CREATE USER IF NOT EXISTS 'jonhy.neri'@'%' IDENTIFIED BY '240558'; -- superadmin
 CREATE USER IF NOT EXISTS 'marco.ramirez'@'%' IDENTIFIED BY 'qwerty123'; --admin 
 CREATE USER IF NOT EXISTS 'luis.cazarez'@'%' IDENTIFIED BY '240343'; --supp
 CREATE USER IF NOT EXISTS 'saul.barrios'@'%' IDENTIFIED BY '240196'; --seller 1
