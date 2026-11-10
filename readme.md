@@ -22,14 +22,13 @@ Cada práctica conserva sus respaldos, consultas, scripts y documentación en su
 - [Práctica 02](Practica%2002/): respaldos, consultas, usuarios y privilegios.
 - [Práctica 03](Practica%2003/): respaldos, diccionario de datos, consultas y carga de CSV.
 
-## Enlaces rápidos
+## GitHub Pages
 
-- [Diccionario interactivo de Práctica 03](Practica%2003/diccionario/diccionario.html)
-- [Mapa general de Archify](.archify/erd-diccionario-db-test-20261109-2140/db_test-erd.html)
-- [Documentación técnica de Práctica 03](Practica%2003/docs/DOCUMENTACION_DB_TEST.md)
+Cuando GitHub Pages esté habilitado, el sitio ofrecerá ambos recursos:
 
-## Acceso al diccionario
+- [Inicio de GitHub Pages](https://jonhy-1st.github.io/7A-IDGDS_BDN_240558/)
+- [Diccionario interactivo](docs/diccionario.html)
+- [Diagrama interactivo](docs/diagrama/)
 
-El primer enlace de la sección anterior abre el archivo HTML del diccionario directamente desde GitHub.
-
+Para habilitarlo, en **Settings → Pages** selecciona **Deploy from a branch**, la rama `master` y la carpeta `/docs`, y guarda. Publica esta carpeta en `master`; GitHub mostrará la URL del sitio en esa misma sección. Los enlaces anteriores de Pages funcionarán una vez que termine el primer despliegue.
 Abre la carpeta de cada práctica para consultar sus respaldos, consultas, scripts e instrucciones.
