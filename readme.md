@@ -21,6 +21,7 @@ Cada práctica conserva sus respaldos, consultas, scripts y documentación en su
 
 - [Práctica 02](Practica%2002/): respaldos, consultas, usuarios y privilegios.
 - [Práctica 03](Practica%2003/): respaldos, diccionario de datos, consultas y carga de CSV.
+- [Respaldo de compra con usuarios normalizados](Practica%2003/backups/respaldo_compra_usuarios.sql) y [reporte del mapeo](Practica%2003/docs/REPORTE_NORMALIZACION_LOGS_RESPALDO_COMPRA.md).
 
 ## GitHub Pages
 
@@ -29,6 +30,7 @@ Cuando GitHub Pages esté habilitado, el sitio ofrecerá ambos recursos:
 - [Inicio de GitHub Pages](https://jonhy-1st.github.io/7A-IDGDS_BDN_240558/)
 - [Diccionario interactivo](docs/diccionario.html)
 - [Diagrama interactivo](docs/diagrama/)
+- [Procedimiento y reporte de categorización de productos](Practica%2003/docs/CATEGORIZACION_PRODUCTOS.md)
 
 Para habilitarlo, en **Settings → Pages** selecciona **Deploy from a branch**, la rama `master` y la carpeta `/docs`, y guarda. Publica esta carpeta en `master`; GitHub mostrará la URL del sitio en esa misma sección. Los enlaces anteriores de Pages funcionarán una vez que termine el primer despliegue.
 Abre la carpeta de cada práctica para consultar sus respaldos, consultas, scripts e instrucciones.

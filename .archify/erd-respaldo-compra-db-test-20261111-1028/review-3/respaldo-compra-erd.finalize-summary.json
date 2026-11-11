@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "erd",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-compra-db-test-20261111-1028\\candidate.json",
+    "sha256": "acb98d0605db52d2ac5a489e6825ae14e597da842a03beeb605b95c93d41abb0",
+    "bytes": 39110
+  },
+  "artifact": {
+    "path": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-compra-db-test-20261111-1028\\respaldo-compra-erd.html",
+    "sha256": "f34287d8a5426cc8d713620dbd42ef56a394d2f3a4b8a95fa1f2e12593cf12a4",
+    "bytes": 1008784
+  },
+  "gates": {
+    "validate": "fail",
+    "deliver": "not-run",
+    "check": "not-run",
+    "browser-check": "not-run"
+  },
+  "failedStage": "validate",
+  "diagnostics": [
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[7] id \"fk_payments_user_method\" \"tb_payments\" -> \"tbd_user_payment_methods\" crosses entity \"tb_buyer_orders\" (unrelated to this relationship) on segment 0 [1930, 139] -> [1156, 139] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 7,
+        "id": "fk_payments_user_method",
+        "from": "tb_payments",
+        "to": "tbd_user_payment_methods"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_buyer_orders",
+        "segmentIndex": 0,
+        "from": [
+          1929.5,
+          138.5
+        ],
+        "to": [
+          1156.25,
+          138.5
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[10] id \"fk_refund_payment\" \"tb_refunds\" -> \"tb_payments\" crosses entity \"tb_payment_transactions\" (unrelated to this relationship) on segment 2 [2258, 488] -> [2258, 213] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 10,
+        "id": "fk_refund_payment",
+        "from": "tb_refunds",
+        "to": "tb_payments"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_payment_transactions",
+        "segmentIndex": 2,
+        "from": [
+          2257.5,
+          487.5
+        ],
+        "to": [
+          2257.5,
+          213
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[7] id \"fk_payments_user_method\" \"tb_payments\" -> \"tbd_user_payment_methods\" crosses entity \"tb_order_cancellations\" (unrelated to this relationship) on segment 1 [1156, 139] -> [1156, 1144] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 7,
+        "id": "fk_payments_user_method",
+        "from": "tb_payments",
+        "to": "tbd_user_payment_methods"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_order_cancellations",
+        "segmentIndex": 1,
+        "from": [
+          1156.25,
+          138.5
+        ],
+        "to": [
+          1156.25,
+          1143.5
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[7] id \"fk_payments_user_method\" \"tb_payments\" -> \"tbd_user_payment_methods\" crosses entity \"tb_seller_orders\" (unrelated to this relationship) on segment 1 [1156, 139] -> [1156, 1144] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 7,
+        "id": "fk_payments_user_method",
+        "from": "tb_payments",
+        "to": "tbd_user_payment_methods"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_seller_orders",
+        "segmentIndex": 1,
+        "from": [
+          1156.25,
+          138.5
+        ],
+        "to": [
+          1156.25,
+          1143.5
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[7] id \"fk_payments_user_method\" \"tb_payments\" -> \"tbd_user_payment_methods\" crosses entity \"tb_shipments\" (unrelated to this relationship) on segment 1 [1156, 139] -> [1156, 1144] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 7,
+        "id": "fk_payments_user_method",
+        "from": "tb_payments",
+        "to": "tbd_user_payment_methods"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_shipments",
+        "segmentIndex": 1,
+        "from": [
+          1156.25,
+          138.5
+        ],
+        "to": [
+          1156.25,
+          1143.5
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[7] id \"fk_payments_user_method\" \"tb_payments\" -> \"tbd_user_payment_methods\" crosses entity \"tbd_cart_items\" (unrelated to this relationship) on segment 2 [1156, 1144] -> [383, 1144] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 7,
+        "id": "fk_payments_user_method",
+        "from": "tb_payments",
+        "to": "tbd_user_payment_methods"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tbd_cart_items",
+        "segmentIndex": 2,
+        "from": [
+          1156.25,
+          1143.5
+        ],
+        "to": [
+          383,
+          1143.5
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[7] id \"fk_payments_user_method\" \"tb_payments\" -> \"tbd_user_payment_methods\" crosses entity \"tbd_orders\" (unrelated to this relationship) on segment 1 [1156, 139] -> [1156, 1144] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 7,
+        "id": "fk_payments_user_method",
+        "from": "tb_payments",
+        "to": "tbd_user_payment_methods"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tbd_orders",
+        "segmentIndex": 1,
+        "from": [
+          1156.25,
+          138.5
+        ],
+        "to": [
+          1156.25,
+          1143.5
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[10] id \"fk_refund_payment\" \"tb_refunds\" -> \"tb_payments\" crosses entity \"tb_returns\" (unrelated to this relationship) on segment 0 [2234, 762] -> [2234, 488] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 10,
+        "id": "fk_refund_payment",
+        "from": "tb_refunds",
+        "to": "tb_payments"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_returns",
+        "segmentIndex": 0,
+        "from": [
+          2233.5,
+          762
+        ],
+        "to": [
+          2233.5,
+          487.5
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 9,
+    "shown": 8,
+    "truncated": true,
+    "omittedByCode": {
+      "clean-flow/edge-through-node": 1
+    }
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-compra-db-test-20261111-1028\\review-3\\respaldo-compra-erd.finalize.json",
+    "summaryReceipt": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-compra-db-test-20261111-1028\\review-3\\respaldo-compra-erd.finalize-summary.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-11T16:30:52.927Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 827,
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  },
+  "nextAction": {
+    "action": "edit-in-place",
+    "candidate": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-compra-db-test-20261111-1028\\candidate.json",
+    "constraint": "Preserve unaffected semantics and geometry; apply each diagnostic's supportedFixes, or the fix its message names, and do not replace the whole candidate.",
+    "then": "finalize-once"
+  }
+}

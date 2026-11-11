@@ -1,13 +1,13 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_products_categories`
 
-Fuente: `240558_Respaldo_com_responsables_dbuser.sql`, líneas 1797–1807. SHA-256: `8242d2e7a82f3e2b2c326fda9989c7d676d061933ad43ad2e750a057d0e7a766`.
+Fuente: `respaldo_compra_usuarios.sql`, líneas 2979–2989. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL
 
 - Columnas: 5.
-- Filas encontradas en sentencias INSERT de este respaldo: 0.
+- Filas encontradas en sentencias INSERT de este respaldo: 9544.
 - Claves primarias / índices: 2.
 - Claves foráneas: 2.
 - Restricciones CHECK: 0.
@@ -21,7 +21,7 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 | 2 | `product_ID` | `int unsigned` | No | `—` | PK; índice; FK; fk_product → tb_products(ID); PRIMARY (category_ID, product_ID); fk_product (product_ID) | — | `&#96;product_ID&#96; int unsigned NOT NULL` |
 | 3 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
 | 4 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 5 | `last_update` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;last_update&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP` |
+| 5 | `last_update` | `datetime` | No | `—` | — | — | `&#96;last_update&#96; datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 
@@ -45,7 +45,7 @@ CREATE TABLE `tbd_products_categories` (
   `product_ID` int unsigned NOT NULL,
   `status` bit(1) NOT NULL DEFAULT b'1',
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_update` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`category_ID`,`product_ID`),
   KEY `fk_product` (`product_ID`),
   CONSTRAINT `fk_category` FOREIGN KEY (`category_ID`) REFERENCES `tbc_categories` (`ID`),

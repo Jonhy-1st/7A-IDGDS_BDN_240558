@@ -1,17 +1,17 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_products`
 
-Fuente: `240558_Respaldo_com_responsables_dbuser.sql`, líneas 740–752. SHA-256: `8242d2e7a82f3e2b2c326fda9989c7d676d061933ad43ad2e750a057d0e7a766`.
+Fuente: `respaldo_compra_usuarios.sql`, líneas 1051–1063. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL
 
 - Columnas: 9.
-- Filas encontradas en sentencias INSERT de este respaldo: 15000.
+- Filas encontradas en sentencias INSERT de este respaldo: 15007.
 - Claves primarias / índices: 2.
 - Claves foráneas: 0.
 - Restricciones CHECK: 0.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=21399 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -25,7 +25,7 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 | 6 | `current_stock` | `int unsigned` | No | `'0'` | — | — | `&#96;current_stock&#96; int unsigned NOT NULL DEFAULT '0'` |
 | 7 | `status` | `bit(1)` | Sí | `b` | — | — | `&#96;status&#96; bit(1) DEFAULT b'1'` |
 | 8 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 9 | `last_update` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;last_update&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP` |
+| 9 | `last_update` | `datetime` | No | `—` | — | — | `&#96;last_update&#96; datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 
@@ -52,8 +52,8 @@ CREATE TABLE `tb_products` (
   `current_stock` int unsigned NOT NULL DEFAULT '0',
   `status` bit(1) DEFAULT b'1',
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_update` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `SKU` (`SKU`)
-) ENGINE=InnoDB AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21399 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

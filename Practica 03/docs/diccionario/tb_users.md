@@ -1,17 +1,17 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_users`
 
-Fuente: `240558_Respaldo_com_responsables_dbuser.sql`, líneas 1230–1242. SHA-256: `8242d2e7a82f3e2b2c326fda9989c7d676d061933ad43ad2e750a057d0e7a766`.
+Fuente: `respaldo_compra_usuarios.sql`, líneas 1771–1783. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL
 
 - Columnas: 8.
-- Filas encontradas en sentencias INSERT de este respaldo: 10229.
+- Filas encontradas en sentencias INSERT de este respaldo: 10024.
 - Claves primarias / índices: 3.
 - Claves foráneas: 0.
 - Restricciones CHECK: 0.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=10230 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=16412 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -22,7 +22,7 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 | 3 | `nick` | `varchar(100)` | No | `—` | UK; nickname (nick) | — | `&#96;nick&#96; varchar(100) NOT NULL` |
 | 4 | `password` | `varchar(255)` | No | `—` | — | — | `&#96;password&#96; varchar(255) NOT NULL` |
 | 5 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 6 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL` |
+| 6 | `last_update` | `datetime` | Sí | `CURRENT_TIMESTAMP` | — | — | `&#96;last_update&#96; datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP` |
 | 7 | `last_login` | `datetime` | Sí | `NULL` | — | — | `&#96;last_login&#96; datetime DEFAULT NULL` |
 | 8 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
 
@@ -49,11 +49,11 @@ CREATE TABLE `tb_users` (
   `nick` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_update` datetime DEFAULT NULL,
+  `last_update` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `last_login` datetime DEFAULT NULL,
   `status` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `nickname` (`nick`)
-) ENGINE=InnoDB AUTO_INCREMENT=10230 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16412 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

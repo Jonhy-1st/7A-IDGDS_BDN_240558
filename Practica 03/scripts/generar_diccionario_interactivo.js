@@ -12,7 +12,8 @@ const BACKUPS = path.join(PRACTICE, 'backups');
 const OUTPUT = path.join(PRACTICE, 'diccionario');
 const DOCS = path.join(PRACTICE, 'docs');
 const DOC_TABLES = path.join(DOCS, 'diccionario');
-const REFERENCE = path.join(BACKUPS, '240558_Respaldo_com_responsables_dbuser.sql');
+const PAGES = path.join(ROOT, 'docs');
+const REFERENCE = path.join(BACKUPS, 'respaldo_compra_usuarios.sql');
 
 function newestSql(directory) {
   const files = fs.readdirSync(directory, { withFileTypes: true })
@@ -106,7 +107,7 @@ function makeOverview(schema, sourceName, hash) {
   const resolved = fks.filter(fk => schema.tables.some(table => table.name === fk.referencedTable));
   const unresolved = fks.filter(fk => !schema.tables.some(table => table.name === fk.referencedTable));
   const lines = [
-    '# Diccionario técnico de `db_test`', '',
+    `# Diccionario técnico de \`${schema.database}\``, '',
     `Fuente: respaldo SQL [${sourceName}](../backups/${encodeURIComponent(sourceName).replace(/%2F/g, '/')}).`,
     `Huella SHA-256 del archivo: \`${hash}\`.`,
     'Esta ficha resume exclusivamente declaraciones y sentencias encontradas en ese respaldo. No documenta reglas funcionales que no estén expresadas en el DDL.', '',
@@ -182,6 +183,15 @@ function writeReferenceDocs(schema, sourceName, hash) {
   }
 }
 
+function writePagesCopy(html) {
+  fs.mkdirSync(path.join(PAGES, 'scripts'), { recursive: true });
+  fs.mkdirSync(path.join(PAGES, 'diagrama'), { recursive: true });
+  const pagesHtml = html.replace('../scripts/diccionario_core.js', 'scripts/diccionario_core.js');
+  fs.writeFileSync(path.join(PAGES, 'diccionario.html'), pagesHtml, 'utf8');
+  fs.copyFileSync(path.join(__dirname, 'diccionario_core.js'), path.join(PAGES, 'scripts', 'diccionario_core.js'));
+  fs.copyFileSync(path.join(OUTPUT, 'backup-picker.js'), path.join(PAGES, 'backup-picker.js'));
+}
+
 function main() {
   const input = process.argv[2] ? path.resolve(ROOT, process.argv[2]) : newestSql(BACKUPS);
   if (!fs.existsSync(input) || !fs.statSync(input).isFile()) throw new Error(`No se encontró el archivo SQL: ${input}`);
@@ -193,10 +203,12 @@ function main() {
   const sourceName = path.relative(BACKUPS, input).split(path.sep).join('/');
   fs.mkdirSync(OUTPUT, { recursive: true });
   fs.writeFileSync(path.join(OUTPUT, 'campos.csv'), createCsv(schema), 'utf8');
-  fs.writeFileSync(path.join(OUTPUT, 'diccionario.html'), makeHtml(schema, sourceName, sourceHash), 'utf8');
+  const html = makeHtml(schema, sourceName, sourceHash);
+  fs.writeFileSync(path.join(OUTPUT, 'diccionario.html'), html, 'utf8');
   const normalizedInput = path.resolve(input).toLowerCase();
   if (normalizedInput === path.resolve(REFERENCE).toLowerCase()) {
     writeReferenceDocs(schema, path.basename(input), sourceHash);
+    writePagesCopy(html);
   }
   const unresolved = schema.tables.flatMap(table => table.foreignKeys.filter(fk => !schema.tables.some(target => target.name === fk.referencedTable)).map(fk => `${table.name}.${fk.name} → ${fk.referencedTable}`));
   console.log(`Fuente: ${path.relative(ROOT, input)}`);
