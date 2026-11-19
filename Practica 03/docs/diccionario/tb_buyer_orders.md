@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_buyer_orders`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 38–51. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 33–46. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Guarda el pedido general que hace una persona: quién compra, cuántos artículos incluye, cuánto cuesta y en qué etapa está. Se relaciona con usuarios, pedidos por vendedor, pagos y cancelaciones.
@@ -11,11 +11,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 9.
-- Filas encontradas en sentencias INSERT de este respaldo: 2.
+- Filas encontradas en sentencias INSERT de este respaldo: 8.
 - Claves primarias / índices: 2.
 - Claves foráneas: 1.
 - Restricciones CHECK: 0.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -60,5 +60,5 @@ CREATE TABLE `tb_buyer_orders` (
   PRIMARY KEY (`ID`),
   KEY `fk_user_2_idx` (`user_ID`),
   CONSTRAINT `fk_user_2` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

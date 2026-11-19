@@ -232,7 +232,12 @@ BEGIN
   IF v_found = 0 OR v_status NOT IN ('Pending', 'Preparing', 'Shipped', 'InTransit', 'OutForDelivery') THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El envío no puede marcarse como entregado';
   END IF;
-  IF v_order_status <> 'Attended' THEN
+  IF v_order_status <> 'Attended'
+     AND NOT EXISTS (
+       SELECT 1 FROM tb_returns
+       WHERE replacement_shipment_ID = p_shipment_ID
+         AND return_status = 'InTransit'
+     ) THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La orden debe estar atendida para entregarse';
   END IF;
   UPDATE tb_shipments
@@ -328,7 +333,7 @@ BEGIN
   WHERE ci.cancellation_id = p_cancellation_ID
     AND so.order_ID = v_order_ID
     AND ci.quantity > 0
-    AND ci.quantity <= oi.quantity;
+    AND ci.quantity <= oi.quantity - oi.cancelled_quantity;
   IF v_cancel_rows = 0 OR v_cancel_amount <= 0 THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La cancelación no contiene partidas válidas';
   END IF;
@@ -339,7 +344,7 @@ BEGIN
     JOIN tb_seller_orders so ON so.ID = oi.seller_order_ID
     WHERE ci.cancellation_id = p_cancellation_ID
       AND so.order_ID = v_order_ID
-      AND (ci.quantity <= 0 OR ci.quantity > oi.quantity)
+      AND (ci.quantity <= 0 OR ci.quantity > oi.quantity - oi.cancelled_quantity)
   ) THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La cantidad cancelada supera la cantidad comprada';
   END IF;
@@ -350,9 +355,9 @@ BEGIN
     JOIN tb_seller_orders so ON so.ID = oi.seller_order_ID
     JOIN tb_order_cancellations oc ON oc.cancellation_ID = ci.cancellation_id
     WHERE so.order_ID = v_order_ID
-      AND oc.cancellation_status <> 'Rejected'
-    GROUP BY oi.ID, oi.quantity
-    HAVING SUM(ci.quantity) > oi.quantity
+      AND oc.cancellation_status IN ('Requested', 'Approved')
+    GROUP BY oi.ID, oi.quantity, oi.cancelled_quantity
+    HAVING SUM(ci.quantity) > oi.quantity - oi.cancelled_quantity
   ) THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Las cancelaciones acumuladas superan la cantidad comprada';
   END IF;
@@ -422,6 +427,17 @@ BEGIN
     GROUP BY oi.seller_order_ID
   ) canceled ON canceled.seller_order_ID = so.ID
   SET so.subtotal = GREATEST(0, so.subtotal - canceled.amount_to_remove);
+  UPDATE tbd_order_items oi
+  JOIN (
+    SELECT ci.order_item_id, SUM(ci.quantity) AS quantity_to_remove
+    FROM tbd_cancellation_items ci
+    JOIN tbd_order_items source_item ON source_item.ID = ci.order_item_id
+    JOIN tb_seller_orders source_order ON source_order.ID = source_item.seller_order_ID
+    WHERE ci.cancellation_id = p_cancellation_ID
+      AND source_order.order_ID = v_order_ID
+    GROUP BY ci.order_item_id
+  ) canceled ON canceled.order_item_id = oi.ID
+  SET oi.cancelled_quantity = oi.cancelled_quantity + canceled.quantity_to_remove;
   UPDATE tb_buyer_orders
   SET total_products = GREATEST(0, total_products - v_cancel_quantity),
       total_cost = GREATEST(0, total_cost - v_cancel_amount)

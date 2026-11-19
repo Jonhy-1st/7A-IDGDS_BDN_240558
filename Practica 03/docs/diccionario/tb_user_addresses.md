@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_user_addresses`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 1693–1712. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 1691–1710. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Guarda los domicilios de entrega de cada cuenta, con etiqueta, destinatario, teléfono e instrucciones. Los envíos apuntan aquí cuando se entregan en domicilio.
@@ -11,11 +11,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 12.
-- Filas encontradas en sentencias INSERT de este respaldo: 2.
+- Filas encontradas en sentencias INSERT de este respaldo: 7.
 - Claves primarias / índices: 2.
 - Claves foráneas: 1.
 - Restricciones CHECK: 3.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -71,5 +71,5 @@ CREATE TABLE `tb_user_addresses` (
   CONSTRAINT `chk_coordinates` CHECK ((((`latitude` is null) and (`longitude` is null)) or ((`latitude` is not null) and (`longitude` is not null)))),
   CONSTRAINT `chk_latitude` CHECK ((`latitude` between -(90) and 90)),
   CONSTRAINT `chk_longitude` CHECK ((`longitude` between -(180) and 180))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

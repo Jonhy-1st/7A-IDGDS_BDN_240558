@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_wishlist_products`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 3483–3491. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 3479–3487. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Relaciona los productos que una persona desea guardar para después. Vincula la cuenta con el producto y evita confundir la lista de deseos con el carrito de compra.

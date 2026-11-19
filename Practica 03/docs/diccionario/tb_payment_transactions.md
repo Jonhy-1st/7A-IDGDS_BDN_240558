@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_payment_transactions`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 516–529. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 514–527. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Guarda cada evento de un cobro o devolución, por ejemplo creación, autorización, captura, rechazo o reembolso. Cada evento pertenece a un registro de tb_payments.
@@ -11,11 +11,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 7.
-- Filas encontradas en sentencias INSERT de este respaldo: 4.
+- Filas encontradas en sentencias INSERT de este respaldo: 36.
 - Claves primarias / índices: 3.
 - Claves foráneas: 1.
 - Restricciones CHECK: 1.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -59,5 +59,5 @@ CREATE TABLE `tb_payment_transactions` (
   KEY `idx_payment_transactions_payment` (`payment_ID`),
   CONSTRAINT `fk_payment_transaction_payment` FOREIGN KEY (`payment_ID`) REFERENCES `tb_payments` (`ID`),
   CONSTRAINT `chk_payment_transaction_amount` CHECK ((`amount` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

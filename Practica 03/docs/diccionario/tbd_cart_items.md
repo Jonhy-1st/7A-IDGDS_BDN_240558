@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_cart_items`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 2505–2516. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 2499–2510. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Contiene los productos y cantidades que una persona agrega al carrito. Cada renglón relaciona un carrito con una oferta de vendedor.
@@ -11,7 +11,7 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 5.
-- Filas encontradas en sentencias INSERT de este respaldo: 10.
+- Filas encontradas en sentencias INSERT de este respaldo: 33.
 - Claves primarias / índices: 2.
 - Claves foráneas: 2.
 - Restricciones CHECK: 1.

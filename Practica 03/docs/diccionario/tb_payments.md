@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_payments`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 683–709. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 681–706. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Representa un cobro, intento de cobro o cuota de un pedido. Guarda el importe, medio, estado, fechas y referencia al instrumento del cliente; sus eventos se registran en tb_payment_transactions.
@@ -11,11 +11,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 15.
-- Filas encontradas en sentencias INSERT de este respaldo: 2.
+- Filas encontradas en sentencias INSERT de este respaldo: 13.
 - Claves primarias / índices: 5.
 - Claves foráneas: 2.
 - Restricciones CHECK: 2.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -53,7 +53,7 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Restricciones CHECK
 
 - `CONSTRAINT &#96;chk_payment_amount&#96; CHECK ((&#96;amount&#96; > 0))`
-- `CONSTRAINT &#96;chk_payment_installment_pair&#96; CHECK (((&#96;installment_number&#96; is null and &#96;installment_count&#96; is null) or (&#96;installment_number&#96; is not null and &#96;installment_count&#96; is not null and &#96;installment_number&#96; > 0 and &#96;installment_count&#96; > 0 and &#96;installment_number&#96; <= &#96;installment_count&#96;)))`
+- `CONSTRAINT &#96;chk_payment_installment_pair&#96; CHECK ((((&#96;installment_number&#96; is null) and (&#96;installment_count&#96; is null)) or ((&#96;installment_number&#96; is not null) and (&#96;installment_count&#96; is not null) and (&#96;installment_number&#96; > 0) and (&#96;installment_count&#96; > 0) and (&#96;installment_number&#96; <= &#96;installment_count&#96;))))`
 
 ## Definición SQL de la tabla
 
@@ -81,8 +81,7 @@ CREATE TABLE `tb_payments` (
   KEY `idx_payments_user_method` (`user_payment_method_ID`),
   CONSTRAINT `fk_payment_order` FOREIGN KEY (`order_ID`) REFERENCES `tb_buyer_orders` (`ID`),
   CONSTRAINT `fk_payments_user_method` FOREIGN KEY (`user_payment_method_ID`) REFERENCES `tbd_user_payment_methods` (`ID`),
-  CONSTRAINT `chk_payment_amount` CHECK ((`amount` > 0))
-,
-  CONSTRAINT `chk_payment_installment_pair` CHECK (((`installment_number` is null and `installment_count` is null) or (`installment_number` is not null and `installment_count` is not null and `installment_number` > 0 and `installment_count` > 0 and `installment_number` <= `installment_count`)))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `chk_payment_amount` CHECK ((`amount` > 0)),
+  CONSTRAINT `chk_payment_installment_pair` CHECK ((((`installment_number` is null) and (`installment_count` is null)) or ((`installment_number` is not null) and (`installment_count` is not null) and (`installment_number` > 0) and (`installment_count` > 0) and (`installment_number` <= `installment_count`))))
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

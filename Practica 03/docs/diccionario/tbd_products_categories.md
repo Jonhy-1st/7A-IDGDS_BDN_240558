@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_products_categories`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 3000–3010. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 2996–3006. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Asocia productos del catálogo con sus categorías. Es una relación de muchos a muchos entre tb_products y tbc_categories.

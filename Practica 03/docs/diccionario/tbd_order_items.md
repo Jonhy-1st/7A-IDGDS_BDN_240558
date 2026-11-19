@@ -1,21 +1,21 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_order_items`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 2652–2668. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 2646–2664. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
-Guarda los artículos confirmados dentro de un pedido de vendedor, incluyendo nombre, cantidad y precio de compra. Mantiene el precio aplicado aunque después cambie el precio del catálogo.
+Guarda los artículos confirmados dentro de un pedido de vendedor, con el nombre y precio que tenían al comprarse. Conserva la cantidad original y registra aparte las unidades canceladas; el subtotal muestra solo las unidades vigentes.
 
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL
 
-- Columnas: 8.
-- Filas encontradas en sentencias INSERT de este respaldo: 10.
+- Columnas: 9.
+- Filas encontradas en sentencias INSERT de este respaldo: 33.
 - Claves primarias / índices: 3.
 - Claves foráneas: 2.
-- Restricciones CHECK: 2.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Restricciones CHECK: 3.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -26,9 +26,10 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 | 3 | `product_offer_ID` | Identificador de la oferta del producto hecha por un vendedor. product_offer_ID enlaza con tbd_users_offer_products.product_offer_ID. | `int unsigned` | No | `—` | índice; FK; fk_order_item_offer → tbd_users_offer_products(product_offer_ID); idx_order_items_offer (product_offer_ID) | — | `&#96;product_offer_ID&#96; int unsigned NOT NULL` |
 | 4 | `product_name` | Nombre del producto guardado al momento de la compra. | `varchar(250)` | No | `—` | — | — | `&#96;product_name&#96; varchar(250) NOT NULL` |
 | 5 | `quantity` | Número de unidades del artículo, reclamación o cancelación. | `int unsigned` | No | `—` | — | — | `&#96;quantity&#96; int unsigned NOT NULL` |
-| 6 | `unit_price` | Precio de una unidad guardado en el pedido. | `decimal(12,2)` | No | `—` | — | — | `&#96;unit_price&#96; decimal(12,2) NOT NULL` |
-| 7 | `subtotal` | Importe parcial de los artículos o del pedido del vendedor. | `decimal(14,2)` | Sí | `—` | — | — | `&#96;subtotal&#96; decimal(14,2) GENERATED ALWAYS AS ((&#96;quantity&#96; * &#96;unit_price&#96;)) STORED` |
-| 8 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 6 | `cancelled_quantity` | Cantidad de unidades canceladas del renglón; se conserva la cantidad originalmente comprada. | `int unsigned` | No | `'0'` | — | — | `&#96;cancelled_quantity&#96; int unsigned NOT NULL DEFAULT '0'` |
+| 7 | `unit_price` | Precio de una unidad guardado en el pedido. | `decimal(12,2)` | No | `—` | — | — | `&#96;unit_price&#96; decimal(12,2) NOT NULL` |
+| 8 | `subtotal` | Importe parcial de los artículos o del pedido del vendedor. | `decimal(14,2)` | Sí | `—` | — | — | `&#96;subtotal&#96; decimal(14,2) GENERATED ALWAYS AS (((&#96;quantity&#96; - &#96;cancelled_quantity&#96;) * &#96;unit_price&#96;)) STORED` |
+| 9 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 
@@ -43,6 +44,7 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Restricciones CHECK
 
+- `CONSTRAINT &#96;chk_order_item_cancelled_quantity&#96; CHECK ((&#96;cancelled_quantity&#96; <= &#96;quantity&#96;))`
 - `CONSTRAINT &#96;chk_order_item_price&#96; CHECK ((&#96;unit_price&#96; >= 0))`
 - `CONSTRAINT &#96;chk_order_item_quantity&#96; CHECK ((&#96;quantity&#96; > 0))`
 
@@ -55,15 +57,17 @@ CREATE TABLE `tbd_order_items` (
   `product_offer_ID` int unsigned NOT NULL,
   `product_name` varchar(250) NOT NULL,
   `quantity` int unsigned NOT NULL,
+  `cancelled_quantity` int unsigned NOT NULL DEFAULT '0',
   `unit_price` decimal(12,2) NOT NULL,
-  `subtotal` decimal(14,2) GENERATED ALWAYS AS ((`quantity` * `unit_price`)) STORED,
+  `subtotal` decimal(14,2) GENERATED ALWAYS AS (((`quantity` - `cancelled_quantity`) * `unit_price`)) STORED,
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `idx_order_items_seller_order` (`seller_order_ID`),
   KEY `idx_order_items_offer` (`product_offer_ID`),
   CONSTRAINT `fk_order_item_offer` FOREIGN KEY (`product_offer_ID`) REFERENCES `tbd_users_offer_products` (`product_offer_ID`),
   CONSTRAINT `fk_order_item_seller_order` FOREIGN KEY (`seller_order_ID`) REFERENCES `tb_seller_orders` (`ID`),
+  CONSTRAINT `chk_order_item_cancelled_quantity` CHECK ((`cancelled_quantity` <= `quantity`)),
   CONSTRAINT `chk_order_item_price` CHECK ((`unit_price` >= 0)),
   CONSTRAINT `chk_order_item_quantity` CHECK ((`quantity` > 0))
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

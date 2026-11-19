@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_seller_orders`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 1420–1436. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 1418–1434. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Divide un pedido general en las partes que prepara cada vendedor. Guarda el vendedor, subtotal, costo de envío y estado de preparación o entrega.
@@ -11,11 +11,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 8.
-- Filas encontradas en sentencias INSERT de este respaldo: 2.
+- Filas encontradas en sentencias INSERT de este respaldo: 8.
 - Claves primarias / índices: 3.
 - Claves foráneas: 2.
 - Restricciones CHECK: 2.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -65,5 +65,5 @@ CREATE TABLE `tb_seller_orders` (
   CONSTRAINT `fk_seller_order_seller` FOREIGN KEY (`seller_ID`) REFERENCES `tb_users` (`ID`),
   CONSTRAINT `chk_seller_order_shipping` CHECK ((`shipping_cost` >= 0)),
   CONSTRAINT `chk_seller_order_subtotal` CHECK ((`subtotal` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

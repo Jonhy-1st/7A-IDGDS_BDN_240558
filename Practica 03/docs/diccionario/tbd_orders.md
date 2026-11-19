@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_orders`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 2829–2840. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 2825–2836. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Conserva una estructura de pedido anterior o auxiliar con clave, cantidades, total y estado. En este respaldo no tiene claves foráneas declaradas que la conecten al flujo actual de compra.

@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_address_components`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 2337–2351. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 2330–2344. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Divide un domicilio en partes estructuradas, como componentes geográficos o administrativos. Se relaciona con tb_user_addresses y permite anidar una parte dentro de otra mediante su referencia a sí misma.

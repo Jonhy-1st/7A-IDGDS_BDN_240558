@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_order_cancellations`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 421–443. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 418–440. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Registra una solicitud para cancelar uno o más artículos de un pedido, quién la solicitó, el motivo y si fue solicitada, aprobada, rechazada o completada. Los artículos se detallan en tbd_cancellation_items.
@@ -11,11 +11,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 11.
-- Filas encontradas en sentencias INSERT de este respaldo: 0.
+- Filas encontradas en sentencias INSERT de este respaldo: 1.
 - Claves primarias / índices: 6.
 - Claves foráneas: 3.
 - Restricciones CHECK: 1.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -77,5 +77,5 @@ CREATE TABLE `tb_order_cancellations` (
   CONSTRAINT `fk_cancellation_requester` FOREIGN KEY (`requested_by`) REFERENCES `tb_users` (`ID`) ON DELETE RESTRICT,
   CONSTRAINT `fk_cancellation_seller_order` FOREIGN KEY (`seller_order_ID`) REFERENCES `tb_seller_orders` (`ID`) ON DELETE RESTRICT,
   CONSTRAINT `tb_order_cancellations_chk_1` CHECK (((`resolved_date` is null) or (`resolved_date` >= `requested_date`)))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

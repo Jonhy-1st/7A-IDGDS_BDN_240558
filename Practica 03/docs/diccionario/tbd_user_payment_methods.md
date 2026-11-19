@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_user_payment_methods`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 3216–3237. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 3213–3233. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Guarda instrumentos de pago simulados de cada persona, como tarjeta o cupón: tipo, proveedor, referencia, últimos cuatro dígitos y saldo opcional. Los pagos los referencian sin guardar el número completo de la tarjeta.
@@ -11,11 +11,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 12.
-- Filas encontradas en sentencias INSERT de este respaldo: 2.
+- Filas encontradas en sentencias INSERT de este respaldo: 7.
 - Claves primarias / índices: 4.
 - Claves foráneas: 2.
 - Restricciones CHECK: 1.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -48,7 +48,7 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Restricciones CHECK
 
-- `CONSTRAINT &#96;chk_user_payment_method_balance&#96; CHECK ((&#96;available_balance&#96; is null) or (&#96;available_balance&#96; >= 0))`
+- `CONSTRAINT &#96;chk_user_payment_method_balance&#96; CHECK (((&#96;available_balance&#96; is null) or (&#96;available_balance&#96; >= 0)))`
 
 ## Definición SQL de la tabla
 
@@ -71,8 +71,7 @@ CREATE TABLE `tbd_user_payment_methods` (
   KEY `user_ID` (`user_ID`),
   KEY `payment_method_type_ID` (`payment_method_type_ID`),
   CONSTRAINT `tbd_user_payment_methods_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`),
-  CONSTRAINT `tbd_user_payment_methods_ibfk_2` FOREIGN KEY (`payment_method_type_ID`) REFERENCES `tbc_payment_methods_types` (`ID`)
-,
-  CONSTRAINT `chk_user_payment_method_balance` CHECK ((`available_balance` is null) or (`available_balance` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `tbd_user_payment_methods_ibfk_2` FOREIGN KEY (`payment_method_type_ID`) REFERENCES `tbc_payment_methods_types` (`ID`),
+  CONSTRAINT `chk_user_payment_method_balance` CHECK (((`available_balance` is null) or (`available_balance` >= 0)))
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

@@ -22,7 +22,7 @@ Guarda el ID de la orden en `@pedido` y el ID del instrumento de pago en
 ```sql
 SET @pago = NULL;
 CALL sp_register_test_payment_attempt(
-  @pedido, @instrumento, 100.00, 'Card', 1, 1,
+  @pedido, @instrumento, 100.00, 'Card', NULL, NULL,
   1, 'Pago autorizado para prueba', 'CASO-UNICO-001', @pago
 );
 CALL sp_pr04_attend_order(@pedido);
@@ -54,7 +54,8 @@ token ficticio y solo los últimos cuatro dígitos en
   Registra el renglón cancelado en `tbd_cancellation_items`, vincúlalo a una
   solicitud de `tb_order_cancellations` y llama a
   `sp_complete_partial_cancellation`. El procedimiento ajusta existencias,
-  total de la orden y reembolso.
+  total de la orden y reembolso. `tbd_order_items.cancelled_quantity` conserva
+  las unidades canceladas y el subtotal se recalcula automáticamente.
 - **Caso 4:** después de atender la orden crea el envío con
   `sp_create_order_shipments(pedido, domicilio)`. Llama a
   `sp_set_shipment_ready_for_pickup(envío, 'Sucursal de prueba', 'PICK-001')`
@@ -66,8 +67,9 @@ token ficticio y solo los últimos cuatro dígitos en
 
 ## Comprobación en tres pasos
 
-1. Abre `queries/verificacion_casos_compra.sql` y reemplaza los ceros de
-   `@caso1` a `@caso5` por los IDs de las órdenes creadas.
+1. Abre `queries/verificacion_casos_compra.sql`. Ya contiene los IDs de la
+   ejecución real actual (`3` a `8`). Si restauras otra copia o repites los
+   casos, sustitúyelos; `@caso2_reenvio` lleva el pedido pagado del reclamo.
 2. Ejecuta el archivo como superadmin.
 3. Revisa los resultados:
 
@@ -75,7 +77,8 @@ token ficticio y solo los últimos cuatro dígitos en
      `platform_role = 'buyer'` y envío entregado.
    - Última cuota rechazada: orden `PartiallyPaid`, un evento `Failed` y saldo
      pendiente.
-   - Cancelación: partida cancelada, total actualizado y reembolso `Completed`.
+   - Cancelación: `cancelled_quantity` y total actualizados, subtotal vigente y
+     reembolso `Completed`.
    - Recolección: método `Pickup` y envío `PickedUp`.
    - Falta de inventario: orden `Canceled`, pago `Failed` y cupón activo con el
      mismo saldo.

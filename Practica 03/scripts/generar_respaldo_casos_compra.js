@@ -94,6 +94,24 @@ sql = transformTable(sql, 'tb_users', ddl => {
   if (changed === ddl) throw new Error('No se encontró status en tb_users');
   return changed;
 });
+sql = transformTable(sql, 'tbd_order_items', ddl => {
+  let changed = ddl.replace(
+    '  `quantity` int unsigned NOT NULL,\n',
+    '  `quantity` int unsigned NOT NULL,\n  `cancelled_quantity` int unsigned NOT NULL DEFAULT 0,\n'
+  );
+  changed = changed.replace(
+    'GENERATED ALWAYS AS ((`quantity` * `unit_price`)) STORED',
+    'GENERATED ALWAYS AS (((`quantity` - `cancelled_quantity`) * `unit_price`)) STORED'
+  );
+  changed = changed.replace(
+    '  CONSTRAINT `chk_order_item_quantity` CHECK ((`quantity` > 0))\n',
+    '  CONSTRAINT `chk_order_item_quantity` CHECK ((`quantity` > 0)),\n  CONSTRAINT `chk_order_item_cancelled_quantity` CHECK ((`cancelled_quantity` <= `quantity`))\n'
+  );
+  if (changed === ddl || !changed.includes('`cancelled_quantity`')) {
+    throw new Error('No se encontraron las columnas/expresión generada para ampliar tbd_order_items');
+  }
+  return changed;
+});
 sql = transformTable(sql, 'tb_payments', (ddl, close) => {
   const withColumns = ddl.replace(
     "  `amount` decimal(12,2) NOT NULL,\n",
@@ -151,8 +169,9 @@ const oldInsertColumns = {
   tbd_user_payment_methods: 'ID,user_ID,payment_method_type_ID,provider,provider_method_ref,label,last_four,is_default,status,creation_date,last_update'
 };
 for (const [tableName, columns] of Object.entries(oldInsertColumns)) {
-  const insertPattern = new RegExp('INSERT INTO `' + tableName + '` VALUES', 'i');
+  const insertPattern = new RegExp('INSERT INTO `' + tableName + '` VALUES', 'gi');
   if (!insertPattern.test(sql)) throw new Error(`No se encontró el INSERT histórico de ${tableName}`);
+  insertPattern.lastIndex = 0;
   sql = sql.replace(insertPattern, `INSERT INTO \`${tableName}\` (\`${columns.split(',').join('`,`')}\`) VALUES`);
 }
 

@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_people`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 885–901. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 882–898. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Guarda los datos personales de una cuenta, como nombre, apellidos, nacimiento, país y teléfono. Se relaciona con tb_users, que contiene las credenciales de acceso.
@@ -11,11 +11,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 12.
-- Filas encontradas en sentencias INSERT de este respaldo: 10024.
+- Filas encontradas en sentencias INSERT de este respaldo: 10025.
 - Claves primarias / índices: 2.
 - Claves foráneas: 1.
 - Restricciones CHECK: 0.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=16397 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=16398 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -66,5 +66,5 @@ CREATE TABLE `tb_people` (
   PRIMARY KEY (`person_ID`),
   UNIQUE KEY `user_ID` (`user_ID`),
   CONSTRAINT `fk_persons_users` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=16397 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16398 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

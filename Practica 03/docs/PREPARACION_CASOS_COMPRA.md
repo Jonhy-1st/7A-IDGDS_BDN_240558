@@ -3,8 +3,11 @@
 La migración [`preparar_esquema_casos_compra.sql`](../scripts/preparar_esquema_casos_compra.sql)
 trabaja exclusivamente con las tablas ya existentes. No crea tablas. Está
 dirigida al esquema `db_test` que selecciona actualmente el respaldo de compra.
-Debe aplicarse una sola vez sobre una copia de pruebas; el script no se ejecutó
-contra una instancia.
+La migración y los cinco flujos se ejecutaron en la instancia local real
+`db_test` (MySQL en 127.0.0.1:40558), manteniendo las 27 tablas existentes.
+Los registros de prueba quedan en esa base para que se puedan revisar con las
+consultas de verificación. Se usó la cuenta MySQL superusuario local para aplicar
+el esquema y ejecutar los procedimientos; los compradores son filas de `tb_users`.
 
 Después de la migración, ejecutar [`operaciones_casos_compra.sql`](../scripts/operaciones_casos_compra.sql)
 para crear los procedimientos de recolección, cancelación con reembolso y

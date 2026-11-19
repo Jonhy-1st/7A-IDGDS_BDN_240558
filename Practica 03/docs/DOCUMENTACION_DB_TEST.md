@@ -1,15 +1,15 @@
 # Diccionario técnico de `db_test`
 
 Fuente: respaldo SQL [respaldo_casos_compra_final.sql](../backups/respaldo_casos_compra_final.sql).
-Huella SHA-256 del archivo: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Huella SHA-256 del archivo: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 - Este respaldo es una copia derivada del dump guardado; conserva sus datos y materializa los cambios de esquema, pero no es una extracción nueva de un servidor en vivo.
 Esta ficha resume exclusivamente declaraciones y sentencias encontradas en ese respaldo. No documenta reglas funcionales que no estén expresadas en el DDL.
 
 ## Resumen del archivo
 
 - Base indicada por el dump: `db_test`.
-- Tablas: 27; columnas: 233; claves foráneas declaradas: 34.
-- Filas en sentencias `INSERT` del dump: 93534. Este conteo no representa el estado actual de una instancia.
+- Tablas: 27; columnas: 234; claves foráneas declaradas: 34.
+- Filas en sentencias `INSERT` del dump: 123820. Este conteo no representa el estado actual de una instancia.
 - Objetos nombrados en el archivo: 36 vistas, 85 triggers, 21 procedimientos y 2 funciones.
 - Referencias FK con tabla destino también declarada: 34; con tabla destino ausente en el respaldo: 0.
 
@@ -17,32 +17,32 @@ Esta ficha resume exclusivamente declaraciones y sentencias encontradas en ese r
 
 | Tabla | Columnas | Filas encontradas en INSERT | Índices | FKs |
 |---|---:|---:|---:|---:|
-| [`tb_buyer_orders`](diccionario/tb_buyer_orders.md) | 9 | 2 | 2 | 1 |
-| [`tb_carts`](diccionario/tb_carts.md) | 6 | 2 | 3 | 1 |
-| [`tb_logs`](diccionario/tb_logs.md) | 9 | 48775 | 1 | 0 |
-| [`tb_order_cancellations`](diccionario/tb_order_cancellations.md) | 11 | 0 | 6 | 3 |
-| [`tb_payment_transactions`](diccionario/tb_payment_transactions.md) | 7 | 4 | 3 | 1 |
-| [`tb_payments`](diccionario/tb_payments.md) | 15 | 2 | 5 | 2 |
-| [`tb_people`](diccionario/tb_people.md) | 12 | 10024 | 2 | 1 |
+| [`tb_buyer_orders`](diccionario/tb_buyer_orders.md) | 9 | 8 | 2 | 1 |
+| [`tb_carts`](diccionario/tb_carts.md) | 6 | 8 | 3 | 1 |
+| [`tb_logs`](diccionario/tb_logs.md) | 9 | 63970 | 1 | 0 |
+| [`tb_order_cancellations`](diccionario/tb_order_cancellations.md) | 11 | 1 | 6 | 3 |
+| [`tb_payment_transactions`](diccionario/tb_payment_transactions.md) | 7 | 36 | 3 | 1 |
+| [`tb_payments`](diccionario/tb_payments.md) | 15 | 13 | 5 | 2 |
+| [`tb_people`](diccionario/tb_people.md) | 12 | 10025 | 2 | 1 |
 | [`tb_products`](diccionario/tb_products.md) | 9 | 15007 | 2 | 0 |
-| [`tb_refunds`](diccionario/tb_refunds.md) | 13 | 0 | 6 | 3 |
-| [`tb_returns`](diccionario/tb_returns.md) | 14 | 0 | 6 | 3 |
-| [`tb_seller_orders`](diccionario/tb_seller_orders.md) | 8 | 2 | 3 | 2 |
-| [`tb_shipments`](diccionario/tb_shipments.md) | 14 | 2 | 4 | 2 |
-| [`tb_user_addresses`](diccionario/tb_user_addresses.md) | 12 | 2 | 2 | 1 |
-| [`tb_users`](diccionario/tb_users.md) | 9 | 10024 | 3 | 0 |
+| [`tb_refunds`](diccionario/tb_refunds.md) | 13 | 1 | 6 | 3 |
+| [`tb_returns`](diccionario/tb_returns.md) | 14 | 1 | 6 | 3 |
+| [`tb_seller_orders`](diccionario/tb_seller_orders.md) | 8 | 8 | 3 | 2 |
+| [`tb_shipments`](diccionario/tb_shipments.md) | 14 | 7 | 4 | 2 |
+| [`tb_user_addresses`](diccionario/tb_user_addresses.md) | 12 | 7 | 2 | 1 |
+| [`tb_users`](diccionario/tb_users.md) | 9 | 10025 | 3 | 0 |
 | [`tbc_categories`](diccionario/tbc_categories.md) | 7 | 100 | 3 | 1 |
 | [`tbc_payment_methods_types`](diccionario/tbc_payment_methods_types.md) | 6 | 5 | 2 | 0 |
 | [`tbc_payment_methods_types_res`](diccionario/tbc_payment_methods_types_res.md) | 4 | 0 | 1 | 0 |
 | [`tbd_address_components`](diccionario/tbd_address_components.md) | 8 | 12 | 3 | 2 |
-| [`tbd_cancellation_items`](diccionario/tbd_cancellation_items.md) | 5 | 0 | 1 | 0 |
-| [`tbd_cart_items`](diccionario/tbd_cart_items.md) | 5 | 10 | 2 | 2 |
-| [`tbd_order_items`](diccionario/tbd_order_items.md) | 8 | 10 | 3 | 2 |
+| [`tbd_cancellation_items`](diccionario/tbd_cancellation_items.md) | 5 | 1 | 1 | 0 |
+| [`tbd_cart_items`](diccionario/tbd_cart_items.md) | 5 | 33 | 2 | 2 |
+| [`tbd_order_items`](diccionario/tbd_order_items.md) | 9 | 33 | 3 | 2 |
 | [`tbd_orders`](diccionario/tbd_orders.md) | 9 | 0 | 1 | 0 |
 | [`tbd_products_categories`](diccionario/tbd_products_categories.md) | 5 | 9544 | 2 | 2 |
-| [`tbd_return_items`](diccionario/tbd_return_items.md) | 5 | 0 | 1 | 0 |
-| [`tbd_user_payment_methods`](diccionario/tbd_user_payment_methods.md) | 12 | 2 | 4 | 2 |
-| [`tbd_users_offer_products`](diccionario/tbd_users_offer_products.md) | 8 | 5 | 3 | 1 |
+| [`tbd_return_items`](diccionario/tbd_return_items.md) | 5 | 1 | 1 | 0 |
+| [`tbd_user_payment_methods`](diccionario/tbd_user_payment_methods.md) | 12 | 7 | 4 | 2 |
+| [`tbd_users_offer_products`](diccionario/tbd_users_offer_products.md) | 8 | 14967 | 3 | 1 |
 | [`tbd_wishlist_products`](diccionario/tbd_wishlist_products.md) | 3 | 0 | 2 | 2 |
 
 ## Para qué sirve cada tabla
@@ -67,7 +67,7 @@ Esta ficha resume exclusivamente declaraciones y sentencias encontradas en ese r
 - **[tbd_address_components](diccionario/tbd_address_components.md):** Divide un domicilio en partes estructuradas, como componentes geográficos o administrativos. Se relaciona con tb_user_addresses y permite anidar una parte dentro de otra mediante su referencia a sí misma.
 - **[tbd_cancellation_items](diccionario/tbd_cancellation_items.md):** Detalla qué renglones y cantidades se solicitan cancelar dentro de una solicitud de tb_order_cancellations. Permite calcular el ajuste y el reembolso usando el precio guardado en tbd_order_items.
 - **[tbd_cart_items](diccionario/tbd_cart_items.md):** Contiene los productos y cantidades que una persona agrega al carrito. Cada renglón relaciona un carrito con una oferta de vendedor.
-- **[tbd_order_items](diccionario/tbd_order_items.md):** Guarda los artículos confirmados dentro de un pedido de vendedor, incluyendo nombre, cantidad y precio de compra. Mantiene el precio aplicado aunque después cambie el precio del catálogo.
+- **[tbd_order_items](diccionario/tbd_order_items.md):** Guarda los artículos confirmados dentro de un pedido de vendedor, con el nombre y precio que tenían al comprarse. Conserva la cantidad original y registra aparte las unidades canceladas; el subtotal muestra solo las unidades vigentes.
 - **[tbd_orders](diccionario/tbd_orders.md):** Conserva una estructura de pedido anterior o auxiliar con clave, cantidades, total y estado. En este respaldo no tiene claves foráneas declaradas que la conecten al flujo actual de compra.
 - **[tbd_products_categories](diccionario/tbd_products_categories.md):** Asocia productos del catálogo con sus categorías. Es una relación de muchos a muchos entre tb_products y tbc_categories.
 - **[tbd_return_items](diccionario/tbd_return_items.md):** Detalla los renglones y cantidades que forman parte de una reclamación o devolución, junto con notas sobre la condición recibida. Se complementa con tb_returns y tbd_order_items.
@@ -208,25 +208,25 @@ Esta ficha resume exclusivamente declaraciones y sentencias encontradas en ese r
 
 - Procedimiento: `sp_attend_order`
 - Procedimiento: `sp_authorize_payment`
+- Procedimiento: `sp_complete_partial_cancellation`
+- Procedimiento: `sp_confirm_shipment_pickup`
+- Procedimiento: `sp_create_order_shipments`
+- Procedimiento: `sp_create_replacement_shipment`
 - Procedimiento: `sp_deliver_order`
 - Procedimiento: `sp_generate_users_batch`
 - Procedimiento: `sp_insert_single_user`
+- Procedimiento: `sp_mark_shipment_delivered`
 - Procedimiento: `sp_pr04_attend_order`
 - Procedimiento: `sp_pr04_deliver_order`
+- Procedimiento: `sp_prepare_case_catalog_offers`
 - Procedimiento: `sp_register_new_user`
+- Procedimiento: `sp_register_test_payment_attempt`
 - Procedimiento: `sp_restore_product`
+- Procedimiento: `sp_set_shipment_ready_for_pickup`
 - Procedimiento: `sp_soft_delete`
 - Procedimiento: `sp_soft_delete_product`
 - Procedimiento: `sp_soft_delete_user`
 - Procedimiento: `sp_sync_people_from_users`
-- Procedimiento: `sp_register_test_payment_attempt`
-- Procedimiento: `sp_prepare_case_catalog_offers`
-- Procedimiento: `sp_create_order_shipments`
-- Procedimiento: `sp_set_shipment_ready_for_pickup`
-- Procedimiento: `sp_confirm_shipment_pickup`
-- Procedimiento: `sp_mark_shipment_delivered`
-- Procedimiento: `sp_complete_partial_cancellation`
-- Procedimiento: `sp_create_replacement_shipment`
 - Función: `fn_generate_birthdate_by_age`
 - Función: `fn_generate_random_email`
 

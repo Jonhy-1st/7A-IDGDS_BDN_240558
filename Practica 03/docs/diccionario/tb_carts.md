@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_carts`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 231–242. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 226–237. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Guarda los carritos de cada persona antes de confirmar una compra. El estado distingue el carrito activo, convertido o abandonado; la columna calculada permite varios carritos históricos y limita a uno activo por usuario. Los productos están en tbd_cart_items.
@@ -11,11 +11,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 6.
-- Filas encontradas en sentencias INSERT de este respaldo: 2.
+- Filas encontradas en sentencias INSERT de este respaldo: 8.
 - Claves primarias / índices: 3.
 - Claves foráneas: 1.
 - Restricciones CHECK: 0.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -24,15 +24,15 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 | 1 | `ID` | Identificador único del registro. | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
 | 2 | `user_ID` | Identificador de la cuenta relacionada. user_ID enlaza con tb_users.ID. | `int` | No | `—` | índice; FK; fk_cart_user → tb_users(ID); idx_carts_user (user_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
 | 3 | `status` | Indica si el registro está habilitado o activo. | `enum('Active','Converted','Abandoned')` | No | `'Active'` | — | — | `&#96;status&#96; enum('Active','Converted','Abandoned') NOT NULL DEFAULT 'Active'` |
-| 4 | `active_user_ID` | Identificador calculado del usuario mientras el carrito está activo; queda vacío para carritos cerrados. | `int` | Sí | `—` | UK; uk_cart_active_user (active_user_ID) | — | `&#96;active_user_ID&#96; int GENERATED ALWAYS AS ((case when (&#96;status&#96; = 'Active') then &#96;user_ID&#96; else NULL end)) STORED` |
+| 4 | `active_user_ID` | Identificador calculado del usuario mientras el carrito está activo; queda vacío para carritos cerrados. | `int` | Sí | `—` | UK; uk_cart_active_user (active_user_ID) | — | `&#96;active_user_ID&#96; int GENERATED ALWAYS AS ((case when (&#96;status&#96; = _utf8mb4'Active') then &#96;user_ID&#96; else NULL end)) STORED` |
 | 5 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
 | 6 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 
 - `PRIMARY` (PRIMARY, UNIQUE): `ID`. DDL: `PRIMARY KEY (&#96;ID&#96;)`
-- `idx_carts_user` (INDEX): `user_ID`. DDL: `KEY &#96;idx_carts_user&#96; (&#96;user_ID&#96;)`
 - `uk_cart_active_user` (UNIQUE, UNIQUE): `active_user_ID`. DDL: `UNIQUE KEY &#96;uk_cart_active_user&#96; (&#96;active_user_ID&#96;)`
+- `idx_carts_user` (INDEX): `user_ID`. DDL: `KEY &#96;idx_carts_user&#96; (&#96;user_ID&#96;)`
 
 ## Claves foráneas
 
@@ -49,12 +49,12 @@ CREATE TABLE `tb_carts` (
   `ID` int unsigned NOT NULL AUTO_INCREMENT,
   `user_ID` int NOT NULL,
   `status` enum('Active','Converted','Abandoned') NOT NULL DEFAULT 'Active',
-  `active_user_ID` int GENERATED ALWAYS AS ((case when (`status` = 'Active') then `user_ID` else NULL end)) STORED,
+  `active_user_ID` int GENERATED ALWAYS AS ((case when (`status` = _utf8mb4'Active') then `user_ID` else NULL end)) STORED,
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
-  KEY `idx_carts_user` (`user_ID`),
   UNIQUE KEY `uk_cart_active_user` (`active_user_ID`),
+  KEY `idx_carts_user` (`user_ID`),
   CONSTRAINT `fk_cart_user` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_refunds`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 1222–1247. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 1219–1244. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Registra el dinero que se devuelve por una cancelación o una devolución de producto. Indica el pago de origen, el motivo, el importe y el estado del reembolso.
@@ -11,11 +11,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 13.
-- Filas encontradas en sentencias INSERT de este respaldo: 0.
+- Filas encontradas en sentencias INSERT de este respaldo: 1.
 - Claves primarias / índices: 6.
 - Claves foráneas: 3.
 - Restricciones CHECK: 2.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -83,5 +83,5 @@ CREATE TABLE `tb_refunds` (
   CONSTRAINT `fk_refund_return` FOREIGN KEY (`return_ID`) REFERENCES `tb_returns` (`return_ID`) ON DELETE RESTRICT,
   CONSTRAINT `tb_refunds_chk_1` CHECK ((`amount` > 0)),
   CONSTRAINT `tb_refunds_chk_2` CHECK (((`cancellation_ID` is not null) or (`return_ID` is not null)))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

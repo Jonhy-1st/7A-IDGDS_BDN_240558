@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_returns`
 
-Fuente: `respaldo_casos_compra_final.sql`, líneas 1320–1347. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 1318–1344. SHA-256: `99067eeb933614e493903c946b5c6f1faf8e214d9c69bc7ae5fa3180809e8010`.
 ## Para qué sirve
 
 Registra la reclamación de un producto entregado, su motivo, cantidad, revisión y resolución. Puede vincular un envío de reemplazo en tb_shipments.
@@ -11,11 +11,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 ## Resumen DDL
 
 - Columnas: 14.
-- Filas encontradas en sentencias INSERT de este respaldo: 0.
+- Filas encontradas en sentencias INSERT de este respaldo: 1.
 - Claves primarias / índices: 6.
 - Claves foráneas: 3.
 - Restricciones CHECK: 2.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -79,12 +79,11 @@ CREATE TABLE `tb_returns` (
   KEY `idx_return_item` (`order_ID`,`product_offer_ID`),
   KEY `idx_return_status` (`return_status`),
   KEY `fk_return_requester` (`requested_by`),
+  KEY `idx_returns_replacement_shipment` (`replacement_shipment_ID`),
   CONSTRAINT `fk_return_order` FOREIGN KEY (`order_ID`) REFERENCES `tb_buyer_orders` (`ID`) ON DELETE RESTRICT,
   CONSTRAINT `fk_return_requester` FOREIGN KEY (`requested_by`) REFERENCES `tb_users` (`ID`) ON DELETE RESTRICT,
+  CONSTRAINT `fk_returns_replacement_shipment` FOREIGN KEY (`replacement_shipment_ID`) REFERENCES `tb_shipments` (`shipment_ID`) ON DELETE RESTRICT,
   CONSTRAINT `chk_return_dates` CHECK ((((`received_date` is null) or (`received_date` >= `requested_date`)) and ((`completed_date` is null) or (`completed_date` >= `requested_date`)))),
   CONSTRAINT `chk_return_quantity` CHECK ((`quantity` > 0))
-,
-  KEY `idx_returns_replacement_shipment` (`replacement_shipment_ID`),
-  CONSTRAINT `fk_returns_replacement_shipment` FOREIGN KEY (`replacement_shipment_ID`) REFERENCES `tb_shipments` (`shipment_ID`) ON DELETE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

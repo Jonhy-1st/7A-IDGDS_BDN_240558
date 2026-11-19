@@ -97,6 +97,18 @@ ON DUPLICATE KEY UPDATE
   `description` = VALUES(`description`),
   `status` = b'1';
 
+-- Conserva la cantidad comprada y registra aparte las unidades canceladas.
+-- subtotal queda calculado sobre las unidades que siguen vigentes.
+ALTER TABLE `tbd_order_items`
+  ADD COLUMN `cancelled_quantity` INT UNSIGNED NOT NULL DEFAULT 0
+    AFTER `quantity`,
+  ADD CONSTRAINT `chk_order_item_cancelled_quantity`
+    CHECK (`cancelled_quantity` <= `quantity`);
+
+ALTER TABLE `tbd_order_items`
+  MODIFY COLUMN `subtotal` DECIMAL(14,2)
+    GENERATED ALWAYS AS ((`quantity` - `cancelled_quantity`) * `unit_price`) STORED;
+
 -- Los métodos de cobro admitidos ya se representan en tb_payments:
 -- Card, SPEI, Transfer, Cash y Other. Para cupones usar Other y asociar el
 -- instrumento GIFT_COUPON_SIM; registrar resultado/motivo en
