@@ -35,6 +35,7 @@ GRANT EXECUTE ON PROCEDURE db_test.sp_soft_delete_user TO 'support'@'%';
 -- SELLER
 GRANT SELECT, INSERT, UPDATE ON db_test.tb_products TO 'seller';
 GRANT SELECT, INSERT ON db_test.tbc_categories TO 'seller';
+GRANT SELECT, INSERT,UPDATE  ON db_test.tbd_products_categories TO 'seller';
 
 /* ASIGNAR EL ROL AL USUARIO*/
 GRANT 'superadmin' TO 'jonhy.neri'@'%';

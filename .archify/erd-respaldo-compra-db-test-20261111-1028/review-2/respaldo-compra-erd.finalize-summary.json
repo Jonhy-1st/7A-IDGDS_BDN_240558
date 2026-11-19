@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "erd",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-compra-db-test-20261111-1028\\candidate.json",
+    "sha256": "56fcfbfb45262bd5e0308238e1903c1274ddf4298821c1f5e5bb18dbc7b96e73",
+    "bytes": 39109
+  },
+  "artifact": {
+    "path": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-compra-db-test-20261111-1028\\respaldo-compra-erd.html",
+    "sha256": "f34287d8a5426cc8d713620dbd42ef56a394d2f3a4b8a95fa1f2e12593cf12a4",
+    "bytes": 1008784
+  },
+  "gates": {
+    "validate": "fail",
+    "deliver": "not-run",
+    "check": "not-run",
+    "browser-check": "not-run"
+  },
+  "failedStage": "validate",
+  "diagnostics": [
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[3] id \"fk_cancellation_requester\" \"tb_order_cancellations\" -> \"tb_users\" crosses entity \"tb_products\" (unrelated to this relationship) on segment 1 [740, 793] -> [740, 131] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 3,
+        "id": "fk_cancellation_requester",
+        "from": "tb_order_cancellations",
+        "to": "tb_users"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_products",
+        "segmentIndex": 1,
+        "from": [
+          740.25,
+          793
+        ],
+        "to": [
+          740.25,
+          131.2
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "erd/domain-not-drawn",
+      "severity": "error",
+      "message": "Domain \"Auditor?a\" is named but cannot be drawn: its band would cover the unrelated table \"tbd_user_payment_methods\". Widen layout.gapX/gapY past the band padding, or split the tag.",
+      "subject": {
+        "diagramType": "erd",
+        "entityId": "tb_logs",
+        "domain": "Auditor?a"
+      },
+      "evidence": {
+        "domain": "Auditor?a",
+        "entities": [
+          "tb_logs"
+        ],
+        "reason": "band-covers-entity",
+        "band": {
+          "x": 20,
+          "y": 1144,
+          "width": 438,
+          "height": 164
+        },
+        "coveredEntity": "tbd_user_payment_methods"
+      },
+      "supportedFixes": [
+        "Widen layout.gapX/gapY past the band padding.",
+        "Split the tag so each band covers only its own tables."
+      ]
+    },
+    {
+      "code": "layout/constraint",
+      "severity": "error",
+      "message": "Relationship 5 id \"fk_payment_transaction_payment\" \"tb_payment_transactions\" -> \"tb_payments\" is too short (0px; minimum 24px) — place the entities farther apart.",
+      "subject": {
+        "diagramType": "erd"
+      }
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[7] id \"fk_payments_user_method\" \"tb_payments\" -> \"tbd_user_payment_methods\" crosses entity \"tb_buyer_orders\" (unrelated to this relationship) on segment 0 [1930, 145] -> [1156, 145] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 7,
+        "id": "fk_payments_user_method",
+        "from": "tb_payments",
+        "to": "tbd_user_payment_methods"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_buyer_orders",
+        "segmentIndex": 0,
+        "from": [
+          1929.5,
+          145
+        ],
+        "to": [
+          1156.25,
+          145
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[10] id \"fk_refund_payment\" \"tb_refunds\" -> \"tb_payments\" crosses entity \"tb_payment_transactions\" (unrelated to this relationship) on segment 2 [2258, 469] -> [2258, 226] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 10,
+        "id": "fk_refund_payment",
+        "from": "tb_refunds",
+        "to": "tb_payments"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_payment_transactions",
+        "segmentIndex": 2,
+        "from": [
+          2257.5,
+          469
+        ],
+        "to": [
+          2257.5,
+          226
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[16] id \"fk_shipments_delivery_address\" \"tb_shipments\" -> \"tb_user_addresses\" crosses entity \"tb_carts\" (unrelated to this relationship) on segment 1 [650, 1075] -> [650, 487] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 16,
+        "id": "fk_shipments_delivery_address",
+        "from": "tb_shipments",
+        "to": "tb_user_addresses"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_carts",
+        "segmentIndex": 1,
+        "from": [
+          650,
+          1075
+        ],
+        "to": [
+          650,
+          487
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[21] id \"fk_cart_item_offer\" \"tbd_cart_items\" -> \"tbd_users_offer_products\" crosses entity \"tb_carts\" (unrelated to this relationship) on segment 0 [695, 988] -> [695, 850] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 21,
+        "id": "fk_cart_item_offer",
+        "from": "tbd_cart_items",
+        "to": "tbd_users_offer_products"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_carts",
+        "segmentIndex": 0,
+        "from": [
+          695,
+          988
+        ],
+        "to": [
+          695,
+          850
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "erd/domain-not-drawn",
+      "severity": "error",
+      "message": "Domain \"Identidad\" is named but cannot be drawn: its band would cover the unrelated table \"tbc_payment_methods_types\". Widen layout.gapX/gapY past the band padding, or split the tag.",
+      "subject": {
+        "diagramType": "erd",
+        "entityId": "tb_people",
+        "domain": "Identidad"
+      },
+      "evidence": {
+        "domain": "Identidad",
+        "entities": [
+          "tb_people",
+          "tb_user_addresses",
+          "tb_users",
+          "tbd_address_components"
+        ],
+        "reason": "band-covers-entity",
+        "band": {
+          "x": 86,
+          "y": 22,
+          "width": 306,
+          "height": 698
+        },
+        "coveredEntity": "tbc_payment_methods_types"
+      },
+      "supportedFixes": [
+        "Widen layout.gapX/gapY past the band padding.",
+        "Split the tag so each band covers only its own tables."
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 27,
+    "shown": 8,
+    "truncated": true,
+    "omittedByCode": {
+      "clean-flow/edge-through-node": 16,
+      "erd/domain-not-drawn": 1,
+      "layout/constraint": 2
+    }
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-compra-db-test-20261111-1028\\review-2\\respaldo-compra-erd.finalize.json",
+    "summaryReceipt": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-compra-db-test-20261111-1028\\review-2\\respaldo-compra-erd.finalize-summary.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-11T16:30:52.927Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 794,
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  },
+  "nextAction": {
+    "action": "edit-in-place",
+    "candidate": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-compra-db-test-20261111-1028\\candidate.json",
+    "constraint": "Preserve unaffected semantics and geometry; apply each diagnostic's supportedFixes, or the fix its message names, and do not replace the whole candidate.",
+    "then": "finalize-once"
+  }
+}

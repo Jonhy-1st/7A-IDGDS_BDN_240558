@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "a021441e-2eda-41e6-8b68-f3e7ad790621",
+  "status": "current",
+  "command": "deliver",
+  "type": "erd",
+  "input": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\candidate.json",
+  "output": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+  "specification": {
+    "sha256": "06797c3f4746d2488dc84b7d163d1f4a2f862e055df2cb4971a4eee022bf0386",
+    "bytes": 39626
+  },
+  "artifact": {
+    "sha256": "3de8a87a243be1d70f210f1c6d7b3c8e23a42a2f872a3d26d34f2ac75f8df0cf",
+    "bytes": 1008124
+  }
+}

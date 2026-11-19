@@ -1,0 +1,2717 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "erd",
+  "quality": "standard",
+  "startedAt": "2026-11-10T03:46:12.360Z",
+  "specification": {
+    "path": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\candidate.json",
+    "sha256": "06797c3f4746d2488dc84b7d163d1f4a2f862e055df2cb4971a4eee022bf0386",
+    "bytes": 39626
+  },
+  "artifact": {
+    "path": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+    "sha256": "3de8a87a243be1d70f210f1c6d7b3c8e23a42a2f872a3d26d34f2ac75f8df0cf",
+    "bytes": 1008124
+  },
+  "stages": {
+    "validate": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": null,
+      "execution": "embedded-in-deliver",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "erd",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\candidate.json",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+        "--quality",
+        "standard",
+        "--repo-root",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "validate",
+        "specification": {
+          "sha256": "06797c3f4746d2488dc84b7d163d1f4a2f862e055df2cb4971a4eee022bf0386",
+          "bytes": 39626
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "standard",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 17,
+          "compositionIssues": [
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_responsibility_new_log",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_logs",
+                "label": "",
+                "collectionIndex": 7,
+                "artifactIndex": 8
+              },
+              "point": [
+                921,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_responsibility_original_log",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_logs",
+                "label": "",
+                "collectionIndex": 8,
+                "artifactIndex": 9
+              },
+              "point": [
+                921,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_products2",
+                "from": "tbd_products_users_providers",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 20,
+                "artifactIndex": 21
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_cancellation_seller_order",
+                "from": "tb_order_cancellations",
+                "to": "tb_buyer_orders",
+                "label": "",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "point": [
+                941.5,
+                212
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_payment_method",
+                "from": "tb_payments",
+                "to": "tb_payment_methods",
+                "label": "",
+                "collectionIndex": 5,
+                "artifactIndex": 6
+              },
+              "point": [
+                941.5,
+                493
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_responsibility_product",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 10,
+                "artifactIndex": 11
+              },
+              "point": [
+                941.5,
+                661
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_products2",
+                "from": "tbd_products_users_providers",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 20,
+                "artifactIndex": 21
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cancellation_item",
+                "from": "tb_order_cancellations",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 2,
+                "artifactIndex": 3
+              },
+              "otherRelationship": {
+                "id": "fk_category",
+                "from": "tbd_products_categories",
+                "to": "tbc_categories",
+                "label": "",
+                "collectionIndex": 18,
+                "artifactIndex": 19
+              },
+              "point": [
+                3108.8,
+                875
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cancellation_requester",
+                "from": "tb_order_cancellations",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "otherRelationship": {
+                "id": "fk_return_item",
+                "from": "tb_returns",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 14,
+                "artifactIndex": 15
+              },
+              "point": [
+                2692,
+                771
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_persons_user",
+                "from": "tb_people",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 6,
+                "artifactIndex": 7
+              },
+              "otherRelationship": {
+                "id": "fk_return_item",
+                "from": "tb_returns",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 14,
+                "artifactIndex": 15
+              },
+              "point": [
+                2692,
+                771
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_responsibility_owner",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 9,
+                "artifactIndex": 10
+              },
+              "otherRelationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "point": [
+                1259.5,
+                800
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_responsibility_owner",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 9,
+                "artifactIndex": 10
+              },
+              "otherRelationship": {
+                "id": "fk_products2",
+                "from": "tbd_products_users_providers",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 20,
+                "artifactIndex": 21
+              },
+              "point": [
+                1259.5,
+                800
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_return_item",
+                "from": "tb_returns",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 14,
+                "artifactIndex": 15
+              },
+              "otherRelationship": {
+                "id": "fk_category",
+                "from": "tbd_products_categories",
+                "to": "tbc_categories",
+                "label": "",
+                "collectionIndex": 18,
+                "artifactIndex": 19
+              },
+              "point": [
+                3108.8,
+                771
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "otherRelationship": {
+                "id": "fk_user1",
+                "from": "tbd_products_users_providers",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 21,
+                "artifactIndex": 22
+              },
+              "point": [
+                2322,
+                1137
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/desktop-readability",
+              "nodeId": "tb_buyer_orders",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "availableDiagramWidth": 1346,
+              "budgetBasis": "recognized-declared-wide",
+              "readerContract": "declared-wide-v1",
+              "requestedTargetPx": 7.5,
+              "requestedTargetMet": false,
+              "budgetLimit": "viewport-cap",
+              "viewBoxWidth": 3636,
+              "scale": 0.3701870187018702,
+              "text": "PK",
+              "detail": "context",
+              "sourceFontPx": 9,
+              "projectedFontPx": 3.331683168316832,
+              "minimumProjectedFontPx": 6
+            }
+          ]
+        }
+      }
+    },
+    "deliver": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 1089,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "erd",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\candidate.json",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+        "--quality",
+        "standard",
+        "--repo-root",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "a021441e-2eda-41e6-8b68-f3e7ad790621",
+        "ok": true,
+        "command": "deliver",
+        "type": "erd",
+        "input": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\candidate.json",
+        "output": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+        "specification": {
+          "sha256": "06797c3f4746d2488dc84b7d163d1f4a2f862e055df2cb4971a4eee022bf0386",
+          "bytes": 39626
+        },
+        "artifact": {
+          "sha256": "3de8a87a243be1d70f210f1c6d7b3c8e23a42a2f872a3d26d34f2ac75f8df0cf",
+          "bytes": 1008124
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "standard",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 17,
+          "compositionIssues": [
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_responsibility_new_log",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_logs",
+                "label": "",
+                "collectionIndex": 7,
+                "artifactIndex": 8
+              },
+              "point": [
+                921,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_responsibility_original_log",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_logs",
+                "label": "",
+                "collectionIndex": 8,
+                "artifactIndex": 9
+              },
+              "point": [
+                921,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_products2",
+                "from": "tbd_products_users_providers",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 20,
+                "artifactIndex": 21
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_cancellation_seller_order",
+                "from": "tb_order_cancellations",
+                "to": "tb_buyer_orders",
+                "label": "",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "point": [
+                941.5,
+                212
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_payment_method",
+                "from": "tb_payments",
+                "to": "tb_payment_methods",
+                "label": "",
+                "collectionIndex": 5,
+                "artifactIndex": 6
+              },
+              "point": [
+                941.5,
+                493
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_responsibility_product",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 10,
+                "artifactIndex": 11
+              },
+              "point": [
+                941.5,
+                661
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_products2",
+                "from": "tbd_products_users_providers",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 20,
+                "artifactIndex": 21
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cancellation_item",
+                "from": "tb_order_cancellations",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 2,
+                "artifactIndex": 3
+              },
+              "otherRelationship": {
+                "id": "fk_category",
+                "from": "tbd_products_categories",
+                "to": "tbc_categories",
+                "label": "",
+                "collectionIndex": 18,
+                "artifactIndex": 19
+              },
+              "point": [
+                3108.8,
+                875
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cancellation_requester",
+                "from": "tb_order_cancellations",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "otherRelationship": {
+                "id": "fk_return_item",
+                "from": "tb_returns",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 14,
+                "artifactIndex": 15
+              },
+              "point": [
+                2692,
+                771
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_persons_user",
+                "from": "tb_people",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 6,
+                "artifactIndex": 7
+              },
+              "otherRelationship": {
+                "id": "fk_return_item",
+                "from": "tb_returns",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 14,
+                "artifactIndex": 15
+              },
+              "point": [
+                2692,
+                771
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_responsibility_owner",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 9,
+                "artifactIndex": 10
+              },
+              "otherRelationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "point": [
+                1259.5,
+                800
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_responsibility_owner",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 9,
+                "artifactIndex": 10
+              },
+              "otherRelationship": {
+                "id": "fk_products2",
+                "from": "tbd_products_users_providers",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 20,
+                "artifactIndex": 21
+              },
+              "point": [
+                1259.5,
+                800
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_return_item",
+                "from": "tb_returns",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 14,
+                "artifactIndex": 15
+              },
+              "otherRelationship": {
+                "id": "fk_category",
+                "from": "tbd_products_categories",
+                "to": "tbc_categories",
+                "label": "",
+                "collectionIndex": 18,
+                "artifactIndex": 19
+              },
+              "point": [
+                3108.8,
+                771
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "otherRelationship": {
+                "id": "fk_user1",
+                "from": "tbd_products_users_providers",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 21,
+                "artifactIndex": 22
+              },
+              "point": [
+                2322,
+                1137
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/desktop-readability",
+              "nodeId": "tb_buyer_orders",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "availableDiagramWidth": 1346,
+              "budgetBasis": "recognized-declared-wide",
+              "readerContract": "declared-wide-v1",
+              "requestedTargetPx": 7.5,
+              "requestedTargetMet": false,
+              "budgetLimit": "viewport-cap",
+              "viewBoxWidth": 3636,
+              "scale": 0.3701870187018702,
+              "text": "PK",
+              "detail": "context",
+              "sourceFontPx": 9,
+              "projectedFontPx": 3.331683168316832,
+              "minimumProjectedFontPx": 6
+            }
+          ]
+        },
+        "evidence": {
+          "verified": true,
+          "repository": "https://github.com/Jonhy-1st/7A-IDGDS_BDN_240558",
+          "revision": "3f2d34348ae9fcf54e2f6ca1de612112d5491b76",
+          "references": 27
+        },
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      }
+    },
+    "check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 265,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "check",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+        "--require-provenance"
+      ],
+      "receipt": {
+        "ok": true,
+        "file": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+        "artifact": {
+          "sha256": "3de8a87a243be1d70f210f1c6d7b3c8e23a42a2f872a3d26d34f2ac75f8df0cf",
+          "bytes": 1008124
+        },
+        "checks": [
+          {
+            "name": "single_svg",
+            "ok": true,
+            "details": [
+              "found 1 <svg> block(s)"
+            ]
+          },
+          {
+            "name": "finite_svg",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "orthogonal_arrows",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "label_route_clearance",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_crossings",
+            "ok": true,
+            "details": [
+              "[composition/proper-crossing] standard relationship id \"fk_seller_orders_seller\" (\"tb_buyer_orders\" -> \"tb_users\") crosses relationship id \"fk_responsibility_new_log\" (\"tb_product_responsibility_mapping\" -> \"tb_logs\") at [921, 797]",
+              "[composition/proper-crossing] standard relationship id \"fk_seller_orders_seller\" (\"tb_buyer_orders\" -> \"tb_users\") crosses relationship id \"fk_responsibility_original_log\" (\"tb_product_responsibility_mapping\" -> \"tb_logs\") at [921, 797]",
+              "[composition/proper-crossing] standard relationship id \"fk_seller_orders_seller\" (\"tb_buyer_orders\" -> \"tb_users\") crosses relationship id \"fk_product\" (\"tbd_products_categories\" -> \"tb_products\") at [1259.5, 797]",
+              "[composition/proper-crossing] standard relationship id \"fk_seller_orders_seller\" (\"tb_buyer_orders\" -> \"tb_users\") crosses relationship id \"fk_products2\" (\"tbd_products_users_providers\" -> \"tb_products\") at [1259.5, 797]",
+              "[composition/proper-crossing] standard relationship id \"fk_cart_user\" (\"tb_carts\" -> \"tb_users\") crosses relationship id \"fk_cancellation_seller_order\" (\"tb_order_cancellations\" -> \"tb_buyer_orders\") at [941.5, 212]",
+              "[composition/proper-crossing] standard relationship id \"fk_cart_user\" (\"tb_carts\" -> \"tb_users\") crosses relationship id \"fk_payment_method\" (\"tb_payments\" -> \"tb_payment_methods\") at [941.5, 493]",
+              "[composition/proper-crossing] standard relationship id \"fk_cart_user\" (\"tb_carts\" -> \"tb_users\") crosses relationship id \"fk_responsibility_product\" (\"tb_product_responsibility_mapping\" -> \"tb_products\") at [941.5, 661]",
+              "[composition/proper-crossing] standard relationship id \"fk_cart_user\" (\"tb_carts\" -> \"tb_users\") crosses relationship id \"fk_product\" (\"tbd_products_categories\" -> \"tb_products\") at [1259.5, 797]",
+              "[composition/proper-crossing] standard relationship id \"fk_cart_user\" (\"tb_carts\" -> \"tb_users\") crosses relationship id \"fk_products2\" (\"tbd_products_users_providers\" -> \"tb_products\") at [1259.5, 797]",
+              "[composition/proper-crossing] standard relationship id \"fk_cancellation_item\" (\"tb_order_cancellations\" -> \"tbd_order_items\") crosses relationship id \"fk_category\" (\"tbd_products_categories\" -> \"tbc_categories\") at [3108.8, 875]",
+              "[composition/proper-crossing] standard relationship id \"fk_cancellation_requester\" (\"tb_order_cancellations\" -> \"tb_users\") crosses relationship id \"fk_return_item\" (\"tb_returns\" -> \"tbd_order_items\") at [2692, 771]",
+              "[composition/proper-crossing] standard relationship id \"fk_persons_user\" (\"tb_people\" -> \"tb_users\") crosses relationship id \"fk_return_item\" (\"tb_returns\" -> \"tbd_order_items\") at [2692, 771]",
+              "[composition/proper-crossing] standard relationship id \"fk_responsibility_owner\" (\"tb_product_responsibility_mapping\" -> \"tb_users\") crosses relationship id \"fk_product\" (\"tbd_products_categories\" -> \"tb_products\") at [1259.5, 800]",
+              "[composition/proper-crossing] standard relationship id \"fk_responsibility_owner\" (\"tb_product_responsibility_mapping\" -> \"tb_users\") crosses relationship id \"fk_products2\" (\"tbd_products_users_providers\" -> \"tb_products\") at [1259.5, 800]",
+              "[composition/proper-crossing] standard relationship id \"fk_return_item\" (\"tb_returns\" -> \"tbd_order_items\") crosses relationship id \"fk_category\" (\"tbd_products_categories\" -> \"tbc_categories\") at [3108.8, 771]",
+              "[composition/proper-crossing] standard relationship id \"fk_product\" (\"tbd_products_categories\" -> \"tb_products\") crosses relationship id \"fk_user1\" (\"tbd_products_users_providers\" -> \"tb_users\") at [2322, 1137]"
+            ]
+          },
+          {
+            "name": "relationship_corridors",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "container_border_runs",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "route_rhythm",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "legend_clearance",
+            "ok": true,
+            "details": []
+          }
+        ],
+        "composition": {
+          "schemaVersion": 1,
+          "profile": "standard",
+          "status": "pass",
+          "summary": {
+            "errors": 0,
+            "warnings": 17
+          },
+          "metrics": {
+            "properCrossings": 16,
+            "resolvedCrossovers": 0,
+            "ambiguousCorridors": 0,
+            "arrowheadCollisions": 0,
+            "containerBorderRuns": 0,
+            "labelRouteClearanceIssues": 0,
+            "labelCanvasOverflowIssues": 0,
+            "minLabelRouteClearance": null,
+            "desktopReadabilityIssues": 1,
+            "viewportHeightIssues": 0,
+            "minProjectedNodeTextPx": 3.331683168316832,
+            "maxBends": 6,
+            "routesOverSuggestedBends": 8,
+            "maxStretch": 3.372,
+            "routesOverSuggestedStretch": 4,
+            "minSegmentPx": 16,
+            "minInteriorSegmentPx": 83,
+            "shortSegmentCount": 0,
+            "shortEndpointSegmentCount": 0,
+            "shortInteriorSegmentCount": 0,
+            "microSegmentCount": 0
+          },
+          "suggestedLimits": {
+            "bendsPerRelationship": 2,
+            "stretch": 1.35,
+            "segmentPx": 16,
+            "microSegmentPx": 8
+          },
+          "routeReview": {
+            "crossings": [],
+            "detours": [
+              {
+                "relationship": {
+                  "id": "fk_seller_orders_seller",
+                  "from": "tb_buyer_orders",
+                  "to": "tb_users",
+                  "label": "",
+                  "collectionIndex": 0,
+                  "artifactIndex": 1
+                },
+                "bends": 3,
+                "stretch": 1.017
+              },
+              {
+                "relationship": {
+                  "id": "fk_cart_user",
+                  "from": "tb_carts",
+                  "to": "tb_users",
+                  "label": "",
+                  "collectionIndex": 1,
+                  "artifactIndex": 2
+                },
+                "bends": 3,
+                "stretch": 1.023
+              },
+              {
+                "relationship": {
+                  "id": "fk_cancellation_requester",
+                  "from": "tb_order_cancellations",
+                  "to": "tb_users",
+                  "label": "",
+                  "collectionIndex": 3,
+                  "artifactIndex": 4
+                },
+                "bends": 4,
+                "stretch": 2.237,
+                "directCorridorBlockers": [
+                  {
+                    "id": "tb_people",
+                    "label": "tb_people",
+                    "box": [
+                      2187,
+                      281,
+                      270,
+                      228
+                    ]
+                  },
+                  {
+                    "id": "tb_returns",
+                    "label": "tb_returns",
+                    "box": [
+                      1955,
+                      543,
+                      734,
+                      244
+                    ]
+                  }
+                ]
+              },
+              {
+                "relationship": {
+                  "id": "fk_cancellation_seller_order",
+                  "from": "tb_order_cancellations",
+                  "to": "tb_buyer_orders",
+                  "label": "",
+                  "collectionIndex": 4,
+                  "artifactIndex": 5
+                },
+                "bends": 4,
+                "stretch": 1.134
+              },
+              {
+                "relationship": {
+                  "id": "fk_persons_user",
+                  "from": "tb_people",
+                  "to": "tb_users",
+                  "label": "",
+                  "collectionIndex": 6,
+                  "artifactIndex": 7
+                },
+                "bends": 4,
+                "stretch": 3.372,
+                "directCorridorBlockers": [
+                  {
+                    "id": "tb_returns",
+                    "label": "tb_returns",
+                    "box": [
+                      1955,
+                      543,
+                      734,
+                      244
+                    ]
+                  }
+                ]
+              },
+              {
+                "relationship": {
+                  "id": "fk_responsibility_new_log",
+                  "from": "tb_product_responsibility_mapping",
+                  "to": "tb_logs",
+                  "label": "",
+                  "collectionIndex": 7,
+                  "artifactIndex": 8
+                },
+                "bends": 6,
+                "stretch": 3.291
+              },
+              {
+                "relationship": {
+                  "id": "fk_responsibility_original_log",
+                  "from": "tb_product_responsibility_mapping",
+                  "to": "tb_logs",
+                  "label": "",
+                  "collectionIndex": 8,
+                  "artifactIndex": 9
+                },
+                "bends": 6,
+                "stretch": 3.291
+              },
+              {
+                "relationship": {
+                  "id": "fk_responsibility_owner",
+                  "from": "tb_product_responsibility_mapping",
+                  "to": "tb_users",
+                  "label": "",
+                  "collectionIndex": 9,
+                  "artifactIndex": 10
+                },
+                "bends": 4,
+                "stretch": 1
+              }
+            ]
+          },
+          "leadingSpace": {
+            "measured": false,
+            "reviewSuggested": false
+          },
+          "desktopReadability": {
+            "budgetBasis": "recognized-declared-wide",
+            "readerContract": "declared-wide-v1",
+            "availableDiagramWidth": 1346,
+            "actualBudgetPx": 1346,
+            "actualReaderWidth": 1376,
+            "desiredReaderWidth": 3060,
+            "viewportCap": 1376,
+            "limit": "viewport-cap",
+            "requestedTargetPx": 7.5,
+            "requestedTargetMet": false,
+            "hardFloorPx": 6,
+            "hardFloorMet": false,
+            "minimumOwner": {
+              "kind": "node",
+              "id": "tb_buyer_orders"
+            },
+            "minimumSourceTextPx": 9,
+            "minimumProjectedTextPx": 3.331683168316832,
+            "semanticTextCount": 523
+          },
+          "issues": [
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_responsibility_new_log",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_logs",
+                "label": "",
+                "collectionIndex": 7,
+                "artifactIndex": 8
+              },
+              "point": [
+                921,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_responsibility_original_log",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_logs",
+                "label": "",
+                "collectionIndex": 8,
+                "artifactIndex": 9
+              },
+              "point": [
+                921,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_seller_orders_seller",
+                "from": "tb_buyer_orders",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 0,
+                "artifactIndex": 1
+              },
+              "otherRelationship": {
+                "id": "fk_products2",
+                "from": "tbd_products_users_providers",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 20,
+                "artifactIndex": 21
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_cancellation_seller_order",
+                "from": "tb_order_cancellations",
+                "to": "tb_buyer_orders",
+                "label": "",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "point": [
+                941.5,
+                212
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_payment_method",
+                "from": "tb_payments",
+                "to": "tb_payment_methods",
+                "label": "",
+                "collectionIndex": 5,
+                "artifactIndex": 6
+              },
+              "point": [
+                941.5,
+                493
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_responsibility_product",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 10,
+                "artifactIndex": 11
+              },
+              "point": [
+                941.5,
+                661
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cart_user",
+                "from": "tb_carts",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 1,
+                "artifactIndex": 2
+              },
+              "otherRelationship": {
+                "id": "fk_products2",
+                "from": "tbd_products_users_providers",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 20,
+                "artifactIndex": 21
+              },
+              "point": [
+                1259.5,
+                797
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cancellation_item",
+                "from": "tb_order_cancellations",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 2,
+                "artifactIndex": 3
+              },
+              "otherRelationship": {
+                "id": "fk_category",
+                "from": "tbd_products_categories",
+                "to": "tbc_categories",
+                "label": "",
+                "collectionIndex": 18,
+                "artifactIndex": 19
+              },
+              "point": [
+                3108.8,
+                875
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_cancellation_requester",
+                "from": "tb_order_cancellations",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "otherRelationship": {
+                "id": "fk_return_item",
+                "from": "tb_returns",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 14,
+                "artifactIndex": 15
+              },
+              "point": [
+                2692,
+                771
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_persons_user",
+                "from": "tb_people",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 6,
+                "artifactIndex": 7
+              },
+              "otherRelationship": {
+                "id": "fk_return_item",
+                "from": "tb_returns",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 14,
+                "artifactIndex": 15
+              },
+              "point": [
+                2692,
+                771
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_responsibility_owner",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 9,
+                "artifactIndex": 10
+              },
+              "otherRelationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "point": [
+                1259.5,
+                800
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_responsibility_owner",
+                "from": "tb_product_responsibility_mapping",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 9,
+                "artifactIndex": 10
+              },
+              "otherRelationship": {
+                "id": "fk_products2",
+                "from": "tbd_products_users_providers",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 20,
+                "artifactIndex": 21
+              },
+              "point": [
+                1259.5,
+                800
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_return_item",
+                "from": "tb_returns",
+                "to": "tbd_order_items",
+                "label": "",
+                "collectionIndex": 14,
+                "artifactIndex": 15
+              },
+              "otherRelationship": {
+                "id": "fk_category",
+                "from": "tbd_products_categories",
+                "to": "tbc_categories",
+                "label": "",
+                "collectionIndex": 18,
+                "artifactIndex": 19
+              },
+              "point": [
+                3108.8,
+                771
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "fk_product",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "",
+                "collectionIndex": 19,
+                "artifactIndex": 20
+              },
+              "otherRelationship": {
+                "id": "fk_user1",
+                "from": "tbd_products_users_providers",
+                "to": "tb_users",
+                "label": "",
+                "collectionIndex": 21,
+                "artifactIndex": 22
+              },
+              "point": [
+                2322,
+                1137
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/desktop-readability",
+              "nodeId": "tb_buyer_orders",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "availableDiagramWidth": 1346,
+              "budgetBasis": "recognized-declared-wide",
+              "readerContract": "declared-wide-v1",
+              "requestedTargetPx": 7.5,
+              "requestedTargetMet": false,
+              "budgetLimit": "viewport-cap",
+              "viewBoxWidth": 3636,
+              "scale": 0.3701870187018702,
+              "text": "PK",
+              "detail": "context",
+              "sourceFontPx": 9,
+              "projectedFontPx": 3.331683168316832,
+              "minimumProjectedFontPx": 6
+            }
+          ]
+        },
+        "provenance": "current",
+        "deliveryReceiptId": "a021441e-2eda-41e6-8b68-f3e7ad790621"
+      }
+    },
+    "browser-check": {
+      "status": "fail",
+      "exitCode": 1,
+      "durationMs": 4793,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "browser-check",
+        "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+        "--json",
+        "--require-provenance"
+      ],
+      "execution": "in-process",
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": false,
+        "command": "browser-check",
+        "evidenceKind": "automated-browser",
+        "status": "fail",
+        "visualReview": "not-requested",
+        "provenance": "current",
+        "deliveryReceiptId": "a021441e-2eda-41e6-8b68-f3e7ad790621",
+        "artifact": {
+          "path": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+          "sha256": "3de8a87a243be1d70f210f1c6d7b3c8e23a42a2f872a3d26d34f2ac75f8df0cf",
+          "bytes": 1008124
+        },
+        "state": {
+          "detail": "read",
+          "motion": "still"
+        },
+        "chrome": {
+          "status": "available",
+          "executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+        },
+        "diagnostics": [
+          {
+            "code": "viewer/viewport-overflow",
+            "severity": "error",
+            "message": "The rendered artifact overflows the 1600x1000 light viewport.",
+            "subject": {
+              "artifact": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+              "viewport": {
+                "width": 1600,
+                "height": 1000,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1018,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 809,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight"
+            },
+            "supportedFixes": [
+              "the page is 18px too tall (64px body padding + 60px header + 84px diagram chrome + 809px SVG + 0px cards = 1018px against 1000px); the Reader already narrowed the stage to its 1506px minimum, so the SVG height only follows meta.viewBox: keep every node and relationship and reduce the viewBox height to at most 1909 (from 1953) by tightening vertical gaps and empty rows"
+            ]
+          },
+          {
+            "code": "viewer/viewport-overflow",
+            "severity": "error",
+            "message": "The rendered artifact overflows the 1920x1080 light viewport.",
+            "subject": {
+              "artifact": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+              "viewport": {
+                "width": 1920,
+                "height": 1080,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1190,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 981,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight"
+            },
+            "supportedFixes": [
+              "the page is 110px too tall (64px body padding + 60px header + 84px diagram chrome + 981px SVG + 0px cards = 1190px against 1080px); the Reader already narrowed the stage to its 1826px minimum, so the SVG height only follows meta.viewBox: keep every node and relationship and reduce the viewBox height to at most 1734 (from 1953) by tightening vertical gaps and empty rows"
+            ]
+          },
+          {
+            "code": "viewer/projected-text-readability",
+            "severity": "error",
+            "message": "Projected context text is below the readability floor at 1440x900.",
+            "subject": {
+              "artifact": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+              "viewport": {
+                "width": 1440,
+                "height": 900,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "text": "PK",
+              "detail": "context",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumProjectedNodeTextPx": 3.331683168316832,
+              "minimumRequiredNodeTextPx": 6
+            },
+            "supportedFixes": [
+              "increase projected node text to at least 6px at 1440x900, then rerun browser-check"
+            ]
+          },
+          {
+            "code": "viewer/projected-text-readability",
+            "severity": "error",
+            "message": "Projected context text is below the readability floor at 1600x1000.",
+            "subject": {
+              "artifact": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+              "viewport": {
+                "width": 1600,
+                "height": 1000,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "text": "PK",
+              "detail": "context",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumProjectedNodeTextPx": 3.727722772277228,
+              "minimumRequiredNodeTextPx": 6
+            },
+            "supportedFixes": [
+              "increase projected node text to at least 6px at 1600x1000, then rerun browser-check"
+            ]
+          },
+          {
+            "code": "viewer/projected-text-readability",
+            "severity": "error",
+            "message": "Projected context text is below the readability floor at 1920x1080.",
+            "subject": {
+              "artifact": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+              "viewport": {
+                "width": 1920,
+                "height": 1080,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "text": "PK",
+              "detail": "context",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumProjectedNodeTextPx": 4.51980198019802,
+              "minimumRequiredNodeTextPx": 6
+            },
+            "supportedFixes": [
+              "increase projected node text to at least 6px at 1920x1080, then rerun browser-check"
+            ]
+          },
+          {
+            "code": "viewer/projected-text-readability",
+            "severity": "error",
+            "message": "Projected context text is below the readability floor at 2048x1320.",
+            "subject": {
+              "artifact": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+              "viewport": {
+                "width": 2048,
+                "height": 1320,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "text": "PK",
+              "detail": "context",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumProjectedNodeTextPx": 4.628712871287129,
+              "minimumRequiredNodeTextPx": 6
+            },
+            "supportedFixes": [
+              "increase projected node text to at least 6px at 2048x1320, then rerun browser-check"
+            ]
+          }
+        ],
+        "containment": {
+          "status": "fail",
+          "policy": "fit-or-reader-declared-readable-vertical-scroll",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 723,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 3.331683168316832,
+              "minimumProjectedNonEdgeTextPx": 3.331683168316832,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1018,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": false,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 809,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 3.727722772277228,
+              "minimumProjectedNonEdgeTextPx": 3.727722772277228,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1190,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": false,
+              "readerWidth": 1856,
+              "diagramWidth": 1826,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 981,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 4.51980198019802,
+              "minimumProjectedNonEdgeTextPx": 4.51980198019802,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1920,
+              "diagramWidth": 1870,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1004,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 4.628712871287129,
+              "minimumProjectedNonEdgeTextPx": 4.628712871287129,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "themeStates": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            }
+          ]
+        },
+        "readability": {
+          "status": "fail",
+          "minimumProjectedNodeTextPx": 6,
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 723,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 3.331683168316832,
+              "minimumProjectedNonEdgeTextPx": 3.331683168316832,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1018,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": false,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 809,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 3.727722772277228,
+              "minimumProjectedNonEdgeTextPx": 3.727722772277228,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1190,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": false,
+              "readerWidth": 1856,
+              "diagramWidth": 1826,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 981,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 4.51980198019802,
+              "minimumProjectedNonEdgeTextPx": 4.51980198019802,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1920,
+              "diagramWidth": 1870,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1004,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 4.628712871287129,
+              "minimumProjectedNonEdgeTextPx": 4.628712871287129,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "viewerChrome": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 723,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 3.331683168316832,
+              "minimumProjectedNonEdgeTextPx": 3.331683168316832,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1018,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": false,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 809,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 3.727722772277228,
+              "minimumProjectedNonEdgeTextPx": 3.727722772277228,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1190,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "unexpected-overflow",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": false,
+              "readerWidth": 1856,
+              "diagramWidth": 1826,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 981,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 4.51980198019802,
+              "minimumProjectedNonEdgeTextPx": 4.51980198019802,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1920,
+              "diagramWidth": 1870,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1004,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "viewBoxWidth": 3636,
+              "minimumProjectedNodeTextPx": 4.628712871287129,
+              "minimumProjectedNonEdgeTextPx": 4.628712871287129,
+              "minimumProjectedEdgeTextPx": null,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "captures": {
+          "status": "not-requested",
+          "screenshots": [],
+          "contactSheet": null
+        },
+        "sidecars": {
+          "receipt": "db_test-erd.browser-check.json",
+          "files": []
+        }
+      }
+    }
+  },
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "diagnostics": [
+    {
+      "code": "viewer/viewport-overflow",
+      "severity": "error",
+      "message": "The rendered artifact overflows 2 viewport/theme combinations.",
+      "subject": {},
+      "evidence": {
+        "overflows": [
+          {
+            "detection": "browser-measurement",
+            "subject": {
+              "viewport": {
+                "width": 1600,
+                "height": 1000,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "scrollWidth": 1600,
+              "scrollHeight": 1018,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 809,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight"
+            }
+          },
+          {
+            "detection": "browser-measurement",
+            "subject": {
+              "viewport": {
+                "width": 1920,
+                "height": 1080,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "scrollWidth": 1920,
+              "scrollHeight": 1190,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 981,
+                "cardsPx": 0,
+                "viewBoxHeight": 1953
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight"
+            }
+          }
+        ]
+      },
+      "supportedFixes": [
+        "contain the rendered layout within 1600x1000 (smallest reported viewport), then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1440x900.",
+      "subject": {
+        "artifact": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+        "viewport": {
+          "width": 1440,
+          "height": 900,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 3.331683168316832,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1440x900, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1600x1000.",
+      "subject": {
+        "artifact": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+        "viewport": {
+          "width": 1600,
+          "height": 1000,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 3.727722772277228,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1600x1000, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1920x1080.",
+      "subject": {
+        "artifact": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 4.51980198019802,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1920x1080, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 2048x1320.",
+      "subject": {
+        "artifact": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.html",
+        "viewport": {
+          "width": 2048,
+          "height": 1320,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 4.628712871287129,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 2048x1320, then rerun browser-check"
+      ]
+    }
+  ],
+  "evidence": {
+    "receipt": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.finalize.json",
+    "summaryReceipt": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-diccionario-db-test-20261109-2140\\db_test-erd.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "failedStage": "browser-check",
+  "finishedAt": "2026-11-10T03:46:19.217Z",
+  "durationMs": 6857,
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-10T03:42:02.705Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  }
+}

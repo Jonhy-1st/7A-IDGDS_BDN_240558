@@ -1,0 +1,1669 @@
+{
+  "schema_version": 1,
+  "diagram_type": "erd",
+  "meta": {
+    "title": "Esquema db_test ? respaldo de referencia",
+    "locale": "es",
+    "output": ".archify/erd-diccionario-db-test-20261109-2140/db_test-erd.html",
+    "quality_profile": "standard",
+    "repository": {
+      "url": "https://github.com/Jonhy-1st/7A-IDGDS_BDN_240558",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "3f2d34348ae9fcf54e2f6ca1de612112d5491b76"
+    }
+  },
+  "layout": {
+    "mode": "grid",
+    "origin": [
+      35,
+      35
+    ],
+    "gapX": 54,
+    "gapY": 34,
+    "entityW": 270,
+    "headerH": 30,
+    "rowH": 16
+  },
+  "entities": [
+    {
+      "id": "tb_buyer_orders",
+      "label": "tb_buyer_orders",
+      "tag": "tb_",
+      "row": 0,
+      "col": 0,
+      "sublabel": "10 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "order_ID",
+          "type": "int unsigned"
+        },
+        {
+          "name": "seller_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "seller_order_status",
+          "type": "enum('Pending','Confirmed','Preparing','Shipped','Delivered','Cancelled','Completed')"
+        },
+        {
+          "name": "subtotal",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "shipping_cost",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "discount_amount",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "total_amount",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ],
+      "width": 723
+    },
+    {
+      "id": "tb_carts",
+      "label": "tb_carts",
+      "tag": "tb_",
+      "row": 0,
+      "col": 1,
+      "sublabel": "4 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "user_ID",
+          "type": "int",
+          "key": [
+            "fk",
+            "uk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tb_logs",
+      "label": "tb_logs",
+      "tag": "tb_",
+      "row": 0,
+      "col": 2,
+      "sublabel": "8 campos ? 50543 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "table_name",
+          "type": "varchar(100)"
+        },
+        {
+          "name": "table_operation",
+          "type": "enum('INSERT','UPDATE','DELETE')"
+        },
+        {
+          "name": "operation",
+          "type": "enum('Create','Read','Update','Delete')"
+        },
+        {
+          "name": "db_user",
+          "type": "varchar(80)"
+        },
+        {
+          "name": "operation_description",
+          "type": "text"
+        },
+        {
+          "name": "operation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "operation_status",
+          "type": "bit(1)"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ],
+      "width": 368
+    },
+    {
+      "id": "tb_order_cancellations",
+      "label": "tb_order_cancellations",
+      "tag": "tb_",
+      "row": 0,
+      "col": 3,
+      "sublabel": "11 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "cancellation_ID",
+          "type": "bigint unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "order_ID",
+          "type": "int unsigned",
+          "key": "fk",
+          "references": "tbd_order_items.order_ID"
+        },
+        {
+          "name": "seller_order_ID",
+          "type": "int unsigned",
+          "key": "fk",
+          "references": "tb_buyer_orders.ID"
+        },
+        {
+          "name": "product_offer_ID",
+          "type": "int unsigned",
+          "key": "fk",
+          "references": "tbd_order_items.product_offer_ID"
+        },
+        {
+          "name": "requested_by",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "cancellation_reason",
+          "type": "varchar(500)"
+        },
+        {
+          "name": "cancellation_status",
+          "type": "enum('Requested','Approved','Rejected','Completed')"
+        },
+        {
+          "name": "requested_date",
+          "type": "datetime"
+        },
+        {
+          "name": "resolved_date",
+          "type": "datetime"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ],
+      "width": 509
+    },
+    {
+      "id": "tb_payment_methods",
+      "label": "tb_payment_methods",
+      "tag": "tb_",
+      "row": 1,
+      "col": 0,
+      "sublabel": "5 campos ? 5 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "code",
+          "type": "varchar(30)",
+          "key": "uk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(80)"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tb_payment_transaction",
+      "label": "tb_payment_transaction",
+      "tag": "tb_",
+      "row": 1,
+      "col": 1,
+      "sublabel": "6 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "payment_id",
+          "type": "int"
+        },
+        {
+          "name": "transaction_reference",
+          "type": "varchar(255)"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(10,2)"
+        },
+        {
+          "name": "status",
+          "type": "varchar(50)"
+        },
+        {
+          "name": "created_at",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ],
+      "width": 277
+    },
+    {
+      "id": "tb_payments",
+      "label": "tb_payments",
+      "tag": "tb_",
+      "row": 1,
+      "col": 2,
+      "sublabel": "12 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "order_ID",
+          "type": "int unsigned"
+        },
+        {
+          "name": "payment_method_ID",
+          "type": "int unsigned",
+          "key": "fk",
+          "references": "tb_payment_methods.ID"
+        },
+        {
+          "name": "user_payment_method_ID",
+          "type": "int unsigned"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "currency",
+          "type": "char(3)"
+        },
+        {
+          "name": "payment_status",
+          "type": "enum('pending','authorized','completed','failed','refunded','cancelled')"
+        },
+        {
+          "name": "transaction_reference",
+          "type": "varchar(100)",
+          "key": "uk"
+        },
+        {
+          "name": "failure_reason",
+          "type": "varchar(255)"
+        },
+        {
+          "name": "paid_date",
+          "type": "datetime"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ],
+      "width": 608
+    },
+    {
+      "id": "tb_people",
+      "label": "tb_people",
+      "tag": "tb_",
+      "row": 1,
+      "col": 3,
+      "sublabel": "12 campos ? 2 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "person_ID",
+          "type": "bigint unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "user_ID",
+          "type": "int",
+          "key": [
+            "fk",
+            "uk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "courtesy_title",
+          "type": "varchar(50)"
+        },
+        {
+          "name": "given_names",
+          "type": "varchar(150)"
+        },
+        {
+          "name": "family_names",
+          "type": "varchar(150)"
+        },
+        {
+          "name": "birth_date",
+          "type": "date"
+        },
+        {
+          "name": "gender_ID",
+          "type": "tinyint unsigned"
+        },
+        {
+          "name": "country_code",
+          "type": "char(2)"
+        },
+        {
+          "name": "phone",
+          "type": "varchar(25)"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tb_product_responsibility_mapping",
+      "label": "tb_product_responsibility_mapping",
+      "tag": "tb_",
+      "row": 2,
+      "col": 0,
+      "sublabel": "11 campos ? 15000 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "product_ID",
+          "type": "int unsigned",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "SKU",
+          "type": "varchar(50)"
+        },
+        {
+          "name": "product_name",
+          "type": "varchar(255)"
+        },
+        {
+          "name": "original_creator_db_user",
+          "type": "varchar(80)"
+        },
+        {
+          "name": "original_creation_log_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_logs.ID"
+        },
+        {
+          "name": "original_creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "new_owner_user_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "new_owner_db_user",
+          "type": "varchar(80)"
+        },
+        {
+          "name": "new_type_ownership",
+          "type": "enum('Owner','Seller','Distributor')"
+        },
+        {
+          "name": "reassignment_log_ID",
+          "type": "int",
+          "key": [
+            "fk",
+            "uk"
+          ],
+          "references": "tb_logs.ID"
+        },
+        {
+          "name": "reassigned_at",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ],
+      "width": 428
+    },
+    {
+      "id": "tb_products",
+      "label": "tb_products",
+      "tag": "tb_",
+      "row": 2,
+      "col": 1,
+      "sublabel": "9 campos ? 15000 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "SKU",
+          "type": "varchar(50)",
+          "key": "uk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(250)"
+        },
+        {
+          "name": "description",
+          "type": "text"
+        },
+        {
+          "name": "current_price",
+          "type": "decimal(10,2)"
+        },
+        {
+          "name": "current_stock",
+          "type": "int unsigned"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tb_refunds",
+      "label": "tb_refunds",
+      "tag": "tb_",
+      "row": 2,
+      "col": 2,
+      "sublabel": "13 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "refund_ID",
+          "type": "bigint unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "payment_ID",
+          "type": "int unsigned",
+          "key": "fk",
+          "references": "tb_payments.ID"
+        },
+        {
+          "name": "cancellation_ID",
+          "type": "bigint unsigned",
+          "key": "fk",
+          "references": "tb_order_cancellations.cancellation_ID"
+        },
+        {
+          "name": "return_ID",
+          "type": "bigint unsigned",
+          "key": "fk",
+          "references": "tb_returns.return_ID"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "currency",
+          "type": "char(3)"
+        },
+        {
+          "name": "refund_reason",
+          "type": "varchar(500)"
+        },
+        {
+          "name": "refund_status",
+          "type": "enum('Requested','Approved','Processing','Completed','Failed','Rejected')"
+        },
+        {
+          "name": "provider_reference",
+          "type": "varchar(150)",
+          "key": "uk"
+        },
+        {
+          "name": "requested_date",
+          "type": "datetime"
+        },
+        {
+          "name": "completed_date",
+          "type": "datetime"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ],
+      "width": 608
+    },
+    {
+      "id": "tb_returns",
+      "label": "tb_returns",
+      "tag": "tb_",
+      "row": 2,
+      "col": 3,
+      "sublabel": "13 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "return_ID",
+          "type": "bigint unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "order_ID",
+          "type": "int unsigned",
+          "key": "fk",
+          "references": "tbd_order_items.order_ID"
+        },
+        {
+          "name": "product_offer_ID",
+          "type": "int unsigned",
+          "key": "fk",
+          "references": "tbd_order_items.product_offer_ID"
+        },
+        {
+          "name": "requested_by",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "quantity",
+          "type": "int unsigned"
+        },
+        {
+          "name": "return_reason",
+          "type": "enum('Defective','Damaged','WrongProduct','NotAsDescribed','WrongSize','ChangedMind','Other')"
+        },
+        {
+          "name": "return_status",
+          "type": "enum('Requested','Authorized','Rejected','InTransit','Received','Inspected','Completed')"
+        },
+        {
+          "name": "inspection_notes",
+          "type": "text"
+        },
+        {
+          "name": "requested_date",
+          "type": "datetime"
+        },
+        {
+          "name": "received_date",
+          "type": "datetime"
+        },
+        {
+          "name": "completed_date",
+          "type": "datetime"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ],
+      "width": 734
+    },
+    {
+      "id": "tb_shipments",
+      "label": "tb_shipments",
+      "tag": "tb_",
+      "row": 3,
+      "col": 0,
+      "sublabel": "11 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "shipment_ID",
+          "type": "bigint unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "seller_order_ID",
+          "type": "int unsigned",
+          "key": "fk",
+          "references": "tb_buyer_orders.ID"
+        },
+        {
+          "name": "carrier",
+          "type": "varchar(100)"
+        },
+        {
+          "name": "tracking_number",
+          "type": "varchar(150)"
+        },
+        {
+          "name": "tracking_url",
+          "type": "varchar(500)"
+        },
+        {
+          "name": "shipment_status",
+          "type": "enum('Pending','Preparing','Shipped','InTransit','OutForDelivery','Delivered','DeliveryFailed','Lost','Returned')"
+        },
+        {
+          "name": "shipped_date",
+          "type": "datetime"
+        },
+        {
+          "name": "estimated_delivery_date",
+          "type": "datetime"
+        },
+        {
+          "name": "delivered_date",
+          "type": "datetime"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ],
+      "width": 873
+    },
+    {
+      "id": "tb_user_addresses",
+      "label": "tb_user_addresses",
+      "tag": "tb_",
+      "row": 3,
+      "col": 1,
+      "sublabel": "8 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "user_id",
+          "type": "int"
+        },
+        {
+          "name": "street",
+          "type": "varchar(255)"
+        },
+        {
+          "name": "city",
+          "type": "varchar(100)"
+        },
+        {
+          "name": "state",
+          "type": "varchar(100)"
+        },
+        {
+          "name": "postal_code",
+          "type": "varchar(20)"
+        },
+        {
+          "name": "country",
+          "type": "varchar(100)"
+        },
+        {
+          "name": "created_at",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tb_user_identity_mapping",
+      "label": "tb_user_identity_mapping",
+      "tag": "tb_",
+      "row": 3,
+      "col": 2,
+      "sublabel": "9 campos ? 7 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "mapping_ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "proxy_user_ID",
+          "type": "int",
+          "key": [
+            "fk",
+            "uk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "remote_login",
+          "type": "varchar(80)",
+          "key": "uk"
+        },
+        {
+          "name": "remote_host",
+          "type": "varchar(60)"
+        },
+        {
+          "name": "remote_role",
+          "type": "varchar(40)"
+        },
+        {
+          "name": "proxy_email",
+          "type": "varchar(80)"
+        },
+        {
+          "name": "proxy_nick",
+          "type": "varchar(100)"
+        },
+        {
+          "name": "can_login",
+          "type": "tinyint(1)"
+        },
+        {
+          "name": "notes",
+          "type": "varchar(255)"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tb_users",
+      "label": "tb_users",
+      "tag": "tb_",
+      "row": 3,
+      "col": 3,
+      "sublabel": "8 campos ? 10229 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "email",
+          "type": "varchar(80)",
+          "key": "uk"
+        },
+        {
+          "name": "nick",
+          "type": "varchar(100)",
+          "key": "uk"
+        },
+        {
+          "name": "password",
+          "type": "varchar(255)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        },
+        {
+          "name": "last_login",
+          "type": "datetime"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tbc_categories",
+      "label": "tbc_categories",
+      "tag": "tbc_",
+      "row": 0,
+      "col": 4,
+      "sublabel": "7 campos ? 100 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(120)",
+          "key": "uk"
+        },
+        {
+          "name": "description",
+          "type": "text"
+        },
+        {
+          "name": "sup_id_category",
+          "type": "int unsigned",
+          "key": "fk",
+          "references": "tbc_categories.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tbc_payment_methods_types",
+      "label": "tbc_payment_methods_types",
+      "tag": "tbc_",
+      "row": 1,
+      "col": 4,
+      "sublabel": "4 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(100)"
+        },
+        {
+          "name": "description",
+          "type": "text"
+        },
+        {
+          "name": "is_active",
+          "type": "tinyint(1)"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tbd_address_components",
+      "label": "tbd_address_components",
+      "tag": "tbd_",
+      "row": 0,
+      "col": 5,
+      "sublabel": "4 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "user_address_id",
+          "type": "int"
+        },
+        {
+          "name": "component_type",
+          "type": "varchar(50)"
+        },
+        {
+          "name": "component_value",
+          "type": "varchar(255)"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tbd_cancellation_items",
+      "label": "tbd_cancellation_items",
+      "tag": "tbd_",
+      "row": 1,
+      "col": 5,
+      "sublabel": "5 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "cancellation_id",
+          "type": "int"
+        },
+        {
+          "name": "order_item_id",
+          "type": "int"
+        },
+        {
+          "name": "quantity",
+          "type": "int"
+        },
+        {
+          "name": "reason",
+          "type": "varchar(255)"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tbd_cart_items",
+      "label": "tbd_cart_items",
+      "tag": "tbd_",
+      "row": 2,
+      "col": 5,
+      "sublabel": "5 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "cart_id",
+          "type": "int"
+        },
+        {
+          "name": "product_id",
+          "type": "int"
+        },
+        {
+          "name": "quantity",
+          "type": "int"
+        },
+        {
+          "name": "added_at",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tbd_order_items",
+      "label": "tbd_order_items",
+      "tag": "tbd_",
+      "row": 3,
+      "col": 5,
+      "sublabel": "6 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "order_ID",
+          "type": "int unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "product_offer_ID",
+          "type": "int unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "quantity",
+          "type": "int unsigned"
+        },
+        {
+          "name": "unit_price",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "line_total",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tbd_products_categories",
+      "label": "tbd_products_categories",
+      "tag": "tbd_",
+      "row": 4,
+      "col": 5,
+      "sublabel": "5 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "category_ID",
+          "type": "int unsigned",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tbc_categories.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tbd_products_users_providers",
+      "label": "tbd_products_users_providers",
+      "tag": "tbd_",
+      "row": 5,
+      "col": 5,
+      "sublabel": "7 campos ? 15000 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "user_ID",
+          "type": "int",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "type_ownership",
+          "type": "enum('Owner','Seller','Distributor')"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "available_date",
+          "type": "datetime"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ],
+      "width": 402
+    },
+    {
+      "id": "tbd_return_items",
+      "label": "tbd_return_items",
+      "tag": "tbd_",
+      "row": 6,
+      "col": 5,
+      "sublabel": "10 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "return_ID",
+          "type": "int unsigned",
+          "key": "uk"
+        },
+        {
+          "name": "order_item_ID",
+          "type": "int unsigned",
+          "key": "uk"
+        },
+        {
+          "name": "quantity",
+          "type": "int unsigned"
+        },
+        {
+          "name": "item_condition",
+          "type": "enum('Unopened','Unused','Used','Damaged','Defective','Other')"
+        },
+        {
+          "name": "disposition",
+          "type": "enum('Pending','Restock','Repair','Dispose','SupplierReturn')"
+        },
+        {
+          "name": "approved_refund_amount",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "item_status",
+          "type": "enum('Requested','Approved','Rejected','Received','Refunded')"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ],
+      "width": 545
+    },
+    {
+      "id": "tbd_user_payment_methods",
+      "label": "tbd_user_payment_methods",
+      "tag": "tbd_",
+      "row": 7,
+      "col": 5,
+      "sublabel": "5 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "user_id",
+          "type": "int"
+        },
+        {
+          "name": "payment_method_id",
+          "type": "int"
+        },
+        {
+          "name": "is_default",
+          "type": "tinyint(1)"
+        },
+        {
+          "name": "created_at",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    },
+    {
+      "id": "tbd_users_wishlist_products",
+      "label": "tbd_users_wishlist_products",
+      "tag": "tbd_",
+      "row": 8,
+      "col": 5,
+      "sublabel": "5 campos ? 0 filas INSERT en el respaldo",
+      "attributes": [
+        {
+          "name": "user_id",
+          "type": "int unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "product_id",
+          "type": "int unsigned",
+          "key": "pk"
+        },
+        {
+          "name": "is_active",
+          "type": "bit(1)"
+        },
+        {
+          "name": "created_date",
+          "type": "datetime"
+        },
+        {
+          "name": "updated_date",
+          "type": "datetime"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica 03/backups/240558_Respaldo_com_responsables_dbuser.sql",
+          "label": "Respaldo SQL de referencia"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "fk_seller_orders_seller",
+      "from": "tb_buyer_orders",
+      "to": "tb_users",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_cart_user",
+      "from": "tb_carts",
+      "to": "tb_users",
+      "fromCardinality": "one",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_cancellation_item",
+      "from": "tb_order_cancellations",
+      "to": "tbd_order_items",
+      "fromCardinality": "many",
+      "fromOptional": true,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_cancellation_requester",
+      "from": "tb_order_cancellations",
+      "to": "tb_users",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_cancellation_seller_order",
+      "from": "tb_order_cancellations",
+      "to": "tb_buyer_orders",
+      "fromCardinality": "many",
+      "fromOptional": true,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_payment_method",
+      "from": "tb_payments",
+      "to": "tb_payment_methods",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_persons_user",
+      "from": "tb_people",
+      "to": "tb_users",
+      "fromCardinality": "one",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_responsibility_new_log",
+      "from": "tb_product_responsibility_mapping",
+      "to": "tb_logs",
+      "fromCardinality": "one",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_responsibility_original_log",
+      "from": "tb_product_responsibility_mapping",
+      "to": "tb_logs",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_responsibility_owner",
+      "from": "tb_product_responsibility_mapping",
+      "to": "tb_users",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_responsibility_product",
+      "from": "tb_product_responsibility_mapping",
+      "to": "tb_products",
+      "fromCardinality": "one",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    },
+    {
+      "id": "fk_refund_cancellation",
+      "from": "tb_refunds",
+      "to": "tb_order_cancellations",
+      "fromCardinality": "many",
+      "fromOptional": true,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_refund_payment",
+      "from": "tb_refunds",
+      "to": "tb_payments",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_refund_return",
+      "from": "tb_refunds",
+      "to": "tb_returns",
+      "fromCardinality": "many",
+      "fromOptional": true,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_return_item",
+      "from": "tb_returns",
+      "to": "tbd_order_items",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_return_requester",
+      "from": "tb_returns",
+      "to": "tb_users",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_shipments_seller_order",
+      "from": "tb_shipments",
+      "to": "tb_buyer_orders",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_identity_proxy_user",
+      "from": "tb_user_identity_mapping",
+      "to": "tb_users",
+      "fromCardinality": "one",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "fk_category",
+      "from": "tbd_products_categories",
+      "to": "tbc_categories",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    },
+    {
+      "id": "fk_product",
+      "from": "tbd_products_categories",
+      "to": "tb_products",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    },
+    {
+      "id": "fk_products2",
+      "from": "tbd_products_users_providers",
+      "to": "tb_products",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    },
+    {
+      "id": "fk_user1",
+      "from": "tbd_products_users_providers",
+      "to": "tb_users",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Referencias sin tabla destino en este dump",
+      "items": [
+        "tb_buyer_orders.fk_seller_orders_order ? tb_orders(ID)",
+        "tb_order_cancellations.fk_cancellation_order ? tb_orders(ID)",
+        "tb_payments.fk_payment_order ? tb_orders(ID)",
+        "tb_returns.fk_return_order ? tb_orders(ID)",
+        "tbd_order_items.fk_order_item_order ? tb_orders(ID)",
+        "La FK autorreferente fk_superior_category est? declarada en tbc_categories.sup_id_category; no se dibuja porque el renderer no admite una relaci?n de una entidad consigo misma."
+      ]
+    }
+  ]
+}
