@@ -1,0 +1,59 @@
+<!-- generado por generar_diccionario_interactivo.js -->
+# Tabla `tbd_cart_items`
+
+Fuente: `Respaldo_Practica4.sql`, líneas 2494–2505. SHA-256: `ed941c888be8bd17d759acbcec9824ba173ad4094795d47012b7cc702bdf3880`.
+## Para qué sirve
+
+Contiene los productos y cantidades que una persona agrega al carrito. Cada renglón relaciona un carrito con una oferta de vendedor.
+
+Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
+
+## Resumen DDL
+
+- Columnas: 5.
+- Filas encontradas en sentencias INSERT de este respaldo: 33.
+- Claves primarias / índices: 2.
+- Claves foráneas: 2.
+- Restricciones CHECK: 1.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+
+## Columnas
+
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `cart_ID` | Identificador del carrito al que pertenece el artículo. cart_ID enlaza con tb_carts.ID. | `int unsigned` | No | `—` | PK; FK; fk_cart_item_cart → tb_carts(ID); PRIMARY (cart_ID, product_offer_ID) | — | `&#96;cart_ID&#96; int unsigned NOT NULL` |
+| 2 | `product_offer_ID` | Identificador de la oferta del producto hecha por un vendedor. product_offer_ID enlaza con tbd_users_offer_products.product_offer_ID. | `int unsigned` | No | `—` | PK; índice; FK; fk_cart_item_offer → tbd_users_offer_products(product_offer_ID); PRIMARY (cart_ID, product_offer_ID); idx_cart_item_offer (product_offer_ID) | — | `&#96;product_offer_ID&#96; int unsigned NOT NULL` |
+| 3 | `quantity` | Número de unidades del artículo, reclamación o cancelación. | `int unsigned` | No | `'1'` | — | — | `&#96;quantity&#96; int unsigned NOT NULL DEFAULT '1'` |
+| 4 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 5 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+
+## Claves primarias e índices
+
+- `PRIMARY` (PRIMARY, UNIQUE): `cart_ID, product_offer_ID`. DDL: `PRIMARY KEY (&#96;cart_ID&#96;,&#96;product_offer_ID&#96;)`
+- `idx_cart_item_offer` (INDEX): `product_offer_ID`. DDL: `KEY &#96;idx_cart_item_offer&#96; (&#96;product_offer_ID&#96;)`
+
+## Claves foráneas
+
+- `fk_cart_item_cart`: (cart_ID) → `tb_carts(ID)`; ON DELETE CASCADE; ON UPDATE (no especificado en DDL). DDL: `CONSTRAINT &#96;fk_cart_item_cart&#96; FOREIGN KEY (&#96;cart_ID&#96;) REFERENCES &#96;tb_carts&#96; (&#96;ID&#96;) ON DELETE CASCADE`
+- `fk_cart_item_offer`: (product_offer_ID) → `tbd_users_offer_products(product_offer_ID)`; ON DELETE (no especificado en DDL); ON UPDATE (no especificado en DDL). DDL: `CONSTRAINT &#96;fk_cart_item_offer&#96; FOREIGN KEY (&#96;product_offer_ID&#96;) REFERENCES &#96;tbd_users_offer_products&#96; (&#96;product_offer_ID&#96;)`
+
+## Restricciones CHECK
+
+- `CONSTRAINT &#96;chk_cart_item_quantity&#96; CHECK ((&#96;quantity&#96; > 0))`
+
+## Definición SQL de la tabla
+
+```sql
+CREATE TABLE `tbd_cart_items` (
+  `cart_ID` int unsigned NOT NULL,
+  `product_offer_ID` int unsigned NOT NULL,
+  `quantity` int unsigned NOT NULL DEFAULT '1',
+  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`cart_ID`,`product_offer_ID`),
+  KEY `idx_cart_item_offer` (`product_offer_ID`),
+  CONSTRAINT `fk_cart_item_cart` FOREIGN KEY (`cart_ID`) REFERENCES `tb_carts` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cart_item_offer` FOREIGN KEY (`product_offer_ID`) REFERENCES `tbd_users_offer_products` (`product_offer_ID`),
+  CONSTRAINT `chk_cart_item_quantity` CHECK ((`quantity` > 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
