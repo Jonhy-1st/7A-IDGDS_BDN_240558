@@ -19,20 +19,20 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `ID` | `bigint unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `user_ID` | `int` | No | `—` | índice; FK; tbd_user_payment_methods_ibfk_1 → tb_users(ID); user_ID (user_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
-| 3 | `payment_method_type_ID` | `int unsigned` | No | `—` | índice; FK; tbd_user_payment_methods_ibfk_2 → tbc_payment_methods_types(ID); payment_method_type_ID (payment_method_type_ID) | — | `&#96;payment_method_type_ID&#96; int unsigned NOT NULL` |
-| 4 | `provider` | `varchar(60)` | No | `—` | UK; uk_provider_method (provider, provider_method_ref) | — | `&#96;provider&#96; varchar(60) NOT NULL` |
-| 5 | `provider_method_ref` | `varchar(255)` | No | `—` | UK; uk_provider_method (provider, provider_method_ref) | — | `&#96;provider_method_ref&#96; varchar(255) NOT NULL` |
-| 6 | `label` | `varchar(100)` | Sí | `NULL` | — | — | `&#96;label&#96; varchar(100) DEFAULT NULL` |
-| 7 | `last_four` | `char(4)` | Sí | `NULL` | — | — | `&#96;last_four&#96; char(4) DEFAULT NULL` |
-| 8 | `available_balance` | `decimal(12,2)` | Sí | `NULL` | — | — | `&#96;available_balance&#96; decimal(12,2) DEFAULT NULL` |
-| 9 | `is_default` | `tinyint(1)` | No | `'0'` | — | — | `&#96;is_default&#96; tinyint(1) NOT NULL DEFAULT '0'` |
-| 10 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
-| 11 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 12 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `ID` | Identificador único del registro. | `bigint unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `user_ID` | Identificador de la cuenta relacionada. user_ID enlaza con tb_users.ID. | `int` | No | `—` | índice; FK; tbd_user_payment_methods_ibfk_1 → tb_users(ID); user_ID (user_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
+| 3 | `payment_method_type_ID` | Identificador del tipo de instrumento de pago. payment_method_type_ID enlaza con tbc_payment_methods_types.ID. | `int unsigned` | No | `—` | índice; FK; tbd_user_payment_methods_ibfk_2 → tbc_payment_methods_types(ID); payment_method_type_ID (payment_method_type_ID) | — | `&#96;payment_method_type_ID&#96; int unsigned NOT NULL` |
+| 4 | `provider` | Proveedor del instrumento o del procesamiento de pago. | `varchar(60)` | No | `—` | UK; uk_provider_method (provider, provider_method_ref) | — | `&#96;provider&#96; varchar(60) NOT NULL` |
+| 5 | `provider_method_ref` | Referencia del instrumento en el proveedor de pago. | `varchar(255)` | No | `—` | UK; uk_provider_method (provider, provider_method_ref) | — | `&#96;provider_method_ref&#96; varchar(255) NOT NULL` |
+| 6 | `label` | Nombre elegido para reconocer el instrumento de pago. | `varchar(100)` | Sí | `NULL` | — | — | `&#96;label&#96; varchar(100) DEFAULT NULL` |
+| 7 | `last_four` | Últimos cuatro dígitos visibles del instrumento; no contiene el número completo. | `char(4)` | Sí | `NULL` | — | — | `&#96;last_four&#96; char(4) DEFAULT NULL` |
+| 8 | `available_balance` | Saldo disponible del instrumento; se usa, por ejemplo, para un cupón simulado. | `decimal(12,2)` | Sí | `NULL` | — | — | `&#96;available_balance&#96; decimal(12,2) DEFAULT NULL` |
+| 9 | `is_default` | Indica si este es el domicilio o instrumento predeterminado. | `tinyint(1)` | No | `'0'` | — | — | `&#96;is_default&#96; tinyint(1) NOT NULL DEFAULT '0'` |
+| 10 | `status` | Indica si el registro está habilitado o activo. | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
+| 11 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 12 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

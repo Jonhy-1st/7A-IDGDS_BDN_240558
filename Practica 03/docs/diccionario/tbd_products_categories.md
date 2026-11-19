@@ -19,13 +19,13 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `category_ID` | `int unsigned` | No | `—` | PK; FK; fk_category → tbc_categories(ID); PRIMARY (category_ID, product_ID) | — | `&#96;category_ID&#96; int unsigned NOT NULL` |
-| 2 | `product_ID` | `int unsigned` | No | `—` | PK; índice; FK; fk_product → tb_products(ID); PRIMARY (category_ID, product_ID); fk_product (product_ID) | — | `&#96;product_ID&#96; int unsigned NOT NULL` |
-| 3 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
-| 4 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 5 | `last_update` | `datetime` | No | `—` | — | — | `&#96;last_update&#96; datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `category_ID` | Identificador de la categoría relacionada. category_ID enlaza con tbc_categories.ID. | `int unsigned` | No | `—` | PK; FK; fk_category → tbc_categories(ID); PRIMARY (category_ID, product_ID) | — | `&#96;category_ID&#96; int unsigned NOT NULL` |
+| 2 | `product_ID` | Identificador del producto del catálogo. product_ID enlaza con tb_products.ID. | `int unsigned` | No | `—` | PK; índice; FK; fk_product → tb_products(ID); PRIMARY (category_ID, product_ID); fk_product (product_ID) | — | `&#96;product_ID&#96; int unsigned NOT NULL` |
+| 3 | `status` | Indica si el registro está habilitado o activo. | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
+| 4 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 5 | `last_update` | Fecha y hora de la última modificación. | `datetime` | No | `—` | — | — | `&#96;last_update&#96; datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

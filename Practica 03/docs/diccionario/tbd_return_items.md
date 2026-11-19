@@ -19,13 +19,13 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `id` | `int` | No | `—` | PK; PRIMARY (id) | — | `&#96;id&#96; int NOT NULL AUTO_INCREMENT` |
-| 2 | `return_id` | `int` | No | `—` | — | — | `&#96;return_id&#96; int NOT NULL` |
-| 3 | `order_item_id` | `int` | No | `—` | — | — | `&#96;order_item_id&#96; int NOT NULL` |
-| 4 | `quantity` | `int` | No | `—` | — | — | `&#96;quantity&#96; int NOT NULL` |
-| 5 | `condition_notes` | `text` | Sí | `—` | — | — | `&#96;condition_notes&#96; text` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `id` | Identificador único del registro. | `int` | No | `—` | PK; PRIMARY (id) | — | `&#96;id&#96; int NOT NULL AUTO_INCREMENT` |
+| 2 | `return_id` | Identificador de la reclamación relacionada. | `int` | No | `—` | — | — | `&#96;return_id&#96; int NOT NULL` |
+| 3 | `order_item_id` | Identificador del artículo original del pedido. | `int` | No | `—` | — | — | `&#96;order_item_id&#96; int NOT NULL` |
+| 4 | `quantity` | Número de unidades del artículo, reclamación o cancelación. | `int` | No | `—` | — | — | `&#96;quantity&#96; int NOT NULL` |
+| 5 | `condition_notes` | Descripción del estado físico en que llegó el producto. | `text` | Sí | `—` | — | — | `&#96;condition_notes&#96; text` |
 
 ## Claves primarias e índices
 

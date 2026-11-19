@@ -19,12 +19,12 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `id` | `int` | No | `—` | PK; PRIMARY (id) | — | `&#96;id&#96; int NOT NULL AUTO_INCREMENT` |
-| 2 | `name` | `varchar(100)` | No | `—` | — | — | `&#96;name&#96; varchar(100) NOT NULL` |
-| 3 | `description` | `text` | Sí | `—` | — | — | `&#96;description&#96; text` |
-| 4 | `is_active` | `tinyint(1)` | Sí | `'1'` | — | — | `&#96;is_active&#96; tinyint(1) DEFAULT '1'` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `id` | Identificador único del registro. | `int` | No | `—` | PK; PRIMARY (id) | — | `&#96;id&#96; int NOT NULL AUTO_INCREMENT` |
+| 2 | `name` | Nombre del elemento; puede ser un producto, categoría o tipo de pago según la tabla. | `varchar(100)` | No | `—` | — | — | `&#96;name&#96; varchar(100) NOT NULL` |
+| 3 | `description` | Texto que explica el elemento del catálogo o registro. | `text` | Sí | `—` | — | — | `&#96;description&#96; text` |
+| 4 | `is_active` | Indica si el elemento del catálogo está activo. | `tinyint(1)` | Sí | `'1'` | — | — | `&#96;is_active&#96; tinyint(1) DEFAULT '1'` |
 
 ## Claves primarias e índices
 

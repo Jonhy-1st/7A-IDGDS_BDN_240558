@@ -19,13 +19,13 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `id` | `int` | No | `—` | PK; PRIMARY (id) | — | `&#96;id&#96; int NOT NULL AUTO_INCREMENT` |
-| 2 | `cancellation_id` | `int` | No | `—` | — | — | `&#96;cancellation_id&#96; int NOT NULL` |
-| 3 | `order_item_id` | `int` | No | `—` | — | — | `&#96;order_item_id&#96; int NOT NULL` |
-| 4 | `quantity` | `int` | No | `—` | — | — | `&#96;quantity&#96; int NOT NULL` |
-| 5 | `reason` | `varchar(255)` | Sí | `NULL` | — | — | `&#96;reason&#96; varchar(255) DEFAULT NULL` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `id` | Identificador único del registro. | `int` | No | `—` | PK; PRIMARY (id) | — | `&#96;id&#96; int NOT NULL AUTO_INCREMENT` |
+| 2 | `cancellation_id` | Identificador de la solicitud de cancelación relacionada. | `int` | No | `—` | — | — | `&#96;cancellation_id&#96; int NOT NULL` |
+| 3 | `order_item_id` | Identificador del artículo original del pedido. | `int` | No | `—` | — | — | `&#96;order_item_id&#96; int NOT NULL` |
+| 4 | `quantity` | Número de unidades del artículo, reclamación o cancelación. | `int` | No | `—` | — | — | `&#96;quantity&#96; int NOT NULL` |
+| 5 | `reason` | Motivo de la cancelación o nota asociada. | `varchar(255)` | Sí | `NULL` | — | — | `&#96;reason&#96; varchar(255) DEFAULT NULL` |
 
 ## Claves primarias e índices
 

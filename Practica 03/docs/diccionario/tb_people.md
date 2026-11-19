@@ -19,20 +19,20 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `person_ID` | `bigint unsigned` | No | `—` | PK; PRIMARY (person_ID) | — | `&#96;person_ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `user_ID` | `int` | Sí | `NULL` | UK; FK; fk_persons_users → tb_users(ID); user_ID (user_ID) | — | `&#96;user_ID&#96; int DEFAULT NULL` |
-| 3 | `courtesy_title` | `varchar(20)` | Sí | `NULL` | — | — | `&#96;courtesy_title&#96; varchar(20) DEFAULT NULL` |
-| 4 | `given_names` | `varchar(150)` | No | `—` | — | — | `&#96;given_names&#96; varchar(150) NOT NULL` |
-| 5 | `family_names` | `varchar(150)` | Sí | `NULL` | — | — | `&#96;family_names&#96; varchar(150) DEFAULT NULL` |
-| 6 | `birth_date` | `date` | Sí | `NULL` | — | — | `&#96;birth_date&#96; date DEFAULT NULL` |
-| 7 | `gender_ID` | `tinyint unsigned` | Sí | `NULL` | — | — | `&#96;gender_ID&#96; tinyint unsigned DEFAULT NULL` |
-| 8 | `country_code` | `char(2)` | Sí | `NULL` | — | — | `&#96;country_code&#96; char(2) DEFAULT NULL` |
-| 9 | `phone` | `varchar(25)` | Sí | `NULL` | — | — | `&#96;phone&#96; varchar(25) DEFAULT NULL` |
-| 10 | `status` | `bit(1)` | Sí | `b` | — | — | `&#96;status&#96; bit(1) DEFAULT b'1'` |
-| 11 | `creation_date` | `datetime` | Sí | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime DEFAULT CURRENT_TIMESTAMP` |
-| 12 | `last_update` | `datetime` | Sí | `CURRENT_TIMESTAMP` | — | — | `&#96;last_update&#96; datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `person_ID` | Identificador del registro de datos personales. | `bigint unsigned` | No | `—` | PK; PRIMARY (person_ID) | — | `&#96;person_ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `user_ID` | Identificador de la cuenta relacionada. user_ID enlaza con tb_users.ID. | `int` | Sí | `NULL` | UK; FK; fk_persons_users → tb_users(ID); user_ID (user_ID) | — | `&#96;user_ID&#96; int DEFAULT NULL` |
+| 3 | `courtesy_title` | Tratamiento o título de cortesía de la persona. | `varchar(20)` | Sí | `NULL` | — | — | `&#96;courtesy_title&#96; varchar(20) DEFAULT NULL` |
+| 4 | `given_names` | Nombre o nombres de la persona. | `varchar(150)` | No | `—` | — | — | `&#96;given_names&#96; varchar(150) NOT NULL` |
+| 5 | `family_names` | Apellidos de la persona. | `varchar(150)` | Sí | `NULL` | — | — | `&#96;family_names&#96; varchar(150) DEFAULT NULL` |
+| 6 | `birth_date` | Fecha de nacimiento. | `date` | Sí | `NULL` | — | — | `&#96;birth_date&#96; date DEFAULT NULL` |
+| 7 | `gender_ID` | Identificador de género, si fue registrado. | `tinyint unsigned` | Sí | `NULL` | — | — | `&#96;gender_ID&#96; tinyint unsigned DEFAULT NULL` |
+| 8 | `country_code` | Código del país relacionado con la persona. | `char(2)` | Sí | `NULL` | — | — | `&#96;country_code&#96; char(2) DEFAULT NULL` |
+| 9 | `phone` | Teléfono de contacto. | `varchar(25)` | Sí | `NULL` | — | — | `&#96;phone&#96; varchar(25) DEFAULT NULL` |
+| 10 | `status` | Indica si el registro está habilitado o activo. | `bit(1)` | Sí | `b` | — | — | `&#96;status&#96; bit(1) DEFAULT b'1'` |
+| 11 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | Sí | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime DEFAULT CURRENT_TIMESTAMP` |
+| 12 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `CURRENT_TIMESTAMP` | — | — | `&#96;last_update&#96; datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

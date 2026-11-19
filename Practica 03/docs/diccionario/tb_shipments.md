@@ -19,22 +19,22 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `shipment_ID` | `bigint unsigned` | No | `—` | PK; PRIMARY (shipment_ID) | — | `&#96;shipment_ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `seller_order_ID` | `int unsigned` | No | `—` | índice; FK; fk_shipments_seller_order → tb_seller_orders(ID); idx_shipment_order (seller_order_ID) | — | `&#96;seller_order_ID&#96; int unsigned NOT NULL` |
-| 3 | `delivery_address_ID` | `bigint unsigned` | Sí | `NULL` | índice; FK; fk_shipments_delivery_address → tb_user_addresses(ID); idx_shipments_delivery_address (delivery_address_ID) | — | `&#96;delivery_address_ID&#96; bigint unsigned DEFAULT NULL` |
-| 4 | `fulfillment_method` | `enum('HomeDelivery','Pickup')` | No | `'HomeDelivery'` | — | — | `&#96;fulfillment_method&#96; enum('HomeDelivery','Pickup') NOT NULL DEFAULT 'HomeDelivery'` |
-| 5 | `pickup_location` | `varchar(255)` | Sí | `NULL` | — | — | `&#96;pickup_location&#96; varchar(255) DEFAULT NULL` |
-| 6 | `carrier` | `varchar(100)` | Sí | `NULL` | — | — | `&#96;carrier&#96; varchar(100) DEFAULT NULL` |
-| 7 | `tracking_number` | `varchar(150)` | Sí | `NULL` | índice; idx_shipment_tracking (tracking_number) | — | `&#96;tracking_number&#96; varchar(150) DEFAULT NULL` |
-| 8 | `tracking_url` | `varchar(500)` | Sí | `NULL` | — | — | `&#96;tracking_url&#96; varchar(500) DEFAULT NULL` |
-| 9 | `shipment_status` | `enum('Pending','Preparing','Shipped','InTransit','OutForDelivery','Delivered','DeliveryFailed','Lost','Returned','ReadyForPickup','PickedUp')` | No | `'Pending'` | — | — | `&#96;shipment_status&#96; enum('Pending','Preparing','Shipped','InTransit','OutForDelivery','Delivered','DeliveryFailed','Lost','Returned','ReadyForPickup','PickedUp') NOT NULL DEFAULT 'Pending'` |
-| 10 | `shipped_date` | `datetime` | Sí | `NULL` | — | — | `&#96;shipped_date&#96; datetime DEFAULT NULL` |
-| 11 | `estimated_delivery_date` | `datetime` | Sí | `NULL` | — | — | `&#96;estimated_delivery_date&#96; datetime DEFAULT NULL` |
-| 12 | `delivered_date` | `datetime` | Sí | `NULL` | — | — | `&#96;delivered_date&#96; datetime DEFAULT NULL` |
-| 13 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 14 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `shipment_ID` | Identificador único del envío. | `bigint unsigned` | No | `—` | PK; PRIMARY (shipment_ID) | — | `&#96;shipment_ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `seller_order_ID` | Identificador de la parte del pedido que prepara un vendedor. seller_order_ID enlaza con tb_seller_orders.ID. | `int unsigned` | No | `—` | índice; FK; fk_shipments_seller_order → tb_seller_orders(ID); idx_shipment_order (seller_order_ID) | — | `&#96;seller_order_ID&#96; int unsigned NOT NULL` |
+| 3 | `delivery_address_ID` | Identificador del domicilio de entrega asociado. delivery_address_ID enlaza con tb_user_addresses.ID. | `bigint unsigned` | Sí | `NULL` | índice; FK; fk_shipments_delivery_address → tb_user_addresses(ID); idx_shipments_delivery_address (delivery_address_ID) | — | `&#96;delivery_address_ID&#96; bigint unsigned DEFAULT NULL` |
+| 4 | `fulfillment_method` | Forma de entrega: a domicilio o recolección en un punto. | `enum('HomeDelivery','Pickup')` | No | `'HomeDelivery'` | — | — | `&#96;fulfillment_method&#96; enum('HomeDelivery','Pickup') NOT NULL DEFAULT 'HomeDelivery'` |
+| 5 | `pickup_location` | Lugar donde el comprador puede recoger el pedido. | `varchar(255)` | Sí | `NULL` | — | — | `&#96;pickup_location&#96; varchar(255) DEFAULT NULL` |
+| 6 | `carrier` | Paquetería o responsable del transporte. | `varchar(100)` | Sí | `NULL` | — | — | `&#96;carrier&#96; varchar(100) DEFAULT NULL` |
+| 7 | `tracking_number` | Número o código para identificar el envío o la recolección. | `varchar(150)` | Sí | `NULL` | índice; idx_shipment_tracking (tracking_number) | — | `&#96;tracking_number&#96; varchar(150) DEFAULT NULL` |
+| 8 | `tracking_url` | Dirección web para consultar el seguimiento. | `varchar(500)` | Sí | `NULL` | — | — | `&#96;tracking_url&#96; varchar(500) DEFAULT NULL` |
+| 9 | `shipment_status` | Etapa actual del envío. | `enum('Pending','Preparing','Shipped','InTransit','OutForDelivery','Delivered','DeliveryFailed','Lost','Returned','ReadyForPickup','PickedUp')` | No | `'Pending'` | — | — | `&#96;shipment_status&#96; enum('Pending','Preparing','Shipped','InTransit','OutForDelivery','Delivered','DeliveryFailed','Lost','Returned','ReadyForPickup','PickedUp') NOT NULL DEFAULT 'Pending'` |
+| 10 | `shipped_date` | Fecha y hora en que salió el envío. | `datetime` | Sí | `NULL` | — | — | `&#96;shipped_date&#96; datetime DEFAULT NULL` |
+| 11 | `estimated_delivery_date` | Fecha estimada de entrega. | `datetime` | Sí | `NULL` | — | — | `&#96;estimated_delivery_date&#96; datetime DEFAULT NULL` |
+| 12 | `delivered_date` | Fecha y hora en que se registró la entrega o recolección. | `datetime` | Sí | `NULL` | — | — | `&#96;delivered_date&#96; datetime DEFAULT NULL` |
+| 13 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 14 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

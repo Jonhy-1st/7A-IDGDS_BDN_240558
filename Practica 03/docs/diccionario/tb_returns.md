@@ -19,22 +19,22 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `return_ID` | `bigint unsigned` | No | `—` | PK; PRIMARY (return_ID) | — | `&#96;return_ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `order_ID` | `int unsigned` | No | `—` | índice; FK; fk_return_order → tb_buyer_orders(ID); idx_return_order (order_ID); idx_return_item (order_ID, product_offer_ID) | — | `&#96;order_ID&#96; int unsigned NOT NULL` |
-| 3 | `product_offer_ID` | `int unsigned` | No | `—` | índice; idx_return_item (order_ID, product_offer_ID) | — | `&#96;product_offer_ID&#96; int unsigned NOT NULL` |
-| 4 | `requested_by` | `int` | No | `—` | índice; FK; fk_return_requester → tb_users(ID); fk_return_requester (requested_by) | — | `&#96;requested_by&#96; int NOT NULL` |
-| 5 | `quantity` | `int unsigned` | No | `—` | — | — | `&#96;quantity&#96; int unsigned NOT NULL` |
-| 6 | `return_reason` | `enum('Defective','Damaged','WrongProduct','NotAsDescribed','WrongSize','ChangedMind','Other')` | No | `'Other'` | — | — | `&#96;return_reason&#96; enum('Defective','Damaged','WrongProduct','NotAsDescribed','WrongSize','ChangedMind','Other') NOT NULL DEFAULT 'Other'` |
-| 7 | `return_status` | `enum('Requested','Authorized','Rejected','InTransit','Received','Inspected','Completed')` | No | `'Requested'` | índice; idx_return_status (return_status) | — | `&#96;return_status&#96; enum('Requested','Authorized','Rejected','InTransit','Received','Inspected','Completed') NOT NULL DEFAULT 'Requested'` |
-| 8 | `inspection_notes` | `text` | Sí | `—` | — | — | `&#96;inspection_notes&#96; text` |
-| 9 | `replacement_shipment_ID` | `bigint unsigned` | Sí | `NULL` | índice; FK; fk_returns_replacement_shipment → tb_shipments(shipment_ID); idx_returns_replacement_shipment (replacement_shipment_ID) | — | `&#96;replacement_shipment_ID&#96; bigint unsigned DEFAULT NULL` |
-| 10 | `requested_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;requested_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 11 | `received_date` | `datetime` | Sí | `NULL` | — | — | `&#96;received_date&#96; datetime DEFAULT NULL` |
-| 12 | `completed_date` | `datetime` | Sí | `NULL` | — | — | `&#96;completed_date&#96; datetime DEFAULT NULL` |
-| 13 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 14 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `return_ID` | Identificador único de la reclamación o devolución. | `bigint unsigned` | No | `—` | PK; PRIMARY (return_ID) | — | `&#96;return_ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `order_ID` | Identificador del pedido general al que pertenece el registro. order_ID enlaza con tb_buyer_orders.ID. | `int unsigned` | No | `—` | índice; FK; fk_return_order → tb_buyer_orders(ID); idx_return_order (order_ID); idx_return_item (order_ID, product_offer_ID) | — | `&#96;order_ID&#96; int unsigned NOT NULL` |
+| 3 | `product_offer_ID` | Identificador de la oferta del producto hecha por un vendedor. | `int unsigned` | No | `—` | índice; idx_return_item (order_ID, product_offer_ID) | — | `&#96;product_offer_ID&#96; int unsigned NOT NULL` |
+| 4 | `requested_by` | Identificador de la persona que solicitó la operación. requested_by enlaza con tb_users.ID. | `int` | No | `—` | índice; FK; fk_return_requester → tb_users(ID); fk_return_requester (requested_by) | — | `&#96;requested_by&#96; int NOT NULL` |
+| 5 | `quantity` | Número de unidades del artículo, reclamación o cancelación. | `int unsigned` | No | `—` | — | — | `&#96;quantity&#96; int unsigned NOT NULL` |
+| 6 | `return_reason` | Motivo de la reclamación o devolución. | `enum('Defective','Damaged','WrongProduct','NotAsDescribed','WrongSize','ChangedMind','Other')` | No | `'Other'` | — | — | `&#96;return_reason&#96; enum('Defective','Damaged','WrongProduct','NotAsDescribed','WrongSize','ChangedMind','Other') NOT NULL DEFAULT 'Other'` |
+| 7 | `return_status` | Etapa de revisión y resolución de la reclamación. | `enum('Requested','Authorized','Rejected','InTransit','Received','Inspected','Completed')` | No | `'Requested'` | índice; idx_return_status (return_status) | — | `&#96;return_status&#96; enum('Requested','Authorized','Rejected','InTransit','Received','Inspected','Completed') NOT NULL DEFAULT 'Requested'` |
+| 8 | `inspection_notes` | Resultado o notas de la inspección del producto devuelto. | `text` | Sí | `—` | — | — | `&#96;inspection_notes&#96; text` |
+| 9 | `replacement_shipment_ID` | Identificador del envío que reemplaza el producto reclamado. replacement_shipment_ID enlaza con tb_shipments.shipment_ID. | `bigint unsigned` | Sí | `NULL` | índice; FK; fk_returns_replacement_shipment → tb_shipments(shipment_ID); idx_returns_replacement_shipment (replacement_shipment_ID) | — | `&#96;replacement_shipment_ID&#96; bigint unsigned DEFAULT NULL` |
+| 10 | `requested_date` | Fecha y hora de solicitud. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;requested_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 11 | `received_date` | Fecha y hora en que se recibió el producto reclamado. | `datetime` | Sí | `NULL` | — | — | `&#96;received_date&#96; datetime DEFAULT NULL` |
+| 12 | `completed_date` | Fecha y hora en que se completó la operación. | `datetime` | Sí | `NULL` | — | — | `&#96;completed_date&#96; datetime DEFAULT NULL` |
+| 13 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 14 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

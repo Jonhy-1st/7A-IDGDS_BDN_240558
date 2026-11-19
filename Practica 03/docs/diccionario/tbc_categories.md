@@ -19,15 +19,15 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `ID` | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `name` | `varchar(120)` | No | `—` | UK; name (name) | — | `&#96;name&#96; varchar(120) NOT NULL` |
-| 3 | `description` | `text` | Sí | `—` | — | — | `&#96;description&#96; text` |
-| 4 | `sup_id_category` | `int unsigned` | Sí | `NULL` | índice; FK; fk_superior_category → tbc_categories(ID); fk_superior_category (sup_id_category) | — | `&#96;sup_id_category&#96; int unsigned DEFAULT NULL` |
-| 5 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
-| 6 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 7 | `last_update` | `datetime` | No | `—` | — | — | `&#96;last_update&#96; datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `ID` | Identificador único del registro. | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `name` | Nombre del elemento; puede ser un producto, categoría o tipo de pago según la tabla. | `varchar(120)` | No | `—` | UK; name (name) | — | `&#96;name&#96; varchar(120) NOT NULL` |
+| 3 | `description` | Texto que explica el elemento del catálogo o registro. | `text` | Sí | `—` | — | — | `&#96;description&#96; text` |
+| 4 | `sup_id_category` | Identificador de la categoría superior, si esta depende de otra. sup_id_category enlaza con tbc_categories.ID. | `int unsigned` | Sí | `NULL` | índice; FK; fk_superior_category → tbc_categories(ID); fk_superior_category (sup_id_category) | — | `&#96;sup_id_category&#96; int unsigned DEFAULT NULL` |
+| 5 | `status` | Indica si el registro está habilitado o activo. | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
+| 6 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 7 | `last_update` | Fecha y hora de la última modificación. | `datetime` | No | `—` | — | — | `&#96;last_update&#96; datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

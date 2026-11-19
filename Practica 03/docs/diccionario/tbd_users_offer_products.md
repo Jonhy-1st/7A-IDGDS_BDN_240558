@@ -19,16 +19,16 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `product_offer_ID` | `int unsigned` | No | `—` | PK; PRIMARY (product_offer_ID) | — | `&#96;product_offer_ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `user_ID` | `int unsigned` | Sí | `NULL` | índice; fk_user_1 (user_ID) | — | `&#96;user_ID&#96; int unsigned DEFAULT NULL` |
-| 3 | `product_ID` | `int unsigned` | No | `—` | índice; FK; fk_product_2 → tb_products(ID); fk_product_2 (product_ID) | — | `&#96;product_ID&#96; int unsigned NOT NULL` |
-| 4 | `available_stock` | `int` | No | `'1'` | — | — | `&#96;available_stock&#96; int NOT NULL DEFAULT '1'` |
-| 5 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
-| 6 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 7 | `available_date` | `datetime` | Sí | `NULL` | — | — | `&#96;available_date&#96; datetime DEFAULT NULL` |
-| 8 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `product_offer_ID` | Identificador de la oferta del producto hecha por un vendedor. | `int unsigned` | No | `—` | PK; PRIMARY (product_offer_ID) | — | `&#96;product_offer_ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `user_ID` | Identificador de la cuenta relacionada. | `int unsigned` | Sí | `NULL` | índice; fk_user_1 (user_ID) | — | `&#96;user_ID&#96; int unsigned DEFAULT NULL` |
+| 3 | `product_ID` | Identificador del producto del catálogo. product_ID enlaza con tb_products.ID. | `int unsigned` | No | `—` | índice; FK; fk_product_2 → tb_products(ID); fk_product_2 (product_ID) | — | `&#96;product_ID&#96; int unsigned NOT NULL` |
+| 4 | `available_stock` | Existencia asignada a la oferta del vendedor. | `int` | No | `'1'` | — | — | `&#96;available_stock&#96; int NOT NULL DEFAULT '1'` |
+| 5 | `status` | Indica si el registro está habilitado o activo. | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
+| 6 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 7 | `available_date` | Fecha desde la que la oferta está disponible. | `datetime` | Sí | `NULL` | — | — | `&#96;available_date&#96; datetime DEFAULT NULL` |
+| 8 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

@@ -19,16 +19,16 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `ID` | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `order_ID` | `int unsigned` | No | `—` | UK; FK; fk_seller_order_order → tb_buyer_orders(ID); uk_order_seller (order_ID, seller_ID) | — | `&#96;order_ID&#96; int unsigned NOT NULL` |
-| 3 | `seller_ID` | `int` | No | `—` | UK; índice; FK; fk_seller_order_seller → tb_users(ID); uk_order_seller (order_ID, seller_ID); idx_seller_orders_seller (seller_ID) | — | `&#96;seller_ID&#96; int NOT NULL` |
-| 4 | `subtotal` | `decimal(12,2)` | No | `'0.00'` | — | — | `&#96;subtotal&#96; decimal(12,2) NOT NULL DEFAULT '0.00'` |
-| 5 | `shipping_cost` | `decimal(12,2)` | No | `'0.00'` | — | — | `&#96;shipping_cost&#96; decimal(12,2) NOT NULL DEFAULT '0.00'` |
-| 6 | `fulfillment_status` | `enum('Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned')` | No | `'Pending'` | — | — | `&#96;fulfillment_status&#96; enum('Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned') NOT NULL DEFAULT 'Pending'` |
-| 7 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 8 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `ID` | Identificador único del registro. | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `order_ID` | Identificador del pedido general al que pertenece el registro. order_ID enlaza con tb_buyer_orders.ID. | `int unsigned` | No | `—` | UK; FK; fk_seller_order_order → tb_buyer_orders(ID); uk_order_seller (order_ID, seller_ID) | — | `&#96;order_ID&#96; int unsigned NOT NULL` |
+| 3 | `seller_ID` | Identificador de la cuenta del vendedor. seller_ID enlaza con tb_users.ID. | `int` | No | `—` | UK; índice; FK; fk_seller_order_seller → tb_users(ID); uk_order_seller (order_ID, seller_ID); idx_seller_orders_seller (seller_ID) | — | `&#96;seller_ID&#96; int NOT NULL` |
+| 4 | `subtotal` | Importe parcial de los artículos o del pedido del vendedor. | `decimal(12,2)` | No | `'0.00'` | — | — | `&#96;subtotal&#96; decimal(12,2) NOT NULL DEFAULT '0.00'` |
+| 5 | `shipping_cost` | Costo de envío correspondiente al pedido del vendedor. | `decimal(12,2)` | No | `'0.00'` | — | — | `&#96;shipping_cost&#96; decimal(12,2) NOT NULL DEFAULT '0.00'` |
+| 6 | `fulfillment_status` | Etapa de preparación o entrega de la parte del pedido del vendedor. | `enum('Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned')` | No | `'Pending'` | — | — | `&#96;fulfillment_status&#96; enum('Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned') NOT NULL DEFAULT 'Pending'` |
+| 7 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 8 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

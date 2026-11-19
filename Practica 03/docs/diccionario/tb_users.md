@@ -19,17 +19,17 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `ID` | `int` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int NOT NULL AUTO_INCREMENT` |
-| 2 | `email` | `varchar(80)` | No | `—` | UK; email (email) | — | `&#96;email&#96; varchar(80) NOT NULL` |
-| 3 | `nick` | `varchar(100)` | No | `—` | UK; nickname (nick) | — | `&#96;nick&#96; varchar(100) NOT NULL` |
-| 4 | `password` | `varchar(255)` | No | `—` | — | — | `&#96;password&#96; varchar(255) NOT NULL` |
-| 5 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 6 | `last_update` | `datetime` | Sí | `CURRENT_TIMESTAMP` | — | — | `&#96;last_update&#96; datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP` |
-| 7 | `last_login` | `datetime` | Sí | `NULL` | — | — | `&#96;last_login&#96; datetime DEFAULT NULL` |
-| 8 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
-| 9 | `platform_role` | `enum('common_user','buyer')` | No | `'common_user'` | — | — | `&#96;platform_role&#96; enum('common_user','buyer') NOT NULL DEFAULT 'common_user'` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `ID` | Identificador único del registro. | `int` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int NOT NULL AUTO_INCREMENT` |
+| 2 | `email` | Correo usado para identificar o contactar la cuenta. | `varchar(80)` | No | `—` | UK; email (email) | — | `&#96;email&#96; varchar(80) NOT NULL` |
+| 3 | `nick` | Nombre corto o alias de la cuenta. | `varchar(100)` | No | `—` | UK; nickname (nick) | — | `&#96;nick&#96; varchar(100) NOT NULL` |
+| 4 | `password` | Contraseña almacenada; debe estar protegida mediante hash. | `varchar(255)` | No | `—` | — | — | `&#96;password&#96; varchar(255) NOT NULL` |
+| 5 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 6 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `CURRENT_TIMESTAMP` | — | — | `&#96;last_update&#96; datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP` |
+| 7 | `last_login` | Fecha y hora del último inicio de sesión. | `datetime` | Sí | `NULL` | — | — | `&#96;last_login&#96; datetime DEFAULT NULL` |
+| 8 | `status` | Indica si el registro está habilitado o activo. | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
+| 9 | `platform_role` | Rol de la persona dentro de la plataforma. | `enum('common_user','buyer')` | No | `'common_user'` | — | — | `&#96;platform_role&#96; enum('common_user','buyer') NOT NULL DEFAULT 'common_user'` |
 
 ## Claves primarias e índices
 

@@ -19,17 +19,17 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `ID` | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `SKU` | `varchar(50)` | No | `—` | UK; SKU (SKU) | — | `&#96;SKU&#96; varchar(50) NOT NULL` |
-| 3 | `name` | `varchar(250)` | No | `—` | — | — | `&#96;name&#96; varchar(250) NOT NULL` |
-| 4 | `description` | `text` | Sí | `—` | — | — | `&#96;description&#96; text` |
-| 5 | `current_price` | `decimal(10,2)` | No | `'0.00'` | — | — | `&#96;current_price&#96; decimal(10,2) NOT NULL DEFAULT '0.00'` |
-| 6 | `current_stock` | `int unsigned` | No | `'0'` | — | — | `&#96;current_stock&#96; int unsigned NOT NULL DEFAULT '0'` |
-| 7 | `status` | `bit(1)` | Sí | `b` | — | — | `&#96;status&#96; bit(1) DEFAULT b'1'` |
-| 8 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 9 | `last_update` | `datetime` | No | `—` | — | — | `&#96;last_update&#96; datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `ID` | Identificador único del registro. | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `SKU` | Código de inventario que identifica el producto. | `varchar(50)` | No | `—` | UK; SKU (SKU) | — | `&#96;SKU&#96; varchar(50) NOT NULL` |
+| 3 | `name` | Nombre del elemento; puede ser un producto, categoría o tipo de pago según la tabla. | `varchar(250)` | No | `—` | — | — | `&#96;name&#96; varchar(250) NOT NULL` |
+| 4 | `description` | Texto que explica el elemento del catálogo o registro. | `text` | Sí | `—` | — | — | `&#96;description&#96; text` |
+| 5 | `current_price` | Precio vigente del producto en el catálogo. | `decimal(10,2)` | No | `'0.00'` | — | — | `&#96;current_price&#96; decimal(10,2) NOT NULL DEFAULT '0.00'` |
+| 6 | `current_stock` | Existencia general disponible del producto. | `int unsigned` | No | `'0'` | — | — | `&#96;current_stock&#96; int unsigned NOT NULL DEFAULT '0'` |
+| 7 | `status` | Indica si el registro está habilitado o activo. | `bit(1)` | Sí | `b` | — | — | `&#96;status&#96; bit(1) DEFAULT b'1'` |
+| 8 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 9 | `last_update` | Fecha y hora de la última modificación. | `datetime` | No | `—` | — | — | `&#96;last_update&#96; datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

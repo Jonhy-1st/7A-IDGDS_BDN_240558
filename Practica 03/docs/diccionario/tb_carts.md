@@ -19,14 +19,14 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `ID` | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `user_ID` | `int` | No | `—` | índice; FK; fk_cart_user → tb_users(ID); idx_carts_user (user_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
-| 3 | `status` | `enum('Active','Converted','Abandoned')` | No | `'Active'` | — | — | `&#96;status&#96; enum('Active','Converted','Abandoned') NOT NULL DEFAULT 'Active'` |
-| 4 | `active_user_ID` | `int` | Sí | `—` | UK; uk_cart_active_user (active_user_ID) | — | `&#96;active_user_ID&#96; int GENERATED ALWAYS AS ((case when (&#96;status&#96; = 'Active') then &#96;user_ID&#96; else NULL end)) STORED` |
-| 5 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 6 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `ID` | Identificador único del registro. | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `user_ID` | Identificador de la cuenta relacionada. user_ID enlaza con tb_users.ID. | `int` | No | `—` | índice; FK; fk_cart_user → tb_users(ID); idx_carts_user (user_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
+| 3 | `status` | Indica si el registro está habilitado o activo. | `enum('Active','Converted','Abandoned')` | No | `'Active'` | — | — | `&#96;status&#96; enum('Active','Converted','Abandoned') NOT NULL DEFAULT 'Active'` |
+| 4 | `active_user_ID` | Identificador calculado del usuario mientras el carrito está activo; queda vacío para carritos cerrados. | `int` | Sí | `—` | UK; uk_cart_active_user (active_user_ID) | — | `&#96;active_user_ID&#96; int GENERATED ALWAYS AS ((case when (&#96;status&#96; = 'Active') then &#96;user_ID&#96; else NULL end)) STORED` |
+| 5 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 6 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

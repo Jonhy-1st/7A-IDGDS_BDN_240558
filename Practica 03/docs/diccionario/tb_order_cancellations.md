@@ -19,19 +19,19 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `cancellation_ID` | `bigint unsigned` | No | `—` | PK; PRIMARY (cancellation_ID) | — | `&#96;cancellation_ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `order_ID` | `int unsigned` | No | `—` | índice; FK; fk_cancellation_order → tb_buyer_orders(ID); idx_cancellation_order (order_ID); idx_cancellation_item (order_ID, product_offer_ID) | — | `&#96;order_ID&#96; int unsigned NOT NULL` |
-| 3 | `seller_order_ID` | `int unsigned` | Sí | `NULL` | índice; FK; fk_cancellation_seller_order → tb_seller_orders(ID); idx_cancellation_seller_order (seller_order_ID) | — | `&#96;seller_order_ID&#96; int unsigned DEFAULT NULL` |
-| 4 | `product_offer_ID` | `int unsigned` | Sí | `NULL` | índice; idx_cancellation_item (order_ID, product_offer_ID) | — | `&#96;product_offer_ID&#96; int unsigned DEFAULT NULL` |
-| 5 | `requested_by` | `int` | No | `—` | índice; FK; fk_cancellation_requester → tb_users(ID); fk_cancellation_requester (requested_by) | — | `&#96;requested_by&#96; int NOT NULL` |
-| 6 | `cancellation_reason` | `varchar(500)` | No | `—` | — | — | `&#96;cancellation_reason&#96; varchar(500) NOT NULL` |
-| 7 | `cancellation_status` | `enum('Requested','Approved','Rejected','Completed')` | No | `'Requested'` | índice; idx_cancellation_status (cancellation_status) | — | `&#96;cancellation_status&#96; enum('Requested','Approved','Rejected','Completed') NOT NULL DEFAULT 'Requested'` |
-| 8 | `requested_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;requested_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 9 | `resolved_date` | `datetime` | Sí | `NULL` | — | — | `&#96;resolved_date&#96; datetime DEFAULT NULL` |
-| 10 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 11 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `cancellation_ID` | Identificador único de la solicitud de cancelación. | `bigint unsigned` | No | `—` | PK; PRIMARY (cancellation_ID) | — | `&#96;cancellation_ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `order_ID` | Identificador del pedido general al que pertenece el registro. order_ID enlaza con tb_buyer_orders.ID. | `int unsigned` | No | `—` | índice; FK; fk_cancellation_order → tb_buyer_orders(ID); idx_cancellation_order (order_ID); idx_cancellation_item (order_ID, product_offer_ID) | — | `&#96;order_ID&#96; int unsigned NOT NULL` |
+| 3 | `seller_order_ID` | Identificador de la parte del pedido que prepara un vendedor. seller_order_ID enlaza con tb_seller_orders.ID. | `int unsigned` | Sí | `NULL` | índice; FK; fk_cancellation_seller_order → tb_seller_orders(ID); idx_cancellation_seller_order (seller_order_ID) | — | `&#96;seller_order_ID&#96; int unsigned DEFAULT NULL` |
+| 4 | `product_offer_ID` | Identificador de la oferta del producto hecha por un vendedor. | `int unsigned` | Sí | `NULL` | índice; idx_cancellation_item (order_ID, product_offer_ID) | — | `&#96;product_offer_ID&#96; int unsigned DEFAULT NULL` |
+| 5 | `requested_by` | Identificador de la persona que solicitó la operación. requested_by enlaza con tb_users.ID. | `int` | No | `—` | índice; FK; fk_cancellation_requester → tb_users(ID); fk_cancellation_requester (requested_by) | — | `&#96;requested_by&#96; int NOT NULL` |
+| 6 | `cancellation_reason` | Motivo indicado para cancelar artículos. | `varchar(500)` | No | `—` | — | — | `&#96;cancellation_reason&#96; varchar(500) NOT NULL` |
+| 7 | `cancellation_status` | Etapa de resolución de la solicitud de cancelación. | `enum('Requested','Approved','Rejected','Completed')` | No | `'Requested'` | índice; idx_cancellation_status (cancellation_status) | — | `&#96;cancellation_status&#96; enum('Requested','Approved','Rejected','Completed') NOT NULL DEFAULT 'Requested'` |
+| 8 | `requested_date` | Fecha y hora de solicitud. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;requested_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 9 | `resolved_date` | Fecha y hora de resolución. | `datetime` | Sí | `NULL` | — | — | `&#96;resolved_date&#96; datetime DEFAULT NULL` |
+| 10 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 11 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

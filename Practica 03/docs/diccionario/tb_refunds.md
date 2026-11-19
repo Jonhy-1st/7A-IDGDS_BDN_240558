@@ -19,21 +19,21 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `refund_ID` | `bigint unsigned` | No | `—` | PK; PRIMARY (refund_ID) | — | `&#96;refund_ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `payment_ID` | `int unsigned` | No | `—` | índice; FK; fk_refund_payment → tb_payments(ID); idx_refund_payment (payment_ID) | — | `&#96;payment_ID&#96; int unsigned NOT NULL` |
-| 3 | `cancellation_ID` | `bigint unsigned` | Sí | `NULL` | índice; FK; fk_refund_cancellation → tb_order_cancellations(cancellation_ID); fk_refund_cancellation (cancellation_ID) | — | `&#96;cancellation_ID&#96; bigint unsigned DEFAULT NULL` |
-| 4 | `return_ID` | `bigint unsigned` | Sí | `NULL` | índice; FK; fk_refund_return → tb_returns(return_ID); fk_refund_return (return_ID) | — | `&#96;return_ID&#96; bigint unsigned DEFAULT NULL` |
-| 5 | `amount` | `decimal(12,2)` | No | `—` | — | — | `&#96;amount&#96; decimal(12,2) NOT NULL` |
-| 6 | `currency` | `char(3)` | No | `'MXN'` | — | — | `&#96;currency&#96; char(3) NOT NULL DEFAULT 'MXN'` |
-| 7 | `refund_reason` | `varchar(500)` | Sí | `NULL` | — | — | `&#96;refund_reason&#96; varchar(500) DEFAULT NULL` |
-| 8 | `refund_status` | `enum('Requested','Approved','Processing','Completed','Failed','Rejected')` | No | `'Requested'` | índice; idx_refund_status (refund_status) | — | `&#96;refund_status&#96; enum('Requested','Approved','Processing','Completed','Failed','Rejected') NOT NULL DEFAULT 'Requested'` |
-| 9 | `provider_reference` | `varchar(150)` | Sí | `NULL` | UK; uk_refund_provider_reference (provider_reference) | — | `&#96;provider_reference&#96; varchar(150) DEFAULT NULL` |
-| 10 | `requested_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;requested_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 11 | `completed_date` | `datetime` | Sí | `NULL` | — | — | `&#96;completed_date&#96; datetime DEFAULT NULL` |
-| 12 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 13 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `refund_ID` | Identificador único del reembolso. | `bigint unsigned` | No | `—` | PK; PRIMARY (refund_ID) | — | `&#96;refund_ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `payment_ID` | Identificador del pago asociado. payment_ID enlaza con tb_payments.ID. | `int unsigned` | No | `—` | índice; FK; fk_refund_payment → tb_payments(ID); idx_refund_payment (payment_ID) | — | `&#96;payment_ID&#96; int unsigned NOT NULL` |
+| 3 | `cancellation_ID` | Identificador único de la solicitud de cancelación. cancellation_ID enlaza con tb_order_cancellations.cancellation_ID. | `bigint unsigned` | Sí | `NULL` | índice; FK; fk_refund_cancellation → tb_order_cancellations(cancellation_ID); fk_refund_cancellation (cancellation_ID) | — | `&#96;cancellation_ID&#96; bigint unsigned DEFAULT NULL` |
+| 4 | `return_ID` | Identificador único de la reclamación o devolución. return_ID enlaza con tb_returns.return_ID. | `bigint unsigned` | Sí | `NULL` | índice; FK; fk_refund_return → tb_returns(return_ID); fk_refund_return (return_ID) | — | `&#96;return_ID&#96; bigint unsigned DEFAULT NULL` |
+| 5 | `amount` | Importe del pago, movimiento o reembolso. | `decimal(12,2)` | No | `—` | — | — | `&#96;amount&#96; decimal(12,2) NOT NULL` |
+| 6 | `currency` | Moneda en la que se expresa el importe. | `char(3)` | No | `'MXN'` | — | — | `&#96;currency&#96; char(3) NOT NULL DEFAULT 'MXN'` |
+| 7 | `refund_reason` | Motivo por el que se devuelve el dinero. | `varchar(500)` | Sí | `NULL` | — | — | `&#96;refund_reason&#96; varchar(500) DEFAULT NULL` |
+| 8 | `refund_status` | Etapa de procesamiento del reembolso. | `enum('Requested','Approved','Processing','Completed','Failed','Rejected')` | No | `'Requested'` | índice; idx_refund_status (refund_status) | — | `&#96;refund_status&#96; enum('Requested','Approved','Processing','Completed','Failed','Rejected') NOT NULL DEFAULT 'Requested'` |
+| 9 | `provider_reference` | Referencia de la operación en el proveedor de pago. | `varchar(150)` | Sí | `NULL` | UK; uk_refund_provider_reference (provider_reference) | — | `&#96;provider_reference&#96; varchar(150) DEFAULT NULL` |
+| 10 | `requested_date` | Fecha y hora de solicitud. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;requested_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 11 | `completed_date` | Fecha y hora en que se completó la operación. | `datetime` | Sí | `NULL` | — | — | `&#96;completed_date&#96; datetime DEFAULT NULL` |
+| 12 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 13 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

@@ -19,20 +19,20 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `ID` | `bigint unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `user_ID` | `int` | No | `—` | índice; FK; fk_addresses_users → tb_users(ID); idx_user_addresses (user_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
-| 3 | `address_label` | `varchar(100)` | No | `—` | — | — | `&#96;address_label&#96; varchar(100) NOT NULL` |
-| 4 | `recipient_name` | `varchar(150)` | Sí | `NULL` | — | — | `&#96;recipient_name&#96; varchar(150) DEFAULT NULL` |
-| 5 | `recipient_phone` | `varchar(25)` | Sí | `NULL` | — | — | `&#96;recipient_phone&#96; varchar(25) DEFAULT NULL` |
-| 6 | `delivery_instructions` | `varchar(500)` | Sí | `NULL` | — | — | `&#96;delivery_instructions&#96; varchar(500) DEFAULT NULL` |
-| 7 | `latitude` | `decimal(10,7)` | Sí | `NULL` | — | — | `&#96;latitude&#96; decimal(10,7) DEFAULT NULL` |
-| 8 | `longitude` | `decimal(10,7)` | Sí | `NULL` | — | — | `&#96;longitude&#96; decimal(10,7) DEFAULT NULL` |
-| 9 | `is_default` | `tinyint(1)` | No | `'0'` | — | — | `&#96;is_default&#96; tinyint(1) NOT NULL DEFAULT '0'` |
-| 10 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
-| 11 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 12 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `ID` | Identificador único del registro. | `bigint unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `user_ID` | Identificador de la cuenta relacionada. user_ID enlaza con tb_users.ID. | `int` | No | `—` | índice; FK; fk_addresses_users → tb_users(ID); idx_user_addresses (user_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
+| 3 | `address_label` | Etiqueta que permite reconocer el domicilio, por ejemplo Casa o Trabajo. | `varchar(100)` | No | `—` | — | — | `&#96;address_label&#96; varchar(100) NOT NULL` |
+| 4 | `recipient_name` | Nombre de quien recibirá el paquete. | `varchar(150)` | Sí | `NULL` | — | — | `&#96;recipient_name&#96; varchar(150) DEFAULT NULL` |
+| 5 | `recipient_phone` | Teléfono de quien recibirá el paquete. | `varchar(25)` | Sí | `NULL` | — | — | `&#96;recipient_phone&#96; varchar(25) DEFAULT NULL` |
+| 6 | `delivery_instructions` | Indicaciones para entregar el paquete. | `varchar(500)` | Sí | `NULL` | — | — | `&#96;delivery_instructions&#96; varchar(500) DEFAULT NULL` |
+| 7 | `latitude` | Coordenada geográfica de latitud del domicilio. | `decimal(10,7)` | Sí | `NULL` | — | — | `&#96;latitude&#96; decimal(10,7) DEFAULT NULL` |
+| 8 | `longitude` | Coordenada geográfica de longitud del domicilio. | `decimal(10,7)` | Sí | `NULL` | — | — | `&#96;longitude&#96; decimal(10,7) DEFAULT NULL` |
+| 9 | `is_default` | Indica si este es el domicilio o instrumento predeterminado. | `tinyint(1)` | No | `'0'` | — | — | `&#96;is_default&#96; tinyint(1) NOT NULL DEFAULT '0'` |
+| 10 | `status` | Indica si el registro está habilitado o activo. | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
+| 11 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 12 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

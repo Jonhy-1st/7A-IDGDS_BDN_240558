@@ -19,13 +19,13 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `cart_ID` | `int unsigned` | No | `—` | PK; FK; fk_cart_item_cart → tb_carts(ID); PRIMARY (cart_ID, product_offer_ID) | — | `&#96;cart_ID&#96; int unsigned NOT NULL` |
-| 2 | `product_offer_ID` | `int unsigned` | No | `—` | PK; índice; FK; fk_cart_item_offer → tbd_users_offer_products(product_offer_ID); PRIMARY (cart_ID, product_offer_ID); idx_cart_item_offer (product_offer_ID) | — | `&#96;product_offer_ID&#96; int unsigned NOT NULL` |
-| 3 | `quantity` | `int unsigned` | No | `'1'` | — | — | `&#96;quantity&#96; int unsigned NOT NULL DEFAULT '1'` |
-| 4 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 5 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `cart_ID` | Identificador del carrito al que pertenece el artículo. cart_ID enlaza con tb_carts.ID. | `int unsigned` | No | `—` | PK; FK; fk_cart_item_cart → tb_carts(ID); PRIMARY (cart_ID, product_offer_ID) | — | `&#96;cart_ID&#96; int unsigned NOT NULL` |
+| 2 | `product_offer_ID` | Identificador de la oferta del producto hecha por un vendedor. product_offer_ID enlaza con tbd_users_offer_products.product_offer_ID. | `int unsigned` | No | `—` | PK; índice; FK; fk_cart_item_offer → tbd_users_offer_products(product_offer_ID); PRIMARY (cart_ID, product_offer_ID); idx_cart_item_offer (product_offer_ID) | — | `&#96;product_offer_ID&#96; int unsigned NOT NULL` |
+| 3 | `quantity` | Número de unidades del artículo, reclamación o cancelación. | `int unsigned` | No | `'1'` | — | — | `&#96;quantity&#96; int unsigned NOT NULL DEFAULT '1'` |
+| 4 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 5 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

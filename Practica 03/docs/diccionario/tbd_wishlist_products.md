@@ -19,11 +19,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `user_ID` | `int` | No | `—` | PK; FK; fk_wishlist_user → tb_users(ID); PRIMARY (user_ID, product_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
-| 2 | `product_ID` | `int unsigned` | No | `—` | PK; índice; FK; fk_wishlist_product → tb_products(ID); PRIMARY (user_ID, product_ID); idx_wishlist_product (product_ID) | — | `&#96;product_ID&#96; int unsigned NOT NULL` |
-| 3 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `user_ID` | Identificador de la cuenta relacionada. user_ID enlaza con tb_users.ID. | `int` | No | `—` | PK; FK; fk_wishlist_user → tb_users(ID); PRIMARY (user_ID, product_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
+| 2 | `product_ID` | Identificador del producto del catálogo. product_ID enlaza con tb_products.ID. | `int unsigned` | No | `—` | PK; índice; FK; fk_wishlist_product → tb_products(ID); PRIMARY (user_ID, product_ID); idx_wishlist_product (product_ID) | — | `&#96;product_ID&#96; int unsigned NOT NULL` |
+| 3 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

@@ -19,16 +19,16 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `ID` | `bigint unsigned` | No | `—` | PK; UK; PRIMARY (ID); uk_address_component (address_ID, ID) | — | `&#96;ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `address_ID` | `bigint unsigned` | No | `—` | UK; índice; FK; fk_component_address → tb_user_addresses(ID); fk_component_parent → tbd_address_components(address_ID, ID); uk_address_component (address_ID, ID); idx_address_parent (address_ID, address_sup_ID) | — | `&#96;address_ID&#96; bigint unsigned NOT NULL` |
-| 3 | `value` | `varchar(255)` | No | `—` | — | — | `&#96;value&#96; varchar(255) NOT NULL` |
-| 4 | `component_type` | `varchar(50)` | No | `—` | — | — | `&#96;component_type&#96; varchar(50) NOT NULL` |
-| 5 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
-| 6 | `address_sup_ID` | `bigint unsigned` | Sí | `NULL` | índice; FK; fk_component_parent → tbd_address_components(address_ID, ID); idx_address_parent (address_ID, address_sup_ID) | — | `&#96;address_sup_ID&#96; bigint unsigned DEFAULT NULL` |
-| 7 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 8 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `ID` | Identificador único del registro. | `bigint unsigned` | No | `—` | PK; UK; PRIMARY (ID); uk_address_component (address_ID, ID) | — | `&#96;ID&#96; bigint unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `address_ID` | Identificador del domicilio al que pertenece el componente. address_ID enlaza con tb_user_addresses.ID; address_ID enlaza con tbd_address_components.address_ID, ID. | `bigint unsigned` | No | `—` | UK; índice; FK; fk_component_address → tb_user_addresses(ID); fk_component_parent → tbd_address_components(address_ID, ID); uk_address_component (address_ID, ID); idx_address_parent (address_ID, address_sup_ID) | — | `&#96;address_ID&#96; bigint unsigned NOT NULL` |
+| 3 | `value` | Valor textual de una parte del domicilio. | `varchar(255)` | No | `—` | — | — | `&#96;value&#96; varchar(255) NOT NULL` |
+| 4 | `component_type` | Tipo de componente del domicilio, por ejemplo ciudad o código postal. | `varchar(50)` | No | `—` | — | — | `&#96;component_type&#96; varchar(50) NOT NULL` |
+| 5 | `status` | Indica si el registro está habilitado o activo. | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
+| 6 | `address_sup_ID` | Identificador del componente de domicilio superior. address_sup_ID enlaza con tbd_address_components.address_ID, ID. | `bigint unsigned` | Sí | `NULL` | índice; FK; fk_component_parent → tbd_address_components(address_ID, ID); idx_address_parent (address_ID, address_sup_ID) | — | `&#96;address_sup_ID&#96; bigint unsigned DEFAULT NULL` |
+| 7 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 8 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 

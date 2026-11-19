@@ -19,17 +19,17 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Columnas
 
-| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
-|---:|---|---|:---:|---|---|---|---|
-| 1 | `ID` | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `key` | `varchar(40)` | No | `—` | — | — | `&#96;key&#96; varchar(40) NOT NULL` |
-| 3 | `total_products` | `int` | No | `—` | — | — | `&#96;total_products&#96; int NOT NULL` |
-| 4 | `total_cost` | `decimal(10,3)` | No | `'0.000'` | — | — | `&#96;total_cost&#96; decimal(10,3) NOT NULL DEFAULT '0.000'` |
-| 5 | `status_string` | `enum('Registered','Attend','Canceled','Whistlist','Payed','Delivered','Devolved','Sended')` | Sí | `NULL` | — | — | `&#96;status_string&#96; enum('Registered','Attend','Canceled','Whistlist','Payed','Delivered','Devolved','Sended') DEFAULT NULL` |
-| 6 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
-| 7 | `creation_date` | `datetime` | Sí | `NULL` | — | — | `&#96;creation_date&#96; datetime DEFAULT NULL` |
-| 8 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL` |
-| 9 | `User_ID` | `varchar(45)` | Sí | `NULL` | — | — | `&#96;User_ID&#96; varchar(45) DEFAULT NULL` |
+| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
+|---:|---|---|---|:---:|---|---|---|---|
+| 1 | `ID` | Identificador único del registro. | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
+| 2 | `key` | Clave legible o de referencia del registro. | `varchar(40)` | No | `—` | — | — | `&#96;key&#96; varchar(40) NOT NULL` |
+| 3 | `total_products` | Cantidad total de unidades incluidas en el pedido. | `int` | No | `—` | — | — | `&#96;total_products&#96; int NOT NULL` |
+| 4 | `total_cost` | Importe total del pedido. | `decimal(10,3)` | No | `'0.000'` | — | — | `&#96;total_cost&#96; decimal(10,3) NOT NULL DEFAULT '0.000'` |
+| 5 | `status_string` | Etapa general del pedido. | `enum('Registered','Attend','Canceled','Whistlist','Payed','Delivered','Devolved','Sended')` | Sí | `NULL` | — | — | `&#96;status_string&#96; enum('Registered','Attend','Canceled','Whistlist','Payed','Delivered','Devolved','Sended') DEFAULT NULL` |
+| 6 | `status` | Indica si el registro está habilitado o activo. | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
+| 7 | `creation_date` | Fecha y hora de creación del registro. | `datetime` | Sí | `NULL` | — | — | `&#96;creation_date&#96; datetime DEFAULT NULL` |
+| 8 | `last_update` | Fecha y hora de la última modificación. | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL` |
+| 9 | `User_ID` | Identificador de la cuenta relacionada. | `varchar(45)` | Sí | `NULL` | — | — | `&#96;User_ID&#96; varchar(45) DEFAULT NULL` |
 
 ## Claves primarias e índices
 

@@ -45,6 +45,26 @@ const TABLE_DESCRIPTIONS = {
   tbd_wishlist_products: 'Relaciona los productos que una persona desea guardar para después. Vincula la cuenta con el producto y evita confundir la lista de deseos con el carrito de compra.'
 };
 
+// Explicaciones funcionales de los campos para lectores que no conocen SQL.
+const FIELD_DESCRIPTIONS = {
+  ID: 'Identificador único del registro.', id: 'Identificador único del registro.', person_ID: 'Identificador del registro de datos personales.', cancellation_ID: 'Identificador único de la solicitud de cancelación.', refund_ID: 'Identificador único del reembolso.', return_ID: 'Identificador único de la reclamación o devolución.', shipment_ID: 'Identificador único del envío.', product_offer_ID: 'Identificador de la oferta del producto hecha por un vendedor.',
+  key: 'Clave legible o de referencia del registro.', active_user_ID: 'Identificador calculado del usuario mientras el carrito está activo; queda vacío para carritos cerrados.', code: 'Código corto del tipo de instrumento de pago.', user_ID: 'Identificador de la cuenta relacionada.', User_ID: 'Identificador de la cuenta relacionada.', seller_ID: 'Identificador de la cuenta del vendedor.', order_ID: 'Identificador del pedido general al que pertenece el registro.', seller_order_ID: 'Identificador de la parte del pedido que prepara un vendedor.', cart_ID: 'Identificador del carrito al que pertenece el artículo.', product_ID: 'Identificador del producto del catálogo.', category_ID: 'Identificador de la categoría relacionada.', sup_id_category: 'Identificador de la categoría superior, si esta depende de otra.', address_ID: 'Identificador del domicilio al que pertenece el componente.', address_sup_ID: 'Identificador del componente de domicilio superior.', order_item_id: 'Identificador del artículo original del pedido.', cancellation_id: 'Identificador de la solicitud de cancelación relacionada.', return_id: 'Identificador de la reclamación relacionada.', payment_ID: 'Identificador del pago asociado.', replacement_shipment_ID: 'Identificador del envío que reemplaza el producto reclamado.', delivery_address_ID: 'Identificador del domicilio de entrega asociado.', user_payment_method_ID: 'Identificador del instrumento de pago guardado por el comprador.', payment_method_type_ID: 'Identificador del tipo de instrumento de pago.', requested_by: 'Identificador de la persona que solicitó la operación.',
+  total_products: 'Cantidad total de unidades incluidas en el pedido.', total_cost: 'Importe total del pedido.', status: 'Indica si el registro está habilitado o activo.', status_string: 'Etapa general del pedido.', creation_date: 'Fecha y hora de creación del registro.', last_update: 'Fecha y hora de la última modificación.', last_login: 'Fecha y hora del último inicio de sesión.', operation_date: 'Fecha y hora en que se registró la acción.', operation_status: 'Resultado o estado de la acción registrada.', source_table_operation: 'Tabla de origen asociada con la acción.', operation_description: 'Explicación de la acción registrada.', table_name: 'Nombre de la tabla afectada.', table_operation: 'Tipo de acción hecha sobre la tabla.', db_user: 'Cuenta de base de datos que realizó la acción.', description: 'Texto que explica el elemento del catálogo o registro.',
+  email: 'Correo usado para identificar o contactar la cuenta.', nick: 'Nombre corto o alias de la cuenta.', password: 'Contraseña almacenada; debe estar protegida mediante hash.', platform_role: 'Rol de la persona dentro de la plataforma.', courtesy_title: 'Tratamiento o título de cortesía de la persona.', given_names: 'Nombre o nombres de la persona.', family_names: 'Apellidos de la persona.', birth_date: 'Fecha de nacimiento.', gender_ID: 'Identificador de género, si fue registrado.', country_code: 'Código del país relacionado con la persona.', phone: 'Teléfono de contacto.',
+  SKU: 'Código de inventario que identifica el producto.', name: 'Nombre del elemento; puede ser un producto, categoría o tipo de pago según la tabla.', product_name: 'Nombre del producto guardado al momento de la compra.', current_price: 'Precio vigente del producto en el catálogo.', current_stock: 'Existencia general disponible del producto.', available_stock: 'Existencia asignada a la oferta del vendedor.', available_date: 'Fecha desde la que la oferta está disponible.', available_balance: 'Saldo disponible del instrumento; se usa, por ejemplo, para un cupón simulado.', quantity: 'Número de unidades del artículo, reclamación o cancelación.', unit_price: 'Precio de una unidad guardado en el pedido.', subtotal: 'Importe parcial de los artículos o del pedido del vendedor.', shipping_cost: 'Costo de envío correspondiente al pedido del vendedor.', amount: 'Importe del pago, movimiento o reembolso.', currency: 'Moneda en la que se expresa el importe.', installment_number: 'Número de esta cuota dentro del plan de pagos.', installment_count: 'Cantidad total de cuotas del plan.', payment_method: 'Medio usado para intentar o realizar el pago.', payment_status: 'Resultado o estado del cobro.', provider: 'Proveedor del instrumento o del procesamiento de pago.', provider_method_ref: 'Referencia del instrumento en el proveedor de pago.', provider_reference: 'Referencia de la operación en el proveedor de pago.', idempotency_key: 'Clave que evita registrar dos veces el mismo intento de pago.', paid_date: 'Fecha y hora en que se confirmó el pago.', event_type: 'Tipo de evento del historial de pago.', event_reference: 'Referencia externa o interna del evento.', remarks: 'Nota adicional sobre el evento.',
+  cancellation_reason: 'Motivo indicado para cancelar artículos.', cancellation_status: 'Etapa de resolución de la solicitud de cancelación.', reason: 'Motivo de la cancelación o nota asociada.', refund_reason: 'Motivo por el que se devuelve el dinero.', refund_status: 'Etapa de procesamiento del reembolso.', return_reason: 'Motivo de la reclamación o devolución.', return_status: 'Etapa de revisión y resolución de la reclamación.', inspection_notes: 'Resultado o notas de la inspección del producto devuelto.', condition_notes: 'Descripción del estado físico en que llegó el producto.', requested_date: 'Fecha y hora de solicitud.', resolved_date: 'Fecha y hora de resolución.', received_date: 'Fecha y hora en que se recibió el producto reclamado.', completed_date: 'Fecha y hora en que se completó la operación.',
+  fulfillment_status: 'Etapa de preparación o entrega de la parte del pedido del vendedor.', fulfillment_method: 'Forma de entrega: a domicilio o recolección en un punto.', shipment_status: 'Etapa actual del envío.', carrier: 'Paquetería o responsable del transporte.', tracking_number: 'Número o código para identificar el envío o la recolección.', tracking_url: 'Dirección web para consultar el seguimiento.', shipped_date: 'Fecha y hora en que salió el envío.', estimated_delivery_date: 'Fecha estimada de entrega.', delivered_date: 'Fecha y hora en que se registró la entrega o recolección.', pickup_location: 'Lugar donde el comprador puede recoger el pedido.',
+  address_label: 'Etiqueta que permite reconocer el domicilio, por ejemplo Casa o Trabajo.', recipient_name: 'Nombre de quien recibirá el paquete.', recipient_phone: 'Teléfono de quien recibirá el paquete.', delivery_instructions: 'Indicaciones para entregar el paquete.', latitude: 'Coordenada geográfica de latitud del domicilio.', longitude: 'Coordenada geográfica de longitud del domicilio.', is_default: 'Indica si este es el domicilio o instrumento predeterminado.', is_active: 'Indica si el elemento del catálogo está activo.', label: 'Nombre elegido para reconocer el instrumento de pago.', last_four: 'Últimos cuatro dígitos visibles del instrumento; no contiene el número completo.', value: 'Valor textual de una parte del domicilio.', component_type: 'Tipo de componente del domicilio, por ejemplo ciudad o código postal.'
+};
+
+function describeColumn(table, column) {
+  const meaning = FIELD_DESCRIPTIONS[column.name] || `Dato «${column.name}» registrado por esta tabla.`;
+  const references = table.foreignKeys
+    .filter(fk => fk.columns.includes(column.name))
+    .map(fk => `${column.name} enlaza con ${fk.referencedTable}.${fk.referencedColumns.join(', ')}`);
+  return references.length ? `${meaning} ${references.join('; ')}.` : meaning;
+}
+
 function newestSql(directory) {
   const files = fs.readdirSync(directory, { withFileTypes: true })
     .filter(entry => entry.isFile() && entry.name.toLowerCase().endsWith('.sql'))
@@ -70,6 +90,7 @@ function detailsForColumn(table, column) {
     table: table.name,
     table_description: table.description || '',
     field: column.name,
+    field_description: column.description || '',
     ordinal: column.ordinal,
     sql_type: column.type,
     sql_definition: column.definition,
@@ -93,7 +114,7 @@ function createCsv(schema) {
   const rows = [];
   for (const table of schema.tables) for (const column of table.columns) rows.push(detailsForColumn(table, column));
   const headers = Object.keys(rows[0] || {
-    table: '', table_description: '', field: '', ordinal: '', sql_type: '', sql_definition: '', nullable: '', default_value: '', auto_increment: '', column_comment: '', primary_key: '', unique_indexes: '', indexes: '', index_definitions: '', foreign_key: '', references: '', foreign_key_definitions: '', on_delete: '', on_update: ''
+    table: '', table_description: '', field: '', field_description: '', ordinal: '', sql_type: '', sql_definition: '', nullable: '', default_value: '', auto_increment: '', column_comment: '', primary_key: '', unique_indexes: '', indexes: '', index_definitions: '', foreign_key: '', references: '', foreign_key_definitions: '', on_delete: '', on_update: ''
   });
   return '\uFEFF' + [headers, ...rows.map(row => headers.map(header => row[header]))].map(row => row.map(csvCell).join(',')).join('\r\n') + '\r\n';
 }
@@ -185,12 +206,12 @@ function makeTableDoc(table, schema, sourceName, hash) {
     `- Restricciones CHECK: ${table.checks.length}.`,
     `- Opciones de tabla tal como aparecen junto al DDL: \`${mdCell(table.options) || '(sin opciones capturadas)'}\`.`, '',
     '## Columnas', '',
-    '| # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |', '|---:|---|---|:---:|---|---|---|---|',
+    '| # | Columna | Para qué sirve | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |', '|---:|---|---|---|:---:|---|---|---|---|',
     ...table.columns.map(column => {
       const refs = table.foreignKeys.filter(fk => fk.columns.includes(column.name)).map(fk => `${fk.name} → ${fk.referencedTable}(${fk.referencedColumns.join(', ')})`);
       const indexes = table.indexes.filter(index => index.columns.includes(column.name)).map(index => `${index.name} (${index.columns.join(', ')})`);
       const keys = [...column.keys.map(key => key === 'IDX' ? 'índice' : key), ...refs].join('; ') || '—';
-      return `| ${column.ordinal} | \`${mdCell(column.name)}\` | \`${mdCell(column.type)}\` | ${column.nullable ? 'Sí' : 'No'} | \`${mdCell(column.default == null ? '—' : column.default)}\` | ${mdCell(keys)}${indexes.length ? `; ${mdCell(indexes.join('; '))}` : ''} | ${mdCell(column.comment) || '—'} | \`${mdCell(column.definition)}\` |`;
+      return `| ${column.ordinal} | \`${mdCell(column.name)}\` | ${mdCell(column.description)} | \`${mdCell(column.type)}\` | ${column.nullable ? 'Sí' : 'No'} | \`${mdCell(column.default == null ? '—' : column.default)}\` | ${mdCell(keys)}${indexes.length ? `; ${mdCell(indexes.join('; '))}` : ''} | ${mdCell(column.comment) || '—'} | \`${mdCell(column.definition)}\` |`;
     }), '',
     '## Claves primarias e índices', '',
     ...(table.indexes.length ? table.indexes.map(index => `- \`${index.name}\` (${index.type}${index.unique ? ', UNIQUE' : ''}): \`${index.columns.join(', ')}\`. DDL: \`${mdCell(index.definition)}\``) : ['- No se encontraron definiciones de índices en el DDL.']), '',
@@ -235,7 +256,10 @@ function main() {
   const source = fs.readFileSync(input, 'utf8');
   const schema = parseDump(source);
   if (!schema.tables.length) throw new Error('No se encontraron declaraciones CREATE TABLE en el respaldo.');
-  for (const table of schema.tables) table.description = TABLE_DESCRIPTIONS[table.name] || 'Guarda información de apoyo del esquema. Consulta sus columnas y relaciones para identificar su uso dentro del flujo de la base de datos.';
+  for (const table of schema.tables) {
+    table.description = TABLE_DESCRIPTIONS[table.name] || 'Guarda información de apoyo del esquema. Consulta sus columnas y relaciones para identificar su uso dentro del flujo de la base de datos.';
+    for (const column of table.columns) column.description = describeColumn(table, column);
+  }
   const sourceHash = crypto.createHash('sha256').update(source, 'utf8').digest('hex');
   const sourceName = path.relative(BACKUPS, input).split(path.sep).join('/');
   fs.mkdirSync(OUTPUT, { recursive: true });
