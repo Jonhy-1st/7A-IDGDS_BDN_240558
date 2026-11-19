@@ -1,7 +1,11 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_people`
 
-Fuente: `respaldo_compra_usuarios.sql`, líneas 876–892. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 885–901. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+## Para qué sirve
+
+Guarda los datos personales de una cuenta, como nombre, apellidos, nacimiento, país y teléfono. Se relaciona con tb_users, que contiene las credenciales de acceso.
+
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL

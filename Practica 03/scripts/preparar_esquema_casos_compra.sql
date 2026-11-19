@@ -5,6 +5,33 @@
 
 USE `db_test`;
 
+-- Permite conservar carritos convertidos y crear carritos nuevos en compras
+-- futuras del mismo usuario; la aplicación mantiene un solo carrito activo.
+ALTER TABLE `tb_carts`
+  DROP INDEX `uk_cart_user`,
+  ADD COLUMN `active_user_ID` INT
+    GENERATED ALWAYS AS (CASE WHEN `status` = 'Active' THEN `user_ID` ELSE NULL END) STORED
+    AFTER `status`,
+  ADD KEY `idx_carts_user` (`user_ID`),
+  ADD UNIQUE KEY `uk_cart_active_user` (`active_user_ID`);
+
+-- El rol de plataforma pertenece a cada cuenta de tb_users. Esto permite
+-- diferenciar compradores aunque varios clientes usen la misma conexión SQL.
+ALTER TABLE `tb_users`
+  ADD COLUMN `platform_role` ENUM('common_user','buyer')
+    NOT NULL DEFAULT 'common_user' AFTER `status`;
+
+UPDATE tb_users u
+JOIN (
+  SELECT bo.user_ID
+  FROM tb_buyer_orders bo
+  JOIN tb_payments p ON p.order_ID = bo.ID
+  WHERE p.payment_status IN ('Authorized', 'Paid')
+  GROUP BY bo.ID, bo.user_ID, bo.total_cost
+  HAVING SUM(p.amount) >= ROUND(bo.total_cost, 2)
+) paid_users ON paid_users.user_ID = u.ID
+SET u.platform_role = 'buyer';
+
 -- Permite representar cuotas pendientes y pagos parciales sin marcar la orden
 -- como pagada antes de cubrir su total.
 ALTER TABLE `tb_buyer_orders`
@@ -34,7 +61,11 @@ ALTER TABLE `tb_shipments`
     'Pending', 'Preparing', 'Shipped', 'InTransit', 'OutForDelivery',
     'Delivered', 'DeliveryFailed', 'Lost', 'Returned',
     'ReadyForPickup', 'PickedUp'
-  ) NOT NULL DEFAULT 'Pending';
+  ) NOT NULL DEFAULT 'Pending',
+  ADD COLUMN `fulfillment_method` ENUM('HomeDelivery','Pickup')
+    NOT NULL DEFAULT 'HomeDelivery' AFTER `delivery_address_ID`,
+  ADD COLUMN `pickup_location` VARCHAR(255) DEFAULT NULL
+    AFTER `fulfillment_method`;
 
 -- Se vincula el reenvío con la devolución en las mismas tablas existentes.
 ALTER TABLE `tb_returns`
@@ -60,6 +91,7 @@ INSERT INTO `tbc_payment_methods_types` (`code`, `description`, `status`)
 VALUES
   ('CREDIT_CARD_SIM', 'Tarjeta de crédito simulada para pruebas', b'1'),
   ('DIGITAL_WALLET_SIM', 'Billetera digital simulada (Spin) para pruebas', b'1'),
+  ('SPEI_ACCOUNT_SIM', 'Cuenta simulada para transferencias SPEI', b'1'),
   ('GIFT_COUPON_SIM', 'Cupón de regalo simulado con saldo', b'1')
 ON DUPLICATE KEY UPDATE
   `description` = VALUES(`description`),
@@ -97,6 +129,7 @@ payment_attempt: BEGIN
   DECLARE v_method_user_ID INT;
   DECLARE v_method_type VARCHAR(30);
   DECLARE v_method_status BIT(1);
+  DECLARE v_method_type_status BIT(1);
   DECLARE v_method_balance DECIMAL(12,2);
   DECLARE v_now_paid DECIMAL(12,2);
   DECLARE v_stock_shortage TINYINT DEFAULT 0;
@@ -136,8 +169,9 @@ payment_attempt: BEGIN
 
   SET v_order_found = 1;
   IF p_user_payment_method_ID IS NOT NULL THEN
-    SELECT upm.user_ID, pmt.code, upm.status, upm.available_balance
-      INTO v_method_user_ID, v_method_type, v_method_status, v_method_balance
+    SELECT upm.user_ID, pmt.code, upm.status, pmt.status, upm.available_balance
+      INTO v_method_user_ID, v_method_type, v_method_status,
+           v_method_type_status, v_method_balance
     FROM tbd_user_payment_methods upm
     JOIN tbc_payment_methods_types pmt ON pmt.ID = upm.payment_method_type_ID
     WHERE upm.ID = p_user_payment_method_ID
@@ -145,7 +179,8 @@ payment_attempt: BEGIN
     IF v_order_found = 0 THEN
       SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Método de pago inexistente';
     END IF;
-    IF v_method_user_ID <> v_user_ID OR v_method_status <> b'1' THEN
+    IF v_method_user_ID <> v_user_ID OR v_method_status <> b'1'
+       OR v_method_type_status <> b'1' THEN
       SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El instrumento no pertenece al comprador o está inactivo';
     END IF;
   END IF;
@@ -154,9 +189,15 @@ payment_attempt: BEGIN
      (p_user_payment_method_ID IS NULL OR v_method_type <> 'GIFT_COUPON_SIM') THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Other solo se usa para el cupón simulado';
   END IF;
+  IF p_payment_method IN ('Card', 'SPEI') AND p_user_payment_method_ID IS NULL THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Tarjeta y SPEI requieren un instrumento vinculado al usuario';
+  END IF;
   IF p_payment_method = 'Card' AND p_user_payment_method_ID IS NOT NULL AND
      v_method_type NOT IN ('DEBIT_CARD_SIM', 'CREDIT_CARD_SIM', 'DIGITAL_WALLET_SIM') THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El instrumento no corresponde a un pago con tarjeta';
+  END IF;
+  IF p_payment_method = 'SPEI' AND v_method_type <> 'SPEI_ACCOUNT_SIM' THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'SPEI requiere una cuenta simulada vinculada';
   END IF;
 
   SELECT COALESCE(SUM(amount), 0.00) INTO v_paid_total
@@ -262,6 +303,9 @@ payment_attempt: BEGIN
     UPDATE tb_buyer_orders
     SET status_string = IF(v_paid_total >= v_order_total, 'Payed', 'PartiallyPaid')
     WHERE ID = p_order_ID;
+    IF v_paid_total >= v_order_total THEN
+      UPDATE tb_users SET platform_role = 'buyer' WHERE ID = v_user_ID;
+    END IF;
   ELSE
     INSERT INTO tb_payment_transactions
       (payment_ID, event_type, amount, event_reference, remarks)

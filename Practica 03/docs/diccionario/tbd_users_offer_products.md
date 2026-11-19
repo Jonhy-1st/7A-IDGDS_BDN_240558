@@ -1,7 +1,11 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_users_offer_products`
 
-Fuente: `respaldo_compra_usuarios.sql`, líneas 3287–3300. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 3311–3324. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+## Para qué sirve
+
+Representa la oferta de un producto hecha por un vendedor: quién lo vende, qué producto ofrece, cuántas unidades tiene y si la oferta está activa. Los carritos y pedidos apuntan a esta oferta.
+
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL

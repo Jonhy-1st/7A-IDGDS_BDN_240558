@@ -1,7 +1,11 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_logs`
 
-Fuente: `respaldo_compra_usuarios.sql`, líneas 377–388. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 382–393. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+## Para qué sirve
+
+Conserva la bitácora de acciones hechas sobre la base, como altas, cambios y bajas. Guarda la tabla afectada, la cuenta de conexión, la fecha y una descripción para poder rastrear operaciones.
+
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL

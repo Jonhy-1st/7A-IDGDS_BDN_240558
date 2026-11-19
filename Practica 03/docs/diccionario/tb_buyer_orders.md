@@ -1,7 +1,11 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_buyer_orders`
 
-Fuente: `respaldo_compra_usuarios.sql`, líneas 35–48. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 38–51. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+## Para qué sirve
+
+Guarda el pedido general que hace una persona: quién compra, cuántos artículos incluye, cuánto cuesta y en qué etapa está. Se relaciona con usuarios, pedidos por vendedor, pagos y cancelaciones.
+
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL
@@ -22,7 +26,7 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 | 3 | `user_ID` | `int` | No | `—` | índice; FK; fk_user_2 → tb_users(ID); fk_user_2_idx (user_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
 | 4 | `total_products` | `int` | No | `—` | — | — | `&#96;total_products&#96; int NOT NULL` |
 | 5 | `total_cost` | `decimal(10,3)` | No | `'0.000'` | — | — | `&#96;total_cost&#96; decimal(10,3) NOT NULL DEFAULT '0.000'` |
-| 6 | `status_string` | `enum('Registered','Wishlist','Payed','Canceled','Delivered','Devolved','Attended','Sended')` | No | `'Registered'` | — | — | `&#96;status_string&#96; enum('Registered','Wishlist','Payed','Canceled','Delivered','Devolved','Attended','Sended') NOT NULL DEFAULT 'Registered'` |
+| 6 | `status_string` | `enum('Registered','Wishlist','Payed','Canceled','Delivered','Devolved','Attended','Sended','PartiallyPaid','PaymentFailed')` | No | `'Registered'` | — | — | `&#96;status_string&#96; enum('Registered','Wishlist','Payed','Canceled','Delivered','Devolved','Attended','Sended','PartiallyPaid','PaymentFailed') NOT NULL DEFAULT 'Registered'` |
 | 7 | `status` | `bit(1)` | Sí | `b` | — | — | `&#96;status&#96; bit(1) DEFAULT b'1'` |
 | 8 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
 | 9 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL` |
@@ -49,7 +53,7 @@ CREATE TABLE `tb_buyer_orders` (
   `user_ID` int NOT NULL,
   `total_products` int NOT NULL,
   `total_cost` decimal(10,3) NOT NULL DEFAULT '0.000',
-  `status_string` enum('Registered','Wishlist','Payed','Canceled','Delivered','Devolved','Attended','Sended') NOT NULL DEFAULT 'Registered',
+  `status_string` enum('Registered','Wishlist','Payed','Canceled','Delivered','Devolved','Attended','Sended','PartiallyPaid','PaymentFailed') NOT NULL DEFAULT 'Registered',
   `status` bit(1) DEFAULT b'1',
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` datetime DEFAULT NULL,

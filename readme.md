@@ -25,6 +25,8 @@ Cada práctica conserva sus respaldos, consultas, scripts y documentación en su
 
 ## GitHub Pages
 
+La Práctica 03 también incluye la [guía sencilla de casos de compra](Practica%2003/docs/GUIA_SENCILLA_CASOS_COMPRA.md), los [procedimientos](Practica%2003/scripts/operaciones_casos_compra.sql) y el [respaldo final](Practica%2003/backups/respaldo_casos_compra_final.sql).
+
 Cuando GitHub Pages esté habilitado, el sitio ofrecerá ambos recursos:
 
 - [Inicio de GitHub Pages](https://jonhy-1st.github.io/7A-IDGDS_BDN_240558/)

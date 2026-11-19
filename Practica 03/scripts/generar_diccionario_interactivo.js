@@ -13,7 +13,37 @@ const OUTPUT = path.join(PRACTICE, 'diccionario');
 const DOCS = path.join(PRACTICE, 'docs');
 const DOC_TABLES = path.join(DOCS, 'diccionario');
 const PAGES = path.join(ROOT, 'docs');
-const REFERENCE = path.join(BACKUPS, 'respaldo_compra_usuarios.sql');
+const REFERENCE = path.join(BACKUPS, 'respaldo_casos_compra_final.sql');
+
+const TABLE_DESCRIPTIONS = {
+  tb_buyer_orders: 'Guarda el pedido general que hace una persona: quién compra, cuántos artículos incluye, cuánto cuesta y en qué etapa está. Se relaciona con usuarios, pedidos por vendedor, pagos y cancelaciones.',
+  tb_carts: 'Guarda los carritos de cada persona antes de confirmar una compra. El estado distingue el carrito activo, convertido o abandonado; la columna calculada permite varios carritos históricos y limita a uno activo por usuario. Los productos están en tbd_cart_items.',
+  tb_logs: 'Conserva la bitácora de acciones hechas sobre la base, como altas, cambios y bajas. Guarda la tabla afectada, la cuenta de conexión, la fecha y una descripción para poder rastrear operaciones.',
+  tb_order_cancellations: 'Registra una solicitud para cancelar uno o más artículos de un pedido, quién la solicitó, el motivo y si fue solicitada, aprobada, rechazada o completada. Los artículos se detallan en tbd_cancellation_items.',
+  tb_payment_transactions: 'Guarda cada evento de un cobro o devolución, por ejemplo creación, autorización, captura, rechazo o reembolso. Cada evento pertenece a un registro de tb_payments.',
+  tb_payments: 'Representa un cobro, intento de cobro o cuota de un pedido. Guarda el importe, medio, estado, fechas y referencia al instrumento del cliente; sus eventos se registran en tb_payment_transactions.',
+  tb_people: 'Guarda los datos personales de una cuenta, como nombre, apellidos, nacimiento, país y teléfono. Se relaciona con tb_users, que contiene las credenciales de acceso.',
+  tb_products: 'Es el catálogo general de productos. Guarda nombre, SKU, precio, existencia general y estado de publicación; las ofertas concretas de vendedores están en tbd_users_offer_products.',
+  tb_refunds: 'Registra el dinero que se devuelve por una cancelación o una devolución de producto. Indica el pago de origen, el motivo, el importe y el estado del reembolso.',
+  tb_returns: 'Registra la reclamación de un producto entregado, su motivo, cantidad, revisión y resolución. Puede vincular un envío de reemplazo en tb_shipments.',
+  tb_seller_orders: 'Divide un pedido general en las partes que prepara cada vendedor. Guarda el vendedor, subtotal, costo de envío y estado de preparación o entrega.',
+  tb_shipments: 'Sigue el envío asociado a una parte del pedido de un vendedor: destino, paquetería, guía y estado. También permite indicar entrega en domicilio o recolección en un punto.',
+  tb_user_addresses: 'Guarda los domicilios de entrega de cada cuenta, con etiqueta, destinatario, teléfono e instrucciones. Los envíos apuntan aquí cuando se entregan en domicilio.',
+  tb_users: 'Contiene las cuentas de acceso de la plataforma: correo, alias, contraseña protegida con hash, estado y rol de plataforma. Los datos personales complementarios se guardan en tb_people.',
+  tbc_categories: 'Es el catálogo de categorías que organiza los productos, como ropa o accesorios. La relación entre cada producto y sus categorías está en tbd_products_categories.',
+  tbc_payment_methods_types: 'Es el catálogo de tipos de instrumentos que una persona puede guardar, como tarjetas, cuenta SPEI, billetera digital o cupón simulados. Los instrumentos individuales están en tbd_user_payment_methods.',
+  tbc_payment_methods_types_res: 'Es un catálogo auxiliar de tipos de medio de pago utilizado por el esquema anterior. Sus nombres y descripciones son referencias de catálogo; el modelo actual de instrumentos usa tbc_payment_methods_types.',
+  tbd_address_components: 'Divide un domicilio en partes estructuradas, como componentes geográficos o administrativos. Se relaciona con tb_user_addresses y permite anidar una parte dentro de otra mediante su referencia a sí misma.',
+  tbd_cancellation_items: 'Detalla qué renglones y cantidades se solicitan cancelar dentro de una solicitud de tb_order_cancellations. Permite calcular el ajuste y el reembolso usando el precio guardado en tbd_order_items.',
+  tbd_cart_items: 'Contiene los productos y cantidades que una persona agrega al carrito. Cada renglón relaciona un carrito con una oferta de vendedor.',
+  tbd_order_items: 'Guarda los artículos confirmados dentro de un pedido de vendedor, incluyendo nombre, cantidad y precio de compra. Mantiene el precio aplicado aunque después cambie el precio del catálogo.',
+  tbd_orders: 'Conserva una estructura de pedido anterior o auxiliar con clave, cantidades, total y estado. En este respaldo no tiene claves foráneas declaradas que la conecten al flujo actual de compra.',
+  tbd_products_categories: 'Asocia productos del catálogo con sus categorías. Es una relación de muchos a muchos entre tb_products y tbc_categories.',
+  tbd_return_items: 'Detalla los renglones y cantidades que forman parte de una reclamación o devolución, junto con notas sobre la condición recibida. Se complementa con tb_returns y tbd_order_items.',
+  tbd_user_payment_methods: 'Guarda instrumentos de pago simulados de cada persona, como tarjeta o cupón: tipo, proveedor, referencia, últimos cuatro dígitos y saldo opcional. Los pagos los referencian sin guardar el número completo de la tarjeta.',
+  tbd_users_offer_products: 'Representa la oferta de un producto hecha por un vendedor: quién lo vende, qué producto ofrece, cuántas unidades tiene y si la oferta está activa. Los carritos y pedidos apuntan a esta oferta.',
+  tbd_wishlist_products: 'Relaciona los productos que una persona desea guardar para después. Vincula la cuenta con el producto y evita confundir la lista de deseos con el carrito de compra.'
+};
 
 function newestSql(directory) {
   const files = fs.readdirSync(directory, { withFileTypes: true })
@@ -38,6 +68,7 @@ function detailsForColumn(table, column) {
   const fks = table.foreignKeys.filter(fk => fk.columns.includes(column.name));
   return {
     table: table.name,
+    table_description: table.description || '',
     field: column.name,
     ordinal: column.ordinal,
     sql_type: column.type,
@@ -62,7 +93,7 @@ function createCsv(schema) {
   const rows = [];
   for (const table of schema.tables) for (const column of table.columns) rows.push(detailsForColumn(table, column));
   const headers = Object.keys(rows[0] || {
-    table: '', field: '', ordinal: '', sql_type: '', sql_definition: '', nullable: '', default_value: '', auto_increment: '', column_comment: '', primary_key: '', unique_indexes: '', indexes: '', index_definitions: '', foreign_key: '', references: '', foreign_key_definitions: '', on_delete: '', on_update: ''
+    table: '', table_description: '', field: '', ordinal: '', sql_type: '', sql_definition: '', nullable: '', default_value: '', auto_increment: '', column_comment: '', primary_key: '', unique_indexes: '', indexes: '', index_definitions: '', foreign_key: '', references: '', foreign_key_definitions: '', on_delete: '', on_update: ''
   });
   return '\uFEFF' + [headers, ...rows.map(row => headers.map(header => row[header]))].map(row => row.map(csvCell).join(',')).join('\r\n') + '\r\n';
 }
@@ -110,6 +141,7 @@ function makeOverview(schema, sourceName, hash) {
     `# Diccionario técnico de \`${schema.database}\``, '',
     `Fuente: respaldo SQL [${sourceName}](../backups/${encodeURIComponent(sourceName).replace(/%2F/g, '/')}).`,
     `Huella SHA-256 del archivo: \`${hash}\`.`,
+    '- Este respaldo es una copia derivada del dump guardado; conserva sus datos y materializa los cambios de esquema, pero no es una extracción nueva de un servidor en vivo.',
     'Esta ficha resume exclusivamente declaraciones y sentencias encontradas en ese respaldo. No documenta reglas funcionales que no estén expresadas en el DDL.', '',
     '## Resumen del archivo', '',
     `- Base indicada por el dump: \`${schema.database}\`.`,
@@ -120,6 +152,8 @@ function makeOverview(schema, sourceName, hash) {
     '## Tablas y filas `INSERT`', '',
     '| Tabla | Columnas | Filas encontradas en INSERT | Índices | FKs |', '|---|---:|---:|---:|---:|',
     ...schema.tables.map(table => `| [\`${table.name}\`](diccionario/${table.name}.md) | ${table.columns.length} | ${table.insertRows} | ${table.indexes.length} | ${table.foreignKeys.length} |`), '',
+    '## Para qué sirve cada tabla', '',
+    ...schema.tables.map(table => `- **[${table.name}](diccionario/${table.name}.md):** ${table.description || 'Descripción pendiente.'}`), '',
     '## Objetos referenciados por el DDL', '',
     '### Vistas', '', ...(schema.objects.views.length ? schema.objects.views.map(name => `- \`${name}\``) : ['- No se encontraron declaraciones de vistas.']), '',
     '### Triggers', '', ...(schema.objects.triggers.length ? schema.objects.triggers.map(name => `- \`${name}\``) : ['- No se encontraron declaraciones de triggers.']), '',
@@ -140,6 +174,8 @@ function makeTableDoc(table, schema, sourceName, hash) {
   const lines = [
     `# Tabla \`${table.name}\``, '',
     `Fuente: \`${sourceName}\`, líneas ${table.line}–${table.endLine}. SHA-256: \`${hash}\`.`,
+    '## Para qué sirve', '',
+    table.description || 'Descripción pendiente.', '',
     'Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.', '',
     '## Resumen DDL', '',
     `- Columnas: ${table.columns.length}.`,
@@ -199,6 +235,7 @@ function main() {
   const source = fs.readFileSync(input, 'utf8');
   const schema = parseDump(source);
   if (!schema.tables.length) throw new Error('No se encontraron declaraciones CREATE TABLE en el respaldo.');
+  for (const table of schema.tables) table.description = TABLE_DESCRIPTIONS[table.name] || 'Guarda información de apoyo del esquema. Consulta sus columnas y relaciones para identificar su uso dentro del flujo de la base de datos.';
   const sourceHash = crypto.createHash('sha256').update(source, 'utf8').digest('hex');
   const sourceName = path.relative(BACKUPS, input).split(path.sep).join('/');
   fs.mkdirSync(OUTPUT, { recursive: true });

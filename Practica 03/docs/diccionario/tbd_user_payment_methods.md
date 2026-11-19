@@ -1,16 +1,20 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_user_payment_methods`
 
-Fuente: `respaldo_compra_usuarios.sql`, líneas 3195–3213. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 3216–3237. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+## Para qué sirve
+
+Guarda instrumentos de pago simulados de cada persona, como tarjeta o cupón: tipo, proveedor, referencia, últimos cuatro dígitos y saldo opcional. Los pagos los referencian sin guardar el número completo de la tarjeta.
+
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL
 
-- Columnas: 11.
+- Columnas: 12.
 - Filas encontradas en sentencias INSERT de este respaldo: 2.
 - Claves primarias / índices: 4.
 - Claves foráneas: 2.
-- Restricciones CHECK: 0.
+- Restricciones CHECK: 1.
 - Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
@@ -24,10 +28,11 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 | 5 | `provider_method_ref` | `varchar(255)` | No | `—` | UK; uk_provider_method (provider, provider_method_ref) | — | `&#96;provider_method_ref&#96; varchar(255) NOT NULL` |
 | 6 | `label` | `varchar(100)` | Sí | `NULL` | — | — | `&#96;label&#96; varchar(100) DEFAULT NULL` |
 | 7 | `last_four` | `char(4)` | Sí | `NULL` | — | — | `&#96;last_four&#96; char(4) DEFAULT NULL` |
-| 8 | `is_default` | `tinyint(1)` | No | `'0'` | — | — | `&#96;is_default&#96; tinyint(1) NOT NULL DEFAULT '0'` |
-| 9 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
-| 10 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 11 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| 8 | `available_balance` | `decimal(12,2)` | Sí | `NULL` | — | — | `&#96;available_balance&#96; decimal(12,2) DEFAULT NULL` |
+| 9 | `is_default` | `tinyint(1)` | No | `'0'` | — | — | `&#96;is_default&#96; tinyint(1) NOT NULL DEFAULT '0'` |
+| 10 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
+| 11 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 12 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 
@@ -43,7 +48,7 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 
 ## Restricciones CHECK
 
-- No se encontraron restricciones CHECK separadas en el DDL.
+- `CONSTRAINT &#96;chk_user_payment_method_balance&#96; CHECK ((&#96;available_balance&#96; is null) or (&#96;available_balance&#96; >= 0))`
 
 ## Definición SQL de la tabla
 
@@ -56,6 +61,7 @@ CREATE TABLE `tbd_user_payment_methods` (
   `provider_method_ref` varchar(255) NOT NULL,
   `label` varchar(100) DEFAULT NULL,
   `last_four` char(4) DEFAULT NULL,
+  `available_balance` decimal(12,2) DEFAULT NULL,
   `is_default` tinyint(1) NOT NULL DEFAULT '0',
   `status` bit(1) NOT NULL DEFAULT b'1',
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -66,5 +72,7 @@ CREATE TABLE `tbd_user_payment_methods` (
   KEY `payment_method_type_ID` (`payment_method_type_ID`),
   CONSTRAINT `tbd_user_payment_methods_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`),
   CONSTRAINT `tbd_user_payment_methods_ibfk_2` FOREIGN KEY (`payment_method_type_ID`) REFERENCES `tbc_payment_methods_types` (`ID`)
+,
+  CONSTRAINT `chk_user_payment_method_balance` CHECK ((`available_balance` is null) or (`available_balance` >= 0))
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

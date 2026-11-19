@@ -1,15 +1,19 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_returns`
 
-Fuente: `respaldo_compra_usuarios.sql`, líneas 1311–1334. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 1320–1347. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+## Para qué sirve
+
+Registra la reclamación de un producto entregado, su motivo, cantidad, revisión y resolución. Puede vincular un envío de reemplazo en tb_shipments.
+
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL
 
-- Columnas: 13.
+- Columnas: 14.
 - Filas encontradas en sentencias INSERT de este respaldo: 0.
-- Claves primarias / índices: 5.
-- Claves foráneas: 2.
+- Claves primarias / índices: 6.
+- Claves foráneas: 3.
 - Restricciones CHECK: 2.
 - Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
@@ -25,11 +29,12 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 | 6 | `return_reason` | `enum('Defective','Damaged','WrongProduct','NotAsDescribed','WrongSize','ChangedMind','Other')` | No | `'Other'` | — | — | `&#96;return_reason&#96; enum('Defective','Damaged','WrongProduct','NotAsDescribed','WrongSize','ChangedMind','Other') NOT NULL DEFAULT 'Other'` |
 | 7 | `return_status` | `enum('Requested','Authorized','Rejected','InTransit','Received','Inspected','Completed')` | No | `'Requested'` | índice; idx_return_status (return_status) | — | `&#96;return_status&#96; enum('Requested','Authorized','Rejected','InTransit','Received','Inspected','Completed') NOT NULL DEFAULT 'Requested'` |
 | 8 | `inspection_notes` | `text` | Sí | `—` | — | — | `&#96;inspection_notes&#96; text` |
-| 9 | `requested_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;requested_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 10 | `received_date` | `datetime` | Sí | `NULL` | — | — | `&#96;received_date&#96; datetime DEFAULT NULL` |
-| 11 | `completed_date` | `datetime` | Sí | `NULL` | — | — | `&#96;completed_date&#96; datetime DEFAULT NULL` |
-| 12 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 13 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| 9 | `replacement_shipment_ID` | `bigint unsigned` | Sí | `NULL` | índice; FK; fk_returns_replacement_shipment → tb_shipments(shipment_ID); idx_returns_replacement_shipment (replacement_shipment_ID) | — | `&#96;replacement_shipment_ID&#96; bigint unsigned DEFAULT NULL` |
+| 10 | `requested_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;requested_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 11 | `received_date` | `datetime` | Sí | `NULL` | — | — | `&#96;received_date&#96; datetime DEFAULT NULL` |
+| 12 | `completed_date` | `datetime` | Sí | `NULL` | — | — | `&#96;completed_date&#96; datetime DEFAULT NULL` |
+| 13 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 14 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 
@@ -38,11 +43,13 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 - `idx_return_item` (INDEX): `order_ID, product_offer_ID`. DDL: `KEY &#96;idx_return_item&#96; (&#96;order_ID&#96;,&#96;product_offer_ID&#96;)`
 - `idx_return_status` (INDEX): `return_status`. DDL: `KEY &#96;idx_return_status&#96; (&#96;return_status&#96;)`
 - `fk_return_requester` (INDEX): `requested_by`. DDL: `KEY &#96;fk_return_requester&#96; (&#96;requested_by&#96;)`
+- `idx_returns_replacement_shipment` (INDEX): `replacement_shipment_ID`. DDL: `KEY &#96;idx_returns_replacement_shipment&#96; (&#96;replacement_shipment_ID&#96;)`
 
 ## Claves foráneas
 
 - `fk_return_order`: (order_ID) → `tb_buyer_orders(ID)`; ON DELETE RESTRICT; ON UPDATE (no especificado en DDL). DDL: `CONSTRAINT &#96;fk_return_order&#96; FOREIGN KEY (&#96;order_ID&#96;) REFERENCES &#96;tb_buyer_orders&#96; (&#96;ID&#96;) ON DELETE RESTRICT`
 - `fk_return_requester`: (requested_by) → `tb_users(ID)`; ON DELETE RESTRICT; ON UPDATE (no especificado en DDL). DDL: `CONSTRAINT &#96;fk_return_requester&#96; FOREIGN KEY (&#96;requested_by&#96;) REFERENCES &#96;tb_users&#96; (&#96;ID&#96;) ON DELETE RESTRICT`
+- `fk_returns_replacement_shipment`: (replacement_shipment_ID) → `tb_shipments(shipment_ID)`; ON DELETE RESTRICT; ON UPDATE (no especificado en DDL). DDL: `CONSTRAINT &#96;fk_returns_replacement_shipment&#96; FOREIGN KEY (&#96;replacement_shipment_ID&#96;) REFERENCES &#96;tb_shipments&#96; (&#96;shipment_ID&#96;) ON DELETE RESTRICT`
 
 ## Restricciones CHECK
 
@@ -61,6 +68,7 @@ CREATE TABLE `tb_returns` (
   `return_reason` enum('Defective','Damaged','WrongProduct','NotAsDescribed','WrongSize','ChangedMind','Other') NOT NULL DEFAULT 'Other',
   `return_status` enum('Requested','Authorized','Rejected','InTransit','Received','Inspected','Completed') NOT NULL DEFAULT 'Requested',
   `inspection_notes` text,
+  `replacement_shipment_ID` bigint unsigned DEFAULT NULL,
   `requested_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `received_date` datetime DEFAULT NULL,
   `completed_date` datetime DEFAULT NULL,
@@ -75,5 +83,8 @@ CREATE TABLE `tb_returns` (
   CONSTRAINT `fk_return_requester` FOREIGN KEY (`requested_by`) REFERENCES `tb_users` (`ID`) ON DELETE RESTRICT,
   CONSTRAINT `chk_return_dates` CHECK ((((`received_date` is null) or (`received_date` >= `requested_date`)) and ((`completed_date` is null) or (`completed_date` >= `requested_date`)))),
   CONSTRAINT `chk_return_quantity` CHECK ((`quantity` > 0))
+,
+  KEY `idx_returns_replacement_shipment` (`replacement_shipment_ID`),
+  CONSTRAINT `fk_returns_replacement_shipment` FOREIGN KEY (`replacement_shipment_ID`) REFERENCES `tb_shipments` (`shipment_ID`) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

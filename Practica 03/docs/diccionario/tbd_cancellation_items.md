@@ -1,7 +1,11 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_cancellation_items`
 
-Fuente: `respaldo_compra_usuarios.sql`, líneas 2404–2411. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 2425–2432. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+## Para qué sirve
+
+Detalla qué renglones y cantidades se solicitan cancelar dentro de una solicitud de tb_order_cancellations. Permite calcular el ajuste y el reembolso usando el precio guardado en tbd_order_items.
+
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL

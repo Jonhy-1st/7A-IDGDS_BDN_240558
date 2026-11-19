@@ -1,13 +1,17 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbc_payment_methods_types`
 
-Fuente: `respaldo_compra_usuarios.sql`, líneas 2088–2097. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 2104–2113. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+## Para qué sirve
+
+Es el catálogo de tipos de instrumentos que una persona puede guardar, como tarjetas, cuenta SPEI, billetera digital o cupón simulados. Los instrumentos individuales están en tbd_user_payment_methods.
+
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL
 
 - Columnas: 6.
-- Filas encontradas en sentencias INSERT de este respaldo: 1.
+- Filas encontradas en sentencias INSERT de este respaldo: 5.
 - Claves primarias / índices: 2.
 - Claves foráneas: 0.
 - Restricciones CHECK: 0.

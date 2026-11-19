@@ -1,12 +1,16 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_users`
 
-Fuente: `respaldo_compra_usuarios.sql`, líneas 1771–1783. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 1786–1799. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+## Para qué sirve
+
+Contiene las cuentas de acceso de la plataforma: correo, alias, contraseña protegida con hash, estado y rol de plataforma. Los datos personales complementarios se guardan en tb_people.
+
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL
 
-- Columnas: 8.
+- Columnas: 9.
 - Filas encontradas en sentencias INSERT de este respaldo: 10024.
 - Claves primarias / índices: 3.
 - Claves foráneas: 0.
@@ -25,6 +29,7 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 | 6 | `last_update` | `datetime` | Sí | `CURRENT_TIMESTAMP` | — | — | `&#96;last_update&#96; datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP` |
 | 7 | `last_login` | `datetime` | Sí | `NULL` | — | — | `&#96;last_login&#96; datetime DEFAULT NULL` |
 | 8 | `status` | `bit(1)` | No | `b` | — | — | `&#96;status&#96; bit(1) NOT NULL DEFAULT b'1'` |
+| 9 | `platform_role` | `enum('common_user','buyer')` | No | `'common_user'` | — | — | `&#96;platform_role&#96; enum('common_user','buyer') NOT NULL DEFAULT 'common_user'` |
 
 ## Claves primarias e índices
 
@@ -52,6 +57,7 @@ CREATE TABLE `tb_users` (
   `last_update` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `last_login` datetime DEFAULT NULL,
   `status` bit(1) NOT NULL DEFAULT b'1',
+  `platform_role` enum('common_user','buyer') NOT NULL DEFAULT 'common_user',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `nickname` (`nick`)

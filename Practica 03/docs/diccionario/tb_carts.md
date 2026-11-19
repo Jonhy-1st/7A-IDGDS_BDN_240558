@@ -1,14 +1,18 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_carts`
 
-Fuente: `respaldo_compra_usuarios.sql`, líneas 228–237. SHA-256: `20eff15c9d28e69975c07c1fb29d265dd8527cefb43781d630567aca1c39e279`.
+Fuente: `respaldo_casos_compra_final.sql`, líneas 231–242. SHA-256: `52a7d987f2e3f92a75f419de00c360508cf3b3d385ec3f70bcf65815f435a783`.
+## Para qué sirve
+
+Guarda los carritos de cada persona antes de confirmar una compra. El estado distingue el carrito activo, convertido o abandonado; la columna calculada permite varios carritos históricos y limita a uno activo por usuario. Los productos están en tbd_cart_items.
+
 Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no asignan semántica funcional no declarada.
 
 ## Resumen DDL
 
-- Columnas: 5.
+- Columnas: 6.
 - Filas encontradas en sentencias INSERT de este respaldo: 2.
-- Claves primarias / índices: 2.
+- Claves primarias / índices: 3.
 - Claves foráneas: 1.
 - Restricciones CHECK: 0.
 - Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
@@ -18,15 +22,17 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 | # | Columna | Tipo SQL | Nulo | Predeterminado | Claves | Comentario DDL | Definición SQL |
 |---:|---|---|:---:|---|---|---|---|
 | 1 | `ID` | `int unsigned` | No | `—` | PK; PRIMARY (ID) | — | `&#96;ID&#96; int unsigned NOT NULL AUTO_INCREMENT` |
-| 2 | `user_ID` | `int` | No | `—` | UK; FK; fk_cart_user → tb_users(ID); uk_cart_user (user_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
+| 2 | `user_ID` | `int` | No | `—` | índice; FK; fk_cart_user → tb_users(ID); idx_carts_user (user_ID) | — | `&#96;user_ID&#96; int NOT NULL` |
 | 3 | `status` | `enum('Active','Converted','Abandoned')` | No | `'Active'` | — | — | `&#96;status&#96; enum('Active','Converted','Abandoned') NOT NULL DEFAULT 'Active'` |
-| 4 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
-| 5 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
+| 4 | `active_user_ID` | `int` | Sí | `—` | UK; uk_cart_active_user (active_user_ID) | — | `&#96;active_user_ID&#96; int GENERATED ALWAYS AS ((case when (&#96;status&#96; = 'Active') then &#96;user_ID&#96; else NULL end)) STORED` |
+| 5 | `creation_date` | `datetime` | No | `CURRENT_TIMESTAMP` | — | — | `&#96;creation_date&#96; datetime NOT NULL DEFAULT CURRENT_TIMESTAMP` |
+| 6 | `last_update` | `datetime` | Sí | `NULL` | — | — | `&#96;last_update&#96; datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP` |
 
 ## Claves primarias e índices
 
 - `PRIMARY` (PRIMARY, UNIQUE): `ID`. DDL: `PRIMARY KEY (&#96;ID&#96;)`
-- `uk_cart_user` (UNIQUE, UNIQUE): `user_ID`. DDL: `UNIQUE KEY &#96;uk_cart_user&#96; (&#96;user_ID&#96;)`
+- `idx_carts_user` (INDEX): `user_ID`. DDL: `KEY &#96;idx_carts_user&#96; (&#96;user_ID&#96;)`
+- `uk_cart_active_user` (UNIQUE, UNIQUE): `active_user_ID`. DDL: `UNIQUE KEY &#96;uk_cart_active_user&#96; (&#96;active_user_ID&#96;)`
 
 ## Claves foráneas
 
@@ -43,10 +49,12 @@ CREATE TABLE `tb_carts` (
   `ID` int unsigned NOT NULL AUTO_INCREMENT,
   `user_ID` int NOT NULL,
   `status` enum('Active','Converted','Abandoned') NOT NULL DEFAULT 'Active',
+  `active_user_ID` int GENERATED ALWAYS AS ((case when (`status` = 'Active') then `user_ID` else NULL end)) STORED,
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `uk_cart_user` (`user_ID`),
+  KEY `idx_carts_user` (`user_ID`),
+  UNIQUE KEY `uk_cart_active_user` (`active_user_ID`),
   CONSTRAINT `fk_cart_user` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
