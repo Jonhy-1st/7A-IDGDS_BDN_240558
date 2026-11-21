@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbc_payment_methods_types_res`
 
-Fuente: `Respaldo_Practica4.sql`, líneas 2246–2252. SHA-256: `ed941c888be8bd17d759acbcec9824ba173ad4094795d47012b7cc702bdf3880`.
+Fuente: `Respaldo_240558_final.sql`, líneas 2246–2252. SHA-256: `8b5679bd4606df2a2f9e6f461eeaac2ee6b93f0101e36ef72d645c0f0a5e7df1`.
 ## Para qué sirve
 
 Es un catálogo auxiliar de tipos de medio de pago utilizado por el esquema anterior. Sus nombres y descripciones son referencias de catálogo; el modelo actual de instrumentos usa tbc_payment_methods_types.

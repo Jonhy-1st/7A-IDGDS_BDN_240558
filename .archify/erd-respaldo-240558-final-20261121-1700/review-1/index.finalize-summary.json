@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "erd",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-240558-final-20261121-1700\\candidate.json",
+    "sha256": "4fa8489b32f0ead99ce54ce6f00ce2879520b98075220241f46560040d05a08b",
+    "bytes": 40471
+  },
+  "artifact": {
+    "path": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\docs\\diagrama\\index.html",
+    "sha256": "ec26c9cf4ceb602fd0daa875fe850b2d192fa44a98a24f9c92924bf8a62994a7",
+    "bytes": 1027676
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-240558-final-20261121-1700\\review-1\\index.finalize.json",
+    "summaryReceipt": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-240558-final-20261121-1700\\review-1\\index.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-240558-final-20261121-1700\\review-1\\index.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-21T22:38:00.497Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 7160,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "routesOverSuggestedBends": 2
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [],
+      "detours": [
+        {
+          "relationship": {
+            "id": "fk_2",
+            "from": "tb_carts",
+            "to": "tb_users",
+            "label": "",
+            "collectionIndex": 1,
+            "artifactIndex": 2
+          },
+          "bends": 3,
+          "stretch": 1.029
+        },
+        {
+          "relationship": {
+            "id": "fk_10",
+            "from": "tb_refunds",
+            "to": "tb_order_cancellations",
+            "label": "",
+            "collectionIndex": 9,
+            "artifactIndex": 10
+          },
+          "bends": 3,
+          "stretch": 1.052
+        }
+      ],
+      "truncated": false
+    },
+    "repair": "Advisory only: this mode places or routes these relationships itself. Report them; do not remove relationships or meaning to reduce crossings."
+  }
+}

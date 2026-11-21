@@ -1,8 +1,8 @@
 # Diccionario técnico de `db_test`
 
-Fuente: respaldo SQL [Respaldo_Practica4.sql](../backups/Respaldo_Practica4.sql).
-Huella SHA-256 del archivo: `ed941c888be8bd17d759acbcec9824ba173ad4094795d47012b7cc702bdf3880`.
-- Este respaldo es una copia derivada del dump guardado; conserva sus datos y materializa los cambios de esquema, pero no es una extracción nueva de un servidor en vivo.
+Fuente: respaldo SQL [Respaldo_240558_final.sql](../backups/Respaldo_240558_final.sql).
+Huella SHA-256 del archivo: `8b5679bd4606df2a2f9e6f461eeaac2ee6b93f0101e36ef72d645c0f0a5e7df1`.
+- Este documento se genera desde el respaldo indicado. Sus conteos describen ese archivo, no una consulta en vivo.
 Esta ficha resume exclusivamente declaraciones y sentencias encontradas en ese respaldo. No documenta reglas funcionales que no estén expresadas en el DDL.
 
 ## Resumen del archivo
@@ -10,7 +10,7 @@ Esta ficha resume exclusivamente declaraciones y sentencias encontradas en ese r
 - Base indicada por el dump: `db_test`.
 - Tablas: 27; columnas: 234; claves foráneas declaradas: 34.
 - Filas en sentencias `INSERT` del dump: 123820. Este conteo no representa el estado actual de una instancia.
-- Objetos nombrados en el archivo: 36 vistas, 85 triggers, 21 procedimientos y 2 funciones.
+- Objetos nombrados en el archivo: 43 vistas, 85 triggers, 21 procedimientos y 2 funciones.
 - Referencias FK con tabla destino también declarada: 34; con tabla destino ausente en el respaldo: 0.
 
 ## Tablas y filas `INSERT`
@@ -79,6 +79,13 @@ Esta ficha resume exclusivamente declaraciones y sentencias encontradas en ese r
 
 ### Vistas
 
+- `vw_practica04_caso_1`
+- `vw_practica04_caso_2`
+- `vw_practica04_caso_3`
+- `vw_practica04_caso_4`
+- `vw_practica04_caso_5`
+- `vw_practica04_resumen`
+- `vw_practica04_trazabilidad_base`
 - `vw_total_products_by_category`
 - `vw_trazabilidad_actividad_usuarios`
 - `vw_trazabilidad_buyer_orders`

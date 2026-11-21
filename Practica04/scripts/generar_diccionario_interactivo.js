@@ -13,7 +13,7 @@ const OUTPUT = path.join(PRACTICE, 'diccionario');
 const DOCS = path.join(PRACTICE, 'docs');
 const DOC_TABLES = path.join(DOCS, 'diccionario');
 const PAGES = path.join(ROOT, 'docs');
-const REFERENCE = path.join(BACKUPS, 'Respaldo_Practica4.sql');
+const REFERENCE = path.join(BACKUPS, 'Respaldo_240558_final.sql');
 
 const TABLE_DESCRIPTIONS = {
   tb_buyer_orders: 'Guarda el pedido general que hace una persona: quién compra, cuántos artículos incluye, cuánto cuesta y en qué etapa está. Se relaciona con usuarios, pedidos por vendedor, pagos y cancelaciones.',
@@ -135,6 +135,57 @@ function makeHtml(schema, sourceName, sourceHash) {
   <title>Diccionario de datos · ${esc(schema.database)}</title>
   <style>
     :root{color-scheme:dark;--bg:#0b1017;--panel:#111a25;--panel2:#162331;--line:#28394a;--ink:#e7f0f8;--muted:#91a5b8;--cyan:#61d9e8;--violet:#b4a1ff;--amber:#ffc66d;--green:#78d7a4;--red:#ff8f88;font:14px/1.5 Inter,ui-sans-serif,system-ui,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -20%,#173142 0,transparent 40%),var(--bg);color:var(--ink)}button,input,select{font:inherit}button{color:inherit}.shell{max-width:1680px;margin:auto;padding:28px clamp(16px,3vw,44px) 60px}.top{display:flex;gap:24px;justify-content:space-between;align-items:flex-start;margin-bottom:22px}.eyebrow,.label{color:var(--cyan);font-size:11px;font-weight:750;letter-spacing:.12em;text-transform:uppercase}.top h1{font-size:clamp(28px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:7px 0}.top p{color:var(--muted);margin:8px 0 0;max-width:850px}.source{max-width:340px;text-align:right;color:var(--muted);font-size:12px;overflow-wrap:anywhere}.source b{color:var(--ink)}.source code{font-size:11px}.stats{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:12px;margin:20px 0}.stat,.panel{background:linear-gradient(145deg,rgba(22,35,49,.97),rgba(15,24,34,.97));border:1px solid var(--line);border-radius:14px}.stat{padding:15px 18px}.stat span{display:block;color:var(--muted);font-size:12px}.stat strong{font-size:26px;letter-spacing:-.04em}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0}.control{background:#101a25;border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:10px 12px}.toolbar input[type=search]{flex:1;min-width:210px}.toolbar select{min-width:185px}.file-label,.button{display:inline-flex;align-items:center;gap:8px;background:#19313c;border:1px solid #315e69;padding:10px 13px;border-radius:9px;cursor:pointer;color:#c7f7fa;font-weight:650}.file-label:hover,.button:hover{background:#234553}.file-label input{position:absolute;width:1px;height:1px;opacity:0}.notice{font-size:12px;color:var(--muted);margin-left:auto}.workspace{display:grid;grid-template-columns:minmax(240px,300px) minmax(0,1fr);gap:14px;align-items:start}.panel{overflow:hidden}.panel-head{padding:15px 17px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.panel-head h2,.panel-head h3{font-size:14px;margin:0}.panel-head small{color:var(--muted)}.table-list{max-height:calc(100vh - 260px);min-height:280px;overflow:auto;padding:8px}.table-button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;border:1px solid transparent;border-radius:9px;background:transparent;padding:9px 10px;cursor:pointer}.table-button:hover{background:#1b2b39}.table-button.active{border-color:#356579;background:#17313d}.table-button span:first-child{min-width:0;overflow-wrap:anywhere}.table-button small{color:var(--muted);white-space:nowrap}.prefix{display:inline-block;margin-right:5px;padding:1px 5px;border-radius:4px;background:#283748;color:#b8cbe0;font-size:10px}.main{display:grid;gap:14px;min-width:0}.diagram-wrap{padding:0}.diagram-meta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:12px}.diagram-actions{display:flex;gap:6px}.icon-button{background:#17232f;border:1px solid var(--line);border-radius:7px;padding:4px 9px;cursor:pointer}.svg-scroll{overflow:auto;max-height:640px;background-image:radial-gradient(#314153 1px,transparent 1px);background-size:20px 20px}.svg-scroll svg{display:block;min-width:900px;width:100%;height:auto}.edge{stroke:#58758a;stroke-width:1.25;opacity:.7;fill:none}.edge-label{fill:#9bb1c3;font:10px ui-monospace,monospace}.node{cursor:pointer}.node rect{fill:#142331;stroke:#385064;stroke-width:1.2;rx:10}.node:hover rect,.node.selected rect{stroke:var(--cyan);stroke-width:2}.node-title{fill:#e3f3fa;font:600 13px ui-monospace,monospace}.node-meta{fill:#9bb1c3;font:11px ui-sans-serif,system-ui}.node-badge{fill:#80d9bf;font:10px ui-sans-serif,system-ui}.diagram-caption{padding:9px 15px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}.detail{scroll-margin-top:14px}.detail-empty{padding:30px;color:var(--muted)}.detail-body{padding:17px}.detail-title{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.detail-title h2{font:600 23px/1.2 ui-monospace,monospace;margin:0}.detail-title p{margin:6px 0;color:var(--muted);font-size:12px}.tabs{display:flex;gap:8px;margin:16px 0 12px}.tab{background:transparent;border:1px solid var(--line);padding:6px 10px;border-radius:7px;color:var(--muted);cursor:pointer}.tab.active{color:var(--cyan);border-color:#35727c}.scroll-table{overflow:auto;border:1px solid var(--line);border-radius:9px}.fields{border-collapse:collapse;width:100%;min-width:850px;font-size:12px}.fields th{position:sticky;top:0;background:#192837;color:#a9bfd1;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.08em}.fields th,.fields td{padding:9px 10px;border-bottom:1px solid #263645;vertical-align:top}.fields code,code{font:11px ui-monospace,SFMono-Regular,Consolas,monospace}.fields tr:last-child td{border-bottom:0}.field-name{color:#f4f7fc;font-weight:650;white-space:nowrap}.muted{color:var(--muted)}.badge{display:inline-block;border-radius:4px;padding:2px 5px;margin:0 3px 2px 0;font-size:9px;font-weight:800;background:#273648;color:#b7cae0}.badge.pk{background:#483c26;color:#ffd996}.badge.fk{background:#153b46;color:#86e5ee}.badge.uk{background:#382e52;color:#d1b7ff}.sql-def{max-width:380px;white-space:normal;overflow-wrap:anywhere;color:#a7bbcc}.relations{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:9px;margin-top:10px}.relation{background:#111d28;border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:12px}.relation b{font-family:ui-monospace,monospace}.relation p{margin:5px 0 0;color:var(--muted)}.warn{color:var(--amber)}.index-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}.index-card{background:#101b26;border:1px solid var(--line);border-radius:8px;padding:10px;font-size:12px}.index-card code{display:block;color:#e1edf6}.index-card span{color:var(--muted)}.footer{padding:18px 0;color:var(--muted);font-size:11px}.error{border:1px solid #7b3c3c;background:#351c20;color:#ffb4ae;padding:10px 13px;border-radius:8px;margin:10px 0;display:none}.hidden{display:none!important}.archify-link{color:var(--cyan);text-decoration:none;border-bottom:1px dotted #4aa5b0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:900px){.workspace{grid-template-columns:1fr}.table-list{max-height:260px;min-height:auto}.source{text-align:left}.top{display:block}.stats{grid-template-columns:repeat(2,1fr)}.notice{margin-left:0}.toolbar input[type=search]{flex-basis:100%}}@media(max-width:520px){.stats{grid-template-columns:repeat(2,1fr)}.stat{padding:12px}.stat strong{font-size:22px}.shell{padding:18px 12px 42px}}
+    /* Presentación actualizada: superficie clara, acentos azul petróleo y
+       tarjetas con jerarquía visual para lectura prolongada del esquema. */
+    :root{color-scheme:light;--bg:#eef3f8;--panel:#fff;--panel2:#f7fafc;--line:#d7e1eb;--ink:#172b45;--muted:#667c93;--cyan:#087f8c;--violet:#7555c7;--amber:#ad6a00;--green:#13805b;--red:#bd4650;font:14px/1.55 Inter,ui-sans-serif,system-ui,"Segoe UI",sans-serif}
+    body{background:radial-gradient(ellipse at 88% -15%,rgba(64,174,183,.18),transparent 38%),radial-gradient(ellipse at 0% 30%,rgba(117,85,199,.07),transparent 30%),var(--bg);color:var(--ink)}
+    .shell{max-width:1740px;padding-top:34px}
+    .top{padding:28px 30px;border:1px solid #d9e5ec;border-radius:22px;background:linear-gradient(120deg,rgba(255,255,255,.98),rgba(244,250,251,.94));box-shadow:0 16px 42px rgba(31,58,82,.08);align-items:center}
+    .eyebrow,.label{color:#087f8c;letter-spacing:.14em}
+    .top h1{color:#172b45;font-size:clamp(32px,4vw,50px);letter-spacing:-.045em}
+    .top p{color:#5f7489;font-size:14px;max-width:900px}
+    .source{padding:13px 15px;border:1px solid #dbe6ed;border-radius:13px;background:#f8fbfd;text-align:left;color:#5e7489}
+    .source b{color:#18334d}
+    .stats{gap:14px;margin:20px 0}
+    .stat,.panel{background:#fff;border:1px solid #dbe4ed;border-radius:16px;box-shadow:0 8px 24px rgba(35,58,78,.055)}
+    .stat{position:relative;overflow:hidden;padding:17px 19px}
+    .stat:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:#168995}
+    .stat:nth-child(2):before{background:#6b60c8}.stat:nth-child(3):before{background:#d48a28}.stat:nth-child(4):before{background:#2f9a70}
+    .stat span{color:#667c93}.stat strong{color:#172f4b;font-size:29px}
+    .control{background:#fff;border-color:#d5e0e9;color:#18334d;box-shadow:0 2px 5px rgba(27,54,76,.035)}
+    .control:focus{outline:3px solid rgba(8,127,140,.16);border-color:#168995}
+    .file-label,.button{background:#e9f6f6;border-color:#b7dddf;color:#086f79}
+    .file-label:hover,.button:hover{background:#d9eeee}
+    .notice{color:#60778d}
+    .panel-head{background:linear-gradient(180deg,#fff,#f8fafc);border-color:#e4ebf1}
+    .panel-head h2,.panel-head h3{color:#203b57}
+    .table-list{background:#fbfcfe}
+    .table-button{color:#263f5b}
+    .table-button:hover{background:#eef6f8}
+    .table-button.active{border-color:#a8d6da;background:#e8f5f6;color:#075e68}
+    .prefix{background:#e8eef4;color:#536b83}
+    .prefix[data-prefix="tb_"]{background:#e8f3f6;color:#187887}
+    .prefix[data-prefix="tbc_"]{background:#f1ecfb;color:#7057b2}
+    .prefix[data-prefix="tbd_"]{background:#eaf4ec;color:#397750}
+    .svg-scroll{background-color:#fbfdff;background-image:radial-gradient(#dce6ee .8px,transparent .8px);background-size:18px 18px}
+    .edge{stroke:#7890a4;stroke-width:1.35;opacity:.7}
+    .edge-label{fill:#587087}
+    .node rect{fill:#fff;stroke:#cbd9e4;filter:drop-shadow(0 3px 4px rgba(38,63,87,.08))}
+    .node:hover rect,.node.selected rect{stroke:#108792;filter:drop-shadow(0 4px 8px rgba(8,127,140,.18))}
+    .node-title{fill:#18334d}.node-meta{fill:#6b8095}.node-badge{fill:#13805b}
+    .diagram-caption{border-color:#e4ebf1;color:#63798e}
+    .detail-title h2{color:#18334d}
+    .tab{border-color:#d7e1eb;color:#63798e}.tab.active{color:#087f8c;border-color:#76b9bf;background:#eff9f9}
+    .scroll-table{border-color:#dbe4ed}
+    .fields th{background:#edf3f7;color:#506981}
+    .fields th,.fields td{border-color:#e5ebf0}
+    .fields tbody tr:nth-child(even){background:#fafcfe}
+    .field-name{color:#193550}
+    .badge{background:#eaf0f5;color:#4c657d}.badge.pk{background:#fff1d7;color:#8a5d08}.badge.fk{background:#e2f4f5;color:#087480}.badge.uk{background:#eee9fb;color:#674da8}
+    .sql-def{color:#516a82}.relation,.index-card{background:#f8fafc;border-color:#dce5ed}.relation p,.index-card span{color:#657b90}
+    .footer{color:#6d8297}
+    @media(max-width:900px){.top{padding:22px}.source{margin-top:18px}.top{display:block}}
+    @media(max-width:520px){.top{padding:18px;border-radius:16px}.stat strong{font-size:25px}}
   </style>
 </head>
 <body>
@@ -162,7 +213,7 @@ function makeOverview(schema, sourceName, hash) {
     `# Diccionario técnico de \`${schema.database}\``, '',
     `Fuente: respaldo SQL [${sourceName}](../backups/${encodeURIComponent(sourceName).replace(/%2F/g, '/')}).`,
     `Huella SHA-256 del archivo: \`${hash}\`.`,
-    '- Este respaldo es una copia derivada del dump guardado; conserva sus datos y materializa los cambios de esquema, pero no es una extracción nueva de un servidor en vivo.',
+    '- Este documento se genera desde el respaldo indicado. Sus conteos describen ese archivo, no una consulta en vivo.',
     'Esta ficha resume exclusivamente declaraciones y sentencias encontradas en ese respaldo. No documenta reglas funcionales que no estén expresadas en el DDL.', '',
     '## Resumen del archivo', '',
     `- Base indicada por el dump: \`${schema.database}\`.`,
@@ -266,6 +317,7 @@ function main() {
   fs.writeFileSync(path.join(OUTPUT, 'campos.csv'), createCsv(schema), 'utf8');
   const html = makeHtml(schema, sourceName, sourceHash);
   fs.writeFileSync(path.join(OUTPUT, 'diccionario.html'), html, 'utf8');
+  writePagesCopy(html);
   const normalizedInput = path.resolve(input).toLowerCase();
   if (normalizedInput === path.resolve(REFERENCE).toLowerCase()) {
     writeReferenceDocs(schema, path.basename(input), sourceHash);

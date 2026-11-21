@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_users_offer_products`
 
-Fuente: `Respaldo_Practica4.sql`, líneas 3302–3315. SHA-256: `ed941c888be8bd17d759acbcec9824ba173ad4094795d47012b7cc702bdf3880`.
+Fuente: `Respaldo_240558_final.sql`, líneas 3302–3315. SHA-256: `8b5679bd4606df2a2f9e6f461eeaac2ee6b93f0101e36ef72d645c0f0a5e7df1`.
 ## Para qué sirve
 
 Representa la oferta de un producto hecha por un vendedor: quién lo vende, qué producto ofrece, cuántas unidades tiene y si la oferta está activa. Los carritos y pedidos apuntan a esta oferta.
@@ -15,7 +15,7 @@ Los datos siguientes transcriben propiedades visibles en el DDL del respaldo; no
 - Claves primarias / índices: 3.
 - Claves foráneas: 1.
 - Restricciones CHECK: 0.
-- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=16391 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
+- Opciones de tabla tal como aparecen junto al DDL: `ENGINE=InnoDB AUTO_INCREMENT=14970 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`.
 
 ## Columnas
 
@@ -60,5 +60,5 @@ CREATE TABLE `tbd_users_offer_products` (
   KEY `fk_user_1` (`user_ID`),
   KEY `fk_product_2` (`product_ID`),
   CONSTRAINT `fk_product_2` FOREIGN KEY (`product_ID`) REFERENCES `tb_products` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=16391 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14970 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

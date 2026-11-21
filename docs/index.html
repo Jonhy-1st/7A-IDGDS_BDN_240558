@@ -1,17 +1,57 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentación de bases de datos</title>
+  <meta name="theme-color" content="#edf4f7">
+  <meta name="description" content="Consulta el diccionario y el modelo relacional de db_test.">
+  <title>Modelo de datos · Práctica 04</title>
   <style>
-    body{font:16px/1.6 system-ui,sans-serif;max-width:760px;margin:12vh auto;padding:0 24px;background:#0b1017;color:#e7f0f8}h1{line-height:1.2}p{color:#a9bfd1}a{display:block;margin:16px 0;padding:18px;border:1px solid #315e69;border-radius:10px;color:#86e5ee;text-decoration:none}a:hover{background:#142331}
+    :root{color-scheme:light;--ink:#18324c;--muted:#61778d;--teal:#087f8c;--purple:#7256bd;--line:#dbe5ec;--paper:#fff}
+    *{box-sizing:border-box}
+    body{min-height:100vh;margin:0;background:radial-gradient(ellipse at 82% -10%,rgba(75,180,187,.2),transparent 36%),radial-gradient(ellipse at 0 80%,rgba(114,86,189,.08),transparent 36%),#edf3f7;color:var(--ink);font:16px/1.55 Inter,ui-sans-serif,system-ui,"Segoe UI",sans-serif}
+    main{width:min(1120px,calc(100% - 40px));margin:0 auto;padding:clamp(50px,11vh,120px) 0 64px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 11px;border:1px solid #c8e0e3;border-radius:999px;background:#f4fbfb;color:#087681;font-size:12px;font-weight:750;letter-spacing:.1em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:#19a0a5;box-shadow:0 0 0 4px #dff2f2}
+    h1{max-width:780px;margin:22px 0 12px;font-size:clamp(36px,6vw,66px);line-height:1.02;letter-spacing:-.055em}
+    .intro{max-width:720px;margin:0;color:var(--muted);font-size:clamp(16px,2vw,19px)}
+    .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:42px}
+    .card{position:relative;display:flex;min-height:250px;flex-direction:column;padding:25px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.92);box-shadow:0 13px 34px rgba(34,61,81,.07);text-decoration:none;color:inherit;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+    .card:hover{transform:translateY(-4px);border-color:#a9cbd3;box-shadow:0 20px 42px rgba(34,61,81,.12)}
+    .card:focus-visible{outline:3px solid #55aeb5;outline-offset:3px}
+    .icon{display:grid;width:48px;height:48px;place-items:center;border-radius:14px;background:#e7f5f5;color:var(--teal)}
+    .card:nth-child(2) .icon{background:#f0ecfb;color:var(--purple)}
+    .icon svg{width:25px;height:25px}
+    .card h2{margin:22px 0 7px;font-size:23px;letter-spacing:-.025em}
+    .card p{margin:0;color:var(--muted);max-width:430px}
+    .action{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:23px;color:var(--teal);font-size:14px;font-weight:750}
+    .card:nth-child(2) .action{color:var(--purple)}
+    .arrow{font-size:21px;transition:transform .18s ease}.card:hover .arrow{transform:translateX(4px)}
+    .foot{margin-top:24px;color:#7b8ea1;font-size:12px}
+    @media(max-width:680px){main{width:min(100% - 28px,560px);padding-top:56px}.cards{grid-template-columns:1fr;margin-top:30px}.card{min-height:220px;padding:21px}h1{font-size:42px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
   </style>
 </head>
 <body>
-  <h1>Prácticas de bases de datos</h1>
-  <p>Consulta el esquema de la base de datos y su representación visual.</p>
-  <a href="diccionario.html">Abrir diccionario de datos interactivo</a>
-  <a href="diagrama/">Abrir diagrama interactivo</a>
+  <main>
+    <span class="eyebrow">Práctica 04 · Base de datos</span>
+    <h1>Explora el modelo de datos</h1>
+    <p class="intro">Consulta las tablas, campos y relaciones de <code>db_test</code> a partir del respaldo final. Elige una vista para empezar.</p>
+    <section class="cards" aria-label="Herramientas del esquema">
+      <a class="card" href="diccionario.html">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.8A2.8 2.8 0 0 1 7.8 2H20v17H7.8A2.8 2.8 0 0 0 5 21.8z"/><path d="M5 5v16.8M9 7h7M9 11h7M9 15h5"/></svg></span>
+        <h2>Diccionario de datos</h2>
+        <p>Busca tablas y columnas, revisa tipos y claves, y explora las relaciones desde sus fichas.</p>
+        <span class="action"><span>Abrir diccionario</span><span class="arrow" aria-hidden="true">→</span></span>
+      </a>
+      <a class="card" href="diagrama/">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3" width="7" height="6" rx="1.5"/><rect x="14.5" y="15" width="7" height="6" rx="1.5"/><rect x="14.5" y="3" width="7" height="6" rx="1.5"/><path d="M6 9v4a2 2 0 0 0 2 2h6.5M10 6h4.5M18 9v6"/></svg></span>
+        <h2>Diagrama relacional</h2>
+        <p>Visualiza las claves foráneas y cambia entre áreas del esquema para seguir cada relación.</p>
+        <span class="action"><span>Explorar diagrama</span><span class="arrow" aria-hidden="true">→</span></span>
+      </a>
+    </section>
+    <p class="foot">Las cantidades de filas corresponden a sentencias <code>INSERT</code> incluidas en el respaldo, no a una consulta en vivo.</p>
+  </main>
 </body>
 </html>

@@ -9,10 +9,36 @@
 5. Ejecuta `CALL sp_prepare_case_catalog_offers();`. El resultado debe mostrar
    por lo menos 10 ofertas activas con existencia. Esta operación usa productos
    que ya existen y no crea tablas ni productos nuevos.
+6. Ejecuta `scripts/crear_vistas_trazabilidad_casos.sql` para instalar las
+   vistas que se consultan en la evidencia de `Trazabilidades/image.png`.
 
 La migración está escrita para el esquema del respaldo de la práctica. No la
 ejecutes sobre una base que ya tenga esos cambios aplicados: los `ALTER TABLE`
 son migraciones de una sola ejecución.
+
+## Consultar la trazabilidad
+
+Después de ejecutar los casos y crear las vistas, ejecuta
+`queries/trazabilidad_casos_compra.sql` en Workbench. El archivo consulta las
+cinco trazabilidades y el resumen:
+
+```sql
+SELECT * FROM vw_practica04_caso_1 ORDER BY fecha_evento;
+SELECT * FROM vw_practica04_caso_2 ORDER BY fecha_evento;
+SELECT * FROM vw_practica04_caso_3 ORDER BY fecha_evento;
+SELECT * FROM vw_practica04_caso_4 ORDER BY fecha_evento;
+SELECT * FROM vw_practica04_caso_5 ORDER BY fecha_evento;
+SELECT * FROM vw_practica04_resumen;
+```
+
+Las vistas están mapeadas a los pedidos `3`, `4` y `5` (reenvío del caso 2),
+`6`, `7` y `8`, que son los IDs de la ejecución documentada. Si se restauró o
+repitió la base y se generaron otros IDs, actualiza esos valores en el script de
+vistas antes de ejecutarlo. La bitácora original no incluye un campo `caso_ID`;
+por eso las vistas relacionan eventos con pedidos mediante los IDs presentes
+en los detalles y las relaciones de pago, vendedor y envío. Los eventos sin una
+referencia al pedido (por ejemplo, una cuenta creada sin `user_ID` en su
+descripción) no se pueden atribuir con certeza a un caso.
 
 ## Para cobrar un pedido
 

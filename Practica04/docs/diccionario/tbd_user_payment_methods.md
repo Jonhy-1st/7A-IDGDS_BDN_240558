@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tbd_user_payment_methods`
 
-Fuente: `Respaldo_Practica4.sql`, líneas 3208–3228. SHA-256: `ed941c888be8bd17d759acbcec9824ba173ad4094795d47012b7cc702bdf3880`.
+Fuente: `Respaldo_240558_final.sql`, líneas 3208–3228. SHA-256: `8b5679bd4606df2a2f9e6f461eeaac2ee6b93f0101e36ef72d645c0f0a5e7df1`.
 ## Para qué sirve
 
 Guarda instrumentos de pago simulados de cada persona, como tarjeta o cupón: tipo, proveedor, referencia, últimos cuatro dígitos y saldo opcional. Los pagos los referencian sin guardar el número completo de la tarjeta.

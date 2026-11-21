@@ -1,7 +1,7 @@
 <!-- generado por generar_diccionario_interactivo.js -->
 # Tabla `tb_buyer_orders`
 
-Fuente: `Respaldo_Practica4.sql`, líneas 27–40. SHA-256: `ed941c888be8bd17d759acbcec9824ba173ad4094795d47012b7cc702bdf3880`.
+Fuente: `Respaldo_240558_final.sql`, líneas 27–40. SHA-256: `8b5679bd4606df2a2f9e6f461eeaac2ee6b93f0101e36ef72d645c0f0a5e7df1`.
 ## Para qué sirve
 
 Guarda el pedido general que hace una persona: quién compra, cuántos artículos incluye, cuánto cuesta y en qué etapa está. Se relaciona con usuarios, pedidos por vendedor, pagos y cancelaciones.

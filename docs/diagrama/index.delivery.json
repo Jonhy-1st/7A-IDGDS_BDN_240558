@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "acdb158c-e732-4c59-bdd1-99f488f59257",
+  "status": "current",
+  "command": "deliver",
+  "type": "erd",
+  "input": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\.archify\\erd-respaldo-240558-final-20261121-1700\\candidate.json",
+  "output": "C:\\Users\\jonhy\\7A-IDGDS_BDN_240558\\docs\\diagrama\\index.html",
+  "specification": {
+    "sha256": "4fa8489b32f0ead99ce54ce6f00ce2879520b98075220241f46560040d05a08b",
+    "bytes": 40471
+  },
+  "artifact": {
+    "sha256": "ec26c9cf4ceb602fd0daa875fe850b2d192fa44a98a24f9c92924bf8a62994a7",
+    "bytes": 1027676
+  }
+}
